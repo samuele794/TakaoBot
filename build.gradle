@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id'application'
+    id'com.github.johnrengelman.shadow' version '2.0.1'
+}
+
+mainClassName = 'starter.start'
+
+group 'it.github.samuele794.discordbotTakao'
+version '1.0-SNAPSHOT'
+def jdaVersion = '3.8.1_448'
+
+
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.0.2'
+    compile "net.dv8tion:JDA:3.8.1_448"
+    // https://mvnrepository.com/artifact/com.rometools/rome
+    compile group: 'com.rometools', name: 'rome', version: '1.12.0'
+    // jsoup HTML parser library @ https://jsoup.org/
+    compile 'org.jsoup:jsoup:1.11.3'
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+
+    compile "org.apache.commons:commons-text:1.3"
+
+}
+
+
+compileJava.options.encoding = 'UTF-8'

@@ -1,0 +1,323 @@
+{
+  "day": [
+    {
+      "monday": [
+        {
+          "00:15": {
+            "boss": [
+              "Kutum",
+              "Kzarka"
+            ]
+          },
+          "02:00": {
+            "boss": [
+              "Karanda"
+            ]
+          },
+          "05:00": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "09:00": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "12:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "16:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "19:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "22:15": {
+            "boss": [
+              "Kzarka"
+            ]
+          }
+        }
+      ],
+      "Tuesday": [
+        {
+          "00:15": {
+            "boss": [
+              "Karanda"
+            ]
+          },
+          "02:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "05:00": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "09:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "12:00": {
+            "boss": [
+              "Offin"
+            ]
+          },
+          "16:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "19:00": {
+            "boss": [
+              "Karanda"
+            ]
+          },
+          "22:15": {
+            "boss": [
+              "Nouver",
+              "Garmoth"
+            ]
+          }
+        }
+      ],
+      "Wednesday": [
+        {
+          "00:15": {
+            "boss": [
+              "Kutum",
+              "Kzarka"
+            ]
+          },
+          "02:00": {
+            "boss": [
+              "Karanda"
+            ]
+          },
+          "05:00": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "09:00": {
+            "boss": [
+              "Karanda"
+            ]
+          },
+          "12:00": {
+            "boss": [
+              "Manutenzione"
+            ]
+          },
+          "16:00": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "19:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "22:15": {
+            "boss": [
+              "Karanda",
+              "Kzarka"
+            ]
+          }
+        }
+      ],
+      "Thursday": [
+        {
+          "00:15": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "02:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "05:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "09:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "12:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "16:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "19:00": {
+            "boss": [
+              "Offin"
+            ]
+          },
+          "22:15": {
+            "boss": [
+              "Garmoth"
+            ]
+          }
+        }
+      ],
+      "Friday": [
+        {
+          "00:15": {
+            "boss": [
+              "Karanda",
+              "Kzarka"
+            ]
+          },
+          "02:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "05:00": {
+            "boss": [
+              "Karanda"
+            ]
+          },
+          "09:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "12:00": {
+            "boss": [
+              "Karanda"
+            ]
+          },
+          "16:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "19:00": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "22:15": {
+            "boss": [
+              "Kutum",
+              "Kzarka"
+            ]
+          }
+        }
+      ],
+      "Saturday": [
+        {
+          "00:15": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "02:00": {
+            "boss": [
+              "Offin"
+            ]
+          },
+          "05:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "09:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "12:00": {
+            "boss": [
+              "Nouver"
+            ]
+          },
+          "16:00": {
+            "boss": [
+              "Quint/Muraka"
+            ]
+          },
+          "19:00": {
+            "boss": [
+              "Karanda",
+              "Kzarka"
+            ]
+          },
+          "22:15": {
+            "boss": [
+              "Conquest War"
+            ]
+          }
+        }
+      ],
+      "Sunday": [
+        {
+          "00:15": {
+            "boss": [
+              "Nouver",
+              "Kutum"
+            ]
+          },
+          "02:00": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "05:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "09:00": {
+            "boss": [
+              "Kutum"
+            ]
+          },
+          "12:00": {
+            "boss": [
+              "Kzarka"
+            ]
+          },
+          "16:00": {
+            "boss": [
+              "Vell"
+            ]
+          },
+          "19:00": {
+            "boss": [
+              "Karanda"
+            ]
+          },
+          "22:15": {
+            "boss": [
+              "Garmoth",
+              "Nouver"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
