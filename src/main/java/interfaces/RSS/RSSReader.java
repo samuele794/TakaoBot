@@ -17,7 +17,7 @@ public class RSSReader {
 
     /**
      * Metodo per leggere un feed RSS
-     * @param URL
+     * @param URL Url da cui bisogna leggere il feed
      * @return Ultimo feed registrato
      */
     public static RSSMessage readRSS(String URL){
@@ -45,8 +45,11 @@ public class RSSReader {
 
     /**
      * Metodo per preparare il messaggio per discord in modalità da embedded
-     * @param message
-     * @return
+     * @param message Ultimo feed prelevato dal metodo di lettura
+     * @return Messaggio pronto per l'invio a discord
+     *
+     * @see interfaces.RSS.RSSReader#readRSS(String)  readRSS
+     * @see net.dv8tion.jda.core.entities.MessageEmbed MessageEmbedded
      */
 
     public static MessageEmbed prepareRSStoEmbeddedMessage(RSSMessage message){

@@ -33,7 +33,7 @@ public class SQLiteInterfaces {
     /**
      * Metodo per inizializzare la connessione e/o il DB + la tabella
      * <p>
-     * PS: In caso sia il primo avvio del bot, accendere -> spegnere -> accendere il bot
+     * PS: In caso sia il primo avvio del bot, accendere, spegnere e successivamente riaccendere il bot
      */
     public static void initializeDB() {
         try {
@@ -102,7 +102,7 @@ public class SQLiteInterfaces {
     /**
      * Metodo che rimuove la riga del server che ha espulso il bot
      *
-     * @param serverID
+     * @param serverID id del server
      */
     public static void deleteServer(String serverID) {
         var sql = "DELETE FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
@@ -120,8 +120,8 @@ public class SQLiteInterfaces {
     /**
      * Metodo che per ottenre il simbolo del server
      *
-     * @param serverID
-     * @return
+     * @param serverID id del server
+     * @return prefisso per comandi
      */
     public static String getSimbol(String serverID) {
         var sql = "SELECT " + SD_DB_COLUMN.SIMBOL_COMMAND.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.SERVER_ID.name() + " = '" + serverID + "';";
@@ -162,8 +162,8 @@ public class SQLiteInterfaces {
     /**
      * Metodo per settare il canale per le news su BDO
      *
-     * @param serverID
-     * @param channelID
+     * @param serverID id del server
+     * @param channelID id del canale testuale
      */
     public static void setBDONewsChannel(String serverID, String channelID) {
         var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDONewsIDChannel.name() + "= '" + channelID + "' WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
@@ -179,7 +179,9 @@ public class SQLiteInterfaces {
     /**
      * Metodo per ottenere tutti i canali registrati alle news di BDO
      *
-     * @return
+     * @return Lista di coppie di serverID e channelID
+     *
+     * @see beans.ServerToChannel ServerToChannel
      */
     public static ArrayList<ServerToChannel> getBDONewsChannel() {
         var sql = "SELECT " + SD_DB_COLUMN.SERVER_ID.name() + ", " + SD_DB_COLUMN.BDONewsIDChannel.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.BDONewsIDChannel.name() + " IS NOT NULL";
@@ -203,8 +205,8 @@ public class SQLiteInterfaces {
     /**
      * Metodo per settare il canale per le patch di BDO
      *
-     * @param serverID
-     * @param channelID
+     * @param serverID id del server
+     * @param channelID id del canale testuale
      */
     public static void setBDOPatchChannel(String serverID, String channelID) {
         var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDOPatchIDChannel.name() + "= '" + channelID + "' WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
@@ -220,7 +222,9 @@ public class SQLiteInterfaces {
     /**
      * Metodo per ottenere tutti i canali registrati alle patch di BDO
      *
-     * @return
+     * @return lista dei server e dei relativi canali che si sono registrati
+     *
+     * @see ServerToChannel ServerToChannel
      */
     public static ArrayList<ServerToChannel> getBDOPatchChannel() {
         var sql = "SELECT " + SD_DB_COLUMN.SERVER_ID.name() + ", " + SD_DB_COLUMN.BDOPatchIDChannel.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.BDOPatchIDChannel.name() + " IS NOT NULL";
@@ -242,28 +246,9 @@ public class SQLiteInterfaces {
     }
 
     /**
-     * Imposta l'ultima notizia di BDO, se esiste l'aggiorna, altrimenti inserisce la riga.
-     *
-     * @param url
-     */
-    public static void setLastNewsBDO(String url) {
-        var linkLastNews = getLastNewsBDO();
-
-        @Language("SQLite") var sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastNewsBDO.name() + " = \"" + url + "\" WHERE " + RSS_DB_COLUMN.ID.name() + "  = 1;";
-        try {
-            var statement = connection.createStatement();
-            statement.executeUpdate(sql);
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    /**
      * Ottiene il link dell'ultima notizia di BDO
      *
-     * @return
+     * @return String url dell'ultima notizia
      */
     public static String getLastNewsBDO() {
         var sql = "SELECT " + RSS_DB_COLUMN.LastNewsBDO.name() + " FROM " + RSS_LINK + ";";
@@ -287,9 +272,27 @@ public class SQLiteInterfaces {
     }
 
     /**
+     * Imposta l'ultima notizia di BDO, se esiste l'aggiorna, altrimenti inserisce la riga.
+     *
+     * @param url Url dell'ultima news di BDO
+     */
+    public static void setLastNewsBDO(String url) {
+
+        @Language("SQLite") var sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastNewsBDO.name() + " = \"" + url + "\" WHERE " + RSS_DB_COLUMN.ID.name() + "  = 1;";
+        try {
+            var statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      * Ottiene il link dell'ultima patch di BDO
      *
-     * @return String il link dell'ultima patch
+     * @return String link url dell'ultima patch
      */
     public static String getLastPatchBDO() {
         var sql = "SELECT " + RSS_DB_COLUMN.LastPatchBDO.name() + " FROM " + RSS_LINK + ";";
@@ -315,7 +318,7 @@ public class SQLiteInterfaces {
     /**
      * Imposta l'ultima patch di BDO, se esiste l'aggiorna, altrimenti inserisce la riga.
      *
-     * @param url
+     * @param url url dell'ultimo feed rss aggiornato
      */
     public static void setLastPatchBDO(String url) {
         var linkLastNews = getLastPatchBDO();

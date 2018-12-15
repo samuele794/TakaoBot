@@ -2,9 +2,9 @@ package starter;
 
 import com.google.gson.Gson;
 import command.real.BDO.BOSS.BossCommand;
-import command.real.JoinListener;
 import command.real.BDO.RSS.BDONewsStartCommand;
 import command.real.BDO.RSS.BDOPatchStartCommand;
+import command.real.JoinListener;
 import command.real.configuration.ConfigurationCommand;
 import command.testing.PrivateMessage;
 import command.testing.TestCommand;
@@ -48,7 +48,6 @@ public class Start {
         jda.addEventListener(new ConfigurationCommand());
         jda.addEventListener(new BDONewsStartCommand());
         jda.addEventListener(new BDOPatchStartCommand());
-        ;
 
         System.out.println(jda.asBot().getInviteUrl(Permission.ADMINISTRATOR));
 
