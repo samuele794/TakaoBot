@@ -1,21 +1,18 @@
 package command.real.BDO.RSS;
 
-import command.pattern.CommandDescriptor;
 import command.pattern.ControlCommand;
 import interfaces.SQLiteInterfaces;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-public class BDONewsStartCommand extends ListenerAdapter implements CommandDescriptor {
+public class BDONewsStartCommand extends ListenerAdapter {
 
-    @Override
-    public String getCommand() {
+    public static String getCommand() {
         return "BDONewsStart";
     }
 
-    @Override
-    public String getCommandDescription() {
+    public static String getCommandDescription() {
         return "Comando per iscriversi al feed delle news di BDO. \n" +
                 "Il comando deve essere lanciato sul canale su cui si desidera ricevere le news";
     }

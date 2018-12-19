@@ -1,10 +1,10 @@
-package command.testing;
+package testing;
 
 import command.pattern.ControlCommand;
+import interfaces.SQLiteInterfaces;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -25,8 +25,8 @@ public class PrivateMessage extends ListenerAdapter {
                 EmbedBuilder embedBuilder = new EmbedBuilder();
                 embedBuilder.setColor(Color.MAGENTA)
                         .setAuthor(user.getName(), null, user.getAvatarUrl())
-                        .setTitle("Ciao fed")
-                        .setDescription("Test di messaggio ee");
+                        .setTitle("Ciao " + event.getAuthor().getName())
+                        .setDescription("Il tuo simbolo di comando è: " + SQLiteInterfaces.getSimbol(event.getGuild().getId()));
                 privateChannel.sendMessage(embedBuilder.build()).queue();
 
 

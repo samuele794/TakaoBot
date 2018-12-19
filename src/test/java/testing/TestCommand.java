@@ -1,4 +1,4 @@
-package command.testing;
+package testing;
 
 import command.pattern.ControlCommand;
 import net.dv8tion.jda.core.entities.Message;
@@ -24,12 +24,26 @@ public class TestCommand extends ListenerAdapter {
             MessageChannel channel = event.getChannel();
             channel.sendMessage("Pong!").queue();
 
+           /* SchedulerFactory sf = new StdSchedulerFactory();
+            try {
+                Scheduler scheduler= sf.getScheduler();
+                JobDetail job = newJob(HandJOB.class)
+                        .withIdentity("job1", "group1")
+                        .build();
+
+                CronTrigger trigger = newTrigger()
+                        .withIdentity("trigger1", "group1")
+                        .withSchedule(cronSchedule("0 0/5 0 * * ? *"))
+                        .build();
+
+                scheduler.scheduleJob(job, trigger);
+                scheduler.deleteJob(new JobKey("job1", "group1"));
+                scheduler.start();
+            } catch (SchedulerException e) {
+                e.printStackTrace();
+            }*/
+
         }
-    }
-
-
-    public static void createJSon(){
-
     }
 
 }

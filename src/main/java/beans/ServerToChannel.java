@@ -9,7 +9,7 @@ public class ServerToChannel {
     private String serverID;
     private String channelID;
 
-    public ServerToChannel (String serverID, String channelID){
+    public ServerToChannel(String serverID, String channelID) {
         setServerID(serverID);
         setChannelID(channelID);
     }
@@ -25,6 +25,7 @@ public class ServerToChannel {
 
     /**
      * Metodo per impostare il serverID
+     *
      * @param serverID id del server discord
      */
 
@@ -34,6 +35,7 @@ public class ServerToChannel {
 
     /**
      * Metodo per ottenere il channelID
+     *
      * @return String id del canale
      */
     public String getChannelID() {
@@ -42,9 +44,31 @@ public class ServerToChannel {
 
     /**
      * Metodo per impostare il channelID
+     *
      * @param channelID id del canale testuale
      */
     public void setChannelID(String channelID) {
         this.channelID = channelID;
+    }
+
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof ServerToChannel) {
+
+            var obj = (ServerToChannel) object;
+
+            if (obj.serverID != null) {
+                if (obj.serverID.equals(this.serverID)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }

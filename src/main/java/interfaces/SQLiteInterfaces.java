@@ -177,6 +177,23 @@ public class SQLiteInterfaces {
     }
 
     /**
+     * Metodo per rimuovere il canale per le news su BDO
+     *
+     * @param serverID id del server
+     */
+    public static void removeBDONewsChannel(String serverID) {
+        var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDONewsIDChannel.name() + "= NULL WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+
+        try {
+            var statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      * Metodo per ottenere tutti i canali registrati alle news di BDO
      *
      * @return Lista di coppie di serverID e channelID
@@ -210,6 +227,22 @@ public class SQLiteInterfaces {
      */
     public static void setBDOPatchChannel(String serverID, String channelID) {
         var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDOPatchIDChannel.name() + "= '" + channelID + "' WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+
+        try {
+            var statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo per rimuovere il canale per le patch di BDO
+     *
+     * @param serverID id del server
+     */
+    public static void removeBDOPatchChannel(String serverID) {
+        var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDOPatchIDChannel.name() + "= NULL WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
 
         try {
             var statement = connection.createStatement();
