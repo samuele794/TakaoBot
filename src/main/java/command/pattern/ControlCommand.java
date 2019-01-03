@@ -6,11 +6,11 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class ControlCommand {
     /**
-     * Metodo per eseguire il controllo
+     * Metodo per eseguire il controllo se il comando inserito è quello di controllo
      *
-     * @param event
-     * @param commandName
-     * @return
+     * @param event evento del messaggio
+     * @param commandName nome del comando
+     * @return boolean il comando corrisponde a quello ricevuto con quello controllato
      */
     public static boolean controlCommand(MessageReceivedEvent event, String commandName) {
 

@@ -42,7 +42,6 @@ public class TestCommand extends ListenerAdapter {
             } catch (SchedulerException e) {
                 e.printStackTrace();
             }*/
-
         }
     }
 
