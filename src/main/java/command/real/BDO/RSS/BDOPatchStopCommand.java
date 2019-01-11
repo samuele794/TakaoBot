@@ -7,6 +7,8 @@ import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+import java.util.ArrayList;
+
 public class BDOPatchStopCommand extends ListenerAdapter {
 
     public static String getCommand() {
@@ -23,8 +25,8 @@ public class BDOPatchStopCommand extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
         if (ControlCommand.controlCommand(event, getCommand())) {
 
-            var listChannel = SQLiteInterfaces.getBDOPatchChannel();
-            var removedChannelId = listChannel.get(listChannel.indexOf(new ServerToChannel(event.getGuild().getId(), null)));
+            ArrayList<ServerToChannel> listChannel = SQLiteInterfaces.getBDOPatchChannel();
+            ServerToChannel removedChannelId = listChannel.get(listChannel.indexOf(new ServerToChannel(event.getGuild().getId(), null)));
 
             SQLiteInterfaces.removeBDOPatchChannel(event.getGuild().getId());
 

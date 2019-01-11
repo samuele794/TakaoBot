@@ -13,7 +13,7 @@ public class BDONewsStartCommand extends ListenerAdapter {
     }
 
     public static String getCommandDescription() {
-        return "Comando per iscriversi al feed delle news di BDO. \n" +
+        return "Questo comando permette di iscriversi al feed delle news di BDO. \n" +
                 "Il comando deve essere lanciato sul canale su cui si desidera ricevere le news";
     }
 

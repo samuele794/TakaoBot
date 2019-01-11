@@ -30,8 +30,8 @@ public class ConfigurationCommand extends ListenerAdapter {
             return;
         }
 
-        var authorID = event.getAuthor().getId();
-        var ownerID = event.getGuild().getOwnerId();
+        String authorID = event.getAuthor().getId();
+        String ownerID = event.getGuild().getOwnerId();
 
         if (!ownerID.equals(authorID)) {
             event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
@@ -59,7 +59,7 @@ public class ConfigurationCommand extends ListenerAdapter {
         if (!(event.getMessage().getContentRaw().contains("\"") | event.getMessage().getContentRaw().contains("\\"))) {
 
             List<String> listMessage = Arrays.asList(event.getMessage().getContentRaw().split(" "));
-            var newCommand = listMessage.get(listMessage.size() - 1);
+            String newCommand = listMessage.get(listMessage.size() - 1);
             SQLiteInterfaces.setSimbol(newCommand, event.getGuild().getId());
 
             new MessageBuilder().append("Simbolo di comando configurato. Nuovo simbolo di comando: ")

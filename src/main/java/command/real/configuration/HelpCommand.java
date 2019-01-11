@@ -29,7 +29,7 @@ public class HelpCommand extends ListenerAdapter {
 
         if (ControlCommand.controlCommand(event, getCommand())) {
 
-            var simbol = SQLiteInterfaces.getSimbol(event.getGuild().getId());
+            String simbol = SQLiteInterfaces.getSimbol(event.getGuild().getId());
             EmbedBuilder builder = new EmbedBuilder();
 
             builder.setTitle("Lista Comandi").setColor(new Color(132, 197, 251))

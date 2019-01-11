@@ -56,7 +56,7 @@ public class ServerToChannel {
     public boolean equals(Object object) {
         if (object instanceof ServerToChannel) {
 
-            var obj = (ServerToChannel) object;
+            ServerToChannel obj = (ServerToChannel) object;
 
             if (obj.serverID != null) {
                 if (obj.serverID.equals(this.serverID)) {

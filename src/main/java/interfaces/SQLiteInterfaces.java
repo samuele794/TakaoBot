@@ -2,7 +2,6 @@ package interfaces;
 
 import beans.ServerToChannel;
 import org.apache.commons.text.StringEscapeUtils;
-import org.intellij.lang.annotations.Language;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,9 +42,11 @@ public class SQLiteInterfaces {
         }
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:test.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:databaseDiscord.db");
             if (connection != null) {
-                DatabaseMetaData metaData = connection.getMetaData();
+                connection.getMetaData();
+                connection.close();
+                connection = DriverManager.getConnection("jdbc:sqlite:databaseDiscord.db");
             }
 
             String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name='" + SERVERS_DISCORD + "';";
@@ -68,9 +69,7 @@ public class SQLiteInterfaces {
 
                 sql = "INSERT INTO RSSLink DEFAULT VALUES";
                 statement.execute(sql);
-
                 statement.close();
-                connection.endRequest();
             }
 
         } catch (SQLException e) {
@@ -87,12 +86,12 @@ public class SQLiteInterfaces {
      */
     public static void newServer(String nameServe, String serverID) {
 
-        var sql = "INSERT INTO " + SERVERS_DISCORD + "(" +
+        String sql = "INSERT INTO " + SERVERS_DISCORD + "(" +
                 SD_DB_COLUMN.NAME_SERVER.name() + "," + SD_DB_COLUMN.SERVER_ID.name() + ")" +
                 "VALUES(\"" + nameServe + "\", \"" + serverID + "\");";
 
         try {
-            var statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,10 +104,10 @@ public class SQLiteInterfaces {
      * @param serverID id del server
      */
     public static void deleteServer(String serverID) {
-        var sql = "DELETE FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+        String sql = "DELETE FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
 
         try {
-            var statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
             statement.close();
         } catch (SQLException e) {
@@ -124,10 +123,10 @@ public class SQLiteInterfaces {
      * @return prefisso per comandi
      */
     public static String getSimbol(String serverID) {
-        var sql = "SELECT " + SD_DB_COLUMN.SIMBOL_COMMAND.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.SERVER_ID.name() + " = '" + serverID + "';";
+        String sql = "SELECT " + SD_DB_COLUMN.SIMBOL_COMMAND.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.SERVER_ID.name() + " = '" + serverID + "';";
         try {
-            var statement = connection.createStatement();
-            var resultSet = statement.executeQuery(sql);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
 
             if (resultSet.next()) {
                 return StringEscapeUtils.unescapeJava(resultSet.getString("SIMBOL_COMMAND"));
@@ -147,12 +146,12 @@ public class SQLiteInterfaces {
      * @param serverID ID del server
      */
     public static void setSimbol(String command, String serverID) {
-        var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.SIMBOL_COMMAND.name() + "= '" + command + "' " +
+        String sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.SIMBOL_COMMAND.name() + "= '" + command + "' " +
                 "WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
         //TODO fare rinforzo contro injection
         sql = StringEscapeUtils.escapeJava(sql);
         try {
-            var statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -162,14 +161,14 @@ public class SQLiteInterfaces {
     /**
      * Metodo per settare il canale per le news su BDO
      *
-     * @param serverID id del server
+     * @param serverID  id del server
      * @param channelID id del canale testuale
      */
     public static void setBDONewsChannel(String serverID, String channelID) {
-        var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDONewsIDChannel.name() + "= '" + channelID + "' WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+        String sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDONewsIDChannel.name() + "= '" + channelID + "' WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
 
         try {
-            var statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -182,10 +181,10 @@ public class SQLiteInterfaces {
      * @param serverID id del server
      */
     public static void removeBDONewsChannel(String serverID) {
-        var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDONewsIDChannel.name() + "= NULL WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+        String sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDONewsIDChannel.name() + "= NULL WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
 
         try {
-            var statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -197,16 +196,15 @@ public class SQLiteInterfaces {
      * Metodo per ottenere tutti i canali registrati alle news di BDO
      *
      * @return Lista di coppie di serverID e channelID
-     *
      * @see beans.ServerToChannel ServerToChannel
      */
     public static ArrayList<ServerToChannel> getBDONewsChannel() {
-        var sql = "SELECT " + SD_DB_COLUMN.SERVER_ID.name() + ", " + SD_DB_COLUMN.BDONewsIDChannel.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.BDONewsIDChannel.name() + " IS NOT NULL";
+        String sql = "SELECT " + SD_DB_COLUMN.SERVER_ID.name() + ", " + SD_DB_COLUMN.BDONewsIDChannel.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.BDONewsIDChannel.name() + " IS NOT NULL";
         ArrayList<ServerToChannel> list = new ArrayList<>();
 
         try {
-            var statement = connection.createStatement();
-            var resutlt = statement.executeQuery(sql);
+            Statement statement = connection.createStatement();
+            ResultSet resutlt = statement.executeQuery(sql);
 
             while (resutlt.next()) {
                 list.add(new ServerToChannel(resutlt.getString(SD_DB_COLUMN.SERVER_ID.name()), resutlt.getString(SD_DB_COLUMN.BDONewsIDChannel.name())));
@@ -222,14 +220,14 @@ public class SQLiteInterfaces {
     /**
      * Metodo per settare il canale per le patch di BDO
      *
-     * @param serverID id del server
+     * @param serverID  id del server
      * @param channelID id del canale testuale
      */
     public static void setBDOPatchChannel(String serverID, String channelID) {
-        var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDOPatchIDChannel.name() + "= '" + channelID + "' WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+        String sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDOPatchIDChannel.name() + "= '" + channelID + "' WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
 
         try {
-            var statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -242,10 +240,10 @@ public class SQLiteInterfaces {
      * @param serverID id del server
      */
     public static void removeBDOPatchChannel(String serverID) {
-        var sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDOPatchIDChannel.name() + "= NULL WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+        String sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.BDOPatchIDChannel.name() + "= NULL WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
 
         try {
-            var statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -256,16 +254,15 @@ public class SQLiteInterfaces {
      * Metodo per ottenere tutti i canali registrati alle patch di BDO
      *
      * @return lista dei server e dei relativi canali che si sono registrati
-     *
      * @see ServerToChannel ServerToChannel
      */
     public static ArrayList<ServerToChannel> getBDOPatchChannel() {
-        var sql = "SELECT " + SD_DB_COLUMN.SERVER_ID.name() + ", " + SD_DB_COLUMN.BDOPatchIDChannel.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.BDOPatchIDChannel.name() + " IS NOT NULL";
+        String sql = "SELECT " + SD_DB_COLUMN.SERVER_ID.name() + ", " + SD_DB_COLUMN.BDOPatchIDChannel.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.BDOPatchIDChannel.name() + " IS NOT NULL";
         ArrayList<ServerToChannel> list = new ArrayList<>();
 
         try {
-            var statement = connection.createStatement();
-            var resutlt = statement.executeQuery(sql);
+            Statement statement = connection.createStatement();
+            ResultSet resutlt = statement.executeQuery(sql);
 
             while (resutlt.next()) {
                 list.add(new ServerToChannel(resutlt.getString(SD_DB_COLUMN.SERVER_ID.name()), resutlt.getString(SD_DB_COLUMN.BDOPatchIDChannel.name())));
@@ -284,11 +281,11 @@ public class SQLiteInterfaces {
      * @return String url dell'ultima notizia
      */
     public static String getLastNewsBDO() {
-        var sql = "SELECT " + RSS_DB_COLUMN.LastNewsBDO.name() + " FROM " + RSS_LINK + ";";
+        String sql = "SELECT " + RSS_DB_COLUMN.LastNewsBDO.name() + " FROM " + RSS_LINK + ";";
 
         try {
-            var statement = connection.createStatement();
-            var result = statement.executeQuery(sql);
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
 
             //false è vuoto
             //true trovato
@@ -311,9 +308,9 @@ public class SQLiteInterfaces {
      */
     public static void setLastNewsBDO(String url) {
 
-        @Language("SQLite") var sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastNewsBDO.name() + " = \"" + url + "\" WHERE " + RSS_DB_COLUMN.ID.name() + "  = 1;";
+        String sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastNewsBDO.name() + " = \"" + url + "\" WHERE " + RSS_DB_COLUMN.ID.name() + "  = 1;";
         try {
-            var statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
             statement.close();
         } catch (SQLException e) {
@@ -328,11 +325,11 @@ public class SQLiteInterfaces {
      * @return String link url dell'ultima patch
      */
     public static String getLastPatchBDO() {
-        var sql = "SELECT " + RSS_DB_COLUMN.LastPatchBDO.name() + " FROM " + RSS_LINK + ";";
+        String sql = "SELECT " + RSS_DB_COLUMN.LastPatchBDO.name() + " FROM " + RSS_LINK + ";";
 
         try {
-            var statement = connection.createStatement();
-            var result = statement.executeQuery(sql);
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
 
             //false è vuoto
             //true trovato
@@ -354,15 +351,15 @@ public class SQLiteInterfaces {
      * @param url url dell'ultimo feed rss aggiornato
      */
     public static void setLastPatchBDO(String url) {
-        var linkLastNews = getLastPatchBDO();
+        String linkLastNews = getLastPatchBDO();
 
-            var sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastPatchBDO.name() + " = '" + url + "' WHERE " + RSS_DB_COLUMN.ID.name() + " = 1;";
-            try {
-                var statement = connection.createStatement();
-                statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        String sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastPatchBDO.name() + " = '" + url + "' WHERE " + RSS_DB_COLUMN.ID.name() + " = 1;";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

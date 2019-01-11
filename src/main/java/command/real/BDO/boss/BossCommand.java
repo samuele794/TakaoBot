@@ -1,4 +1,4 @@
-package command.real.BDO.BOSS;
+package command.real.BDO.boss;
 
 import command.pattern.ControlCommand;
 import net.dv8tion.jda.core.EmbedBuilder;

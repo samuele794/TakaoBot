@@ -26,7 +26,6 @@ public class Start {
 
         SQLiteInterfaces.initializeDB();
 
-
         try {
             jda = new JDABuilder(DiscordTokenInterfaces.getToken()).build();
         } catch (LoginException e) {
@@ -39,8 +38,9 @@ public class Start {
         //command testing
         // jda.addEventListener(new BossCommand());
 
-        //comandi reali
         jda.addEventListener(new JoinListener());
+
+        //comandi reali
         jda.addEventListener(new HelpCommand());
         jda.addEventListener(new ConfigurationCommand());
         jda.addEventListener(new BDONewsStartCommand());

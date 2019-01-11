@@ -1,19 +1,18 @@
 package interfaces;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 
 /**
  * Classe per caricare il token di discord da file
  */
 public class DiscordTokenInterfaces {
-    public static String getToken(){
-        File file = new File(ClassLoader.getSystemClassLoader().getResource("tokenDiscord.txt").getPath());
 
-        if (file.exists()){
+    public static String getToken() {
+
+        if (new File("tokenDiscord.txt").exists()) {
+            File file = new File("tokenDiscord.txt");
+
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(file));
                 String token = reader.readLine();
@@ -24,8 +23,19 @@ public class DiscordTokenInterfaces {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
-            throw new RuntimeException("Token non esistente");
+        }else {
+
+            File file= new File("tokenDiscord.txt");
+            try {
+                System.out.println("SuccessCreate: "+    file.createNewFile());
+                FileWriter stream = new FileWriter(file);
+                stream.write("<Sostituisci qui con il token>");
+                stream.close();
+                System.out.println("Inserire il token di discord nel file che trovi nella seguente cartella: \n" + file.getAbsolutePath());
+
+            } catch (IOException e) {
+
+            }
         }
         return null;
     }
