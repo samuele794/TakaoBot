@@ -2,7 +2,7 @@ beans
 beans.BDOBossBean
 command.pattern
 command.real
-command.real.BDO.BOSS
+command.real.BDO.boss
 command.real.BDO.RSS
 command.real.configuration
 interfaces

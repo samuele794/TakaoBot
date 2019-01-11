@@ -860,7 +860,7 @@
 /* Header */
 
 	body.landing #header {
-		background-color: #4A81AE;
+		background-color: #202222;
 		left: 0;
 		position: absolute;
 		top: 0;
@@ -875,6 +875,10 @@
 		width: 100%;
 		z-index: 10000;
 	}
+
+    #homeButton{
+        visibility: hidden;
+    }
 
 		#header h1 {
 			color: #84C5FB;
@@ -1040,7 +1044,7 @@
 	#footer {
 		background: #202222;
 		color: #888;
-		padding: 6em 0em 4em;
+		padding: 30px 0em 20px;
 	}
 
 		#footer h2, #footer h3, #footer h4 {
@@ -1071,7 +1075,7 @@
 
 		#footer .copyright {
 			font-size: 0.9em;
-			margin: 2em 0 0 0;
+			margin: 0em 0 0 0;
 			padding: 0;
 			text-align: center;
 		}
