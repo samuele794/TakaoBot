@@ -1,0 +1,10 @@
+beans
+beans.BDOBossBean
+command.pattern
+command.real
+command.real.BDO.boss
+command.real.BDO.RSS
+command.real.configuration
+interfaces
+interfaces.RSS
+starter
