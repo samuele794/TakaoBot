@@ -63,8 +63,8 @@ public class SQLiteInterfaces {
 
                 sql = "CREATE TABLE " + RSS_LINK +
                         "(" + RSS_DB_COLUMN.ID.name() + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-                        RSS_DB_COLUMN.LastNewsBDO.name() + "TEXT DEFAULT NULL, " +
-                        RSS_DB_COLUMN.LastPatchBDO.name() + "TEXT DEFAULT NULL )";
+                        RSS_DB_COLUMN.LastNewsBDO.name() + " TEXT default NULL, " +
+                        RSS_DB_COLUMN.LastPatchBDO.name() + " TEXT default NULL )";
 //                CREATE TABLE RSSLink ( LastNewsBDO TEXT default NULL, LastPatchBDO TEXT default null, ID INTEGER constraint RSSLink_pk primary key autoincrement )
 
                     statement.execute(sql);
