@@ -15,8 +15,8 @@ public class HandJOB implements Job {
         System.out.println("Cron");
         jda.getGuildById("324517087416549377").getTextChannelById("514119199677743104").sendMessage("TTTTT").queue();
 
-        var t = LocalDateTime.now();
-        var minute = t.getMinute();
+        LocalDateTime t = LocalDateTime.now();
+        int minute = t.getMinute();
 
         if (minute == 0) {
 
