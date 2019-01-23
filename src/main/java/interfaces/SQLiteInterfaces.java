@@ -132,8 +132,6 @@ public class SQLiteInterfaces {
 
             if (resultSet.next()) {
                 return StringEscapeUtils.unescapeJava(resultSet.getString("SIMBOL_COMMAND"));
-            } else {
-                throw new RuntimeException("Errore");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -150,7 +148,6 @@ public class SQLiteInterfaces {
     public static void setSimbol(String command, String serverID) {
         String sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.SIMBOL_COMMAND.name() + "= '" + command + "' " +
                 "WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
-        //TODO fare rinforzo contro injection
         sql = StringEscapeUtils.escapeJava(sql);
         try {
             Statement statement = connection.createStatement();

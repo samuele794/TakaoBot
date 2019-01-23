@@ -14,6 +14,9 @@ public class ControlCommand {
      */
     public static boolean controlCommand(MessageReceivedEvent event, String commandName) {
 
+        System.out.println("Comando inviato da server: " + event.getGuild().getName());
+        System.out.println("Inviato da: " + event.getAuthor().getName() + "#" + event.getAuthor().getDiscriminator());
+
         if (!event.isFromType(ChannelType.PRIVATE)) {
             if ((event.getMessage().getContentRaw().startsWith(SQLiteInterfaces.getSimbol(event.getGuild().getId()) + commandName)
                     || (event.getMessage().isMentioned(event.getJDA().getSelfUser()) && event.getMessage().getContentRaw().contains(commandName)))) {

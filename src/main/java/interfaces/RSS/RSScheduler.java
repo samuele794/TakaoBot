@@ -4,6 +4,7 @@ import beans.RSSMessage;
 import beans.ServerToChannel;
 import interfaces.SQLiteInterfaces;
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
 import java.io.BufferedReader;
@@ -65,11 +66,23 @@ public class RSScheduler {
         return task;
     }
 
-    private static void publishMessage(MessageEmbed newsMessage, ArrayList<ServerToChannel> patchhNews, JDA jda) {
-        for (ServerToChannel obj : patchhNews) {
+    private static void publishMessage(MessageEmbed newsMessage, ArrayList<ServerToChannel> servers, JDA jda) {
+        for (ServerToChannel obj : servers) {
             String channelID = obj.getChannelID();
             String serverID = obj.getServerID();
-            jda.getGuildById(serverID).getTextChannelById(channelID).sendMessage(newsMessage).queue();
+
+            for (Message message : jda.getGuildById(serverID).getTextChannelById(channelID).getIterableHistory().limit(50)) {
+                if (message.getEmbeds() != null){
+                    if (!message.getEmbeds().get(0).getUrl().equals(newsMessage.getUrl())){
+                        jda.getGuildById(serverID).getTextChannelById(channelID).sendMessage(newsMessage).queue();
+                    }else {
+                        break;
+                    }
+                }
+            }
+
+
+
         }
     }
 
