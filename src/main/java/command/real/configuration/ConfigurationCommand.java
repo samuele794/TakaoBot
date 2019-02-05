@@ -39,9 +39,14 @@ public class ConfigurationCommand extends ListenerAdapter {
                 event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
                 return;
             } else {
-                if (event.getMessage().isMentioned(event.getJDA().getSelfUser()) & (new StringTokenizer(event.getMessage().getContentRaw())).countTokens() == 3) {
-                    //menzionato e parametri a 3
-                    configuration(event);
+				if (event.getMessage().isMentioned(event.getJDA().getSelfUser())) {
+
+					if ((new StringTokenizer(event.getMessage().getContentRaw())).countTokens() == 3) {
+						//menzionato e parametri a 3
+						configuration(event);
+					} else {
+						event.getChannel().sendMessage("Quantità di parametri non conformi").queue();
+					}
                 } else {
                     if ((new StringTokenizer(event.getMessage().getContentRaw())).countTokens() == 2) {
                         configuration(event);

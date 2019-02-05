@@ -2,6 +2,7 @@ package interfaces;
 
 import beans.ServerToChannel;
 import org.apache.commons.text.StringEscapeUtils;
+import starter.Start;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class SQLiteInterfaces {
                         RSS_DB_COLUMN.LastPatchBDO.name() + " TEXT default NULL )";
 //                CREATE TABLE RSSLink ( LastNewsBDO TEXT default NULL, LastPatchBDO TEXT default null, ID INTEGER constraint RSSLink_pk primary key autoincrement )
 
-                    statement.execute(sql);
+                statement.execute(sql);
 
                 sql = "INSERT INTO RSSLink DEFAULT VALUES";
                 statement.execute(sql);
@@ -275,21 +276,19 @@ public class SQLiteInterfaces {
     }
 
     /**
-     * Ottiene il link dell'ultima notizia di BDO
+     * Ottiene la lista delle ultime notizie di BDO
      *
-     * @return String url dell'ultima notizia
+     * @return ArrayList lista delle ultime notizie
      */
-    public static String getLastNewsBDO() {
+    public static ArrayList getListNewsBDO() {
         String sql = "SELECT " + RSS_DB_COLUMN.LastNewsBDO.name() + " FROM " + RSS_LINK + ";";
 
         try {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(sql);
 
-            //false è vuoto
-            //true trovato
             if (result.next()) {
-                return result.getString(RSS_DB_COLUMN.LastNewsBDO.name());
+                return Start.gson.fromJson(result.getString(RSS_DB_COLUMN.LastNewsBDO.name()), ArrayList.class);
             } else {
                 return null;
             }
@@ -301,21 +300,26 @@ public class SQLiteInterfaces {
     }
 
     /**
-     * Imposta l'ultima notizia di BDO, se esiste l'aggiorna, altrimenti inserisce la riga.
+     * Imposta la lista delle ultime notizie di bdo
      *
-     * @param url Url dell'ultima news di BDO
+     * @param newsBDOList Lista delle ultime notizie di BDO
      */
-    public static void setLastNewsBDO(String url) {
+    public static void setNewsBDO(ArrayList<String> newsBDOList) {
+        String json = Start.gson.toJson(newsBDOList);
 
-        String sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastNewsBDO.name() + " = \"" + url + "\" WHERE " + RSS_DB_COLUMN.ID.name() + "  = 1;";
+        if (newsBDOList.size() > 10) {
+            for (int cont = 0; cont < 7; cont++) {
+                newsBDOList.remove(cont);
+            }
+        }
+
         try {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
-            statement.close();
+            PreparedStatement statement = connection.prepareStatement("UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastNewsBDO.name() + " = ? WHERE " + RSS_DB_COLUMN.ID.name() + " = 1");
+            statement.setString(1, json);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -350,7 +354,6 @@ public class SQLiteInterfaces {
      * @param url url dell'ultimo feed rss aggiornato
      */
     public static void setLastPatchBDO(String url) {
-        String linkLastNews = getLastPatchBDO();
 
         String sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastPatchBDO.name() + " = '" + url + "' WHERE " + RSS_DB_COLUMN.ID.name() + " = 1;";
         try {
