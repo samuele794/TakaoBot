@@ -16,10 +16,10 @@ public class RSScheduler {
 
 	private static Timer timerTask;
 
-    public static void startScheduling(JDA jda) {
-        timerTask = new Timer();
+	public static void startScheduling(JDA jda) {
+		timerTask = new Timer();
         timerTask.scheduleAtFixedRate(taskFeedRSSBDO(jda), 1800000, 1800000);
-    }
+	}
 
 	public static TimerTask taskFeedRSSBDO(JDA jda) {
 		TimerTask task = new TimerTask() {
@@ -30,16 +30,11 @@ public class RSScheduler {
 				RSSMessage rssNewsMessage = RSSReader.readRSS("https://community.blackdesertonline.com/index.php?forums/news-announcements.181/index.rss");
 				RSSMessage rssPatchMessage = RSSReader.readRSS("https://community.blackdesertonline.com/index.php?forums/patch-notes.5/index.rss");
 
-				System.out.println(rssNewsMessage.getLink());
-
 				ArrayList<String> newsBDOList = SQLiteInterfaces.getListNewsBDO();
 				//publishRSSNews
 				if (newsBDOList != null) {
-
-					for (String link : newsBDOList) {
-						if (!link.equals(rssNewsMessage.getLink())) {
-							procedurePublish(rssNewsMessage, newsBDOList, jda);
-						}
+					if (newsBDOList.indexOf(rssNewsMessage.getLink()) == -1) {
+						procedurePublish(rssNewsMessage, newsBDOList, jda);
 					}
 				} else {
 					newsBDOList = new ArrayList<>();

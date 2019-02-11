@@ -6,6 +6,7 @@ import starter.Start;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class SQLiteInterfaces {
 
@@ -308,8 +309,16 @@ public class SQLiteInterfaces {
         String json = Start.gson.toJson(newsBDOList);
 
         if (newsBDOList.size() > 10) {
-            for (int cont = 0; cont < 7; cont++) {
-                newsBDOList.remove(cont);
+			Iterator<String> iteratorList = newsBDOList.iterator();
+			int cont = 0;
+			while (iteratorList.hasNext()) {
+				iteratorList.next();
+				iteratorList.remove();
+				cont++;
+				if (cont == 7) {
+					break;
+				}
+
             }
         }
 
