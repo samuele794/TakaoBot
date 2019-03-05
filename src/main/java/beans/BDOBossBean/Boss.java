@@ -3,28 +3,42 @@ package beans.BDOBossBean;
 import java.util.ArrayList;
 
 public class Boss {
+	private String[] nomeBoss;
+	private String ora;
 
-    private String orario;
-    private ArrayList<String> boss;
+	public Boss(String[] nomeBoss, String ora) {
+		setNomeBoss(nomeBoss);
+		setOra(ora);
+	}
 
-    public Boss (String orario, ArrayList<String> boss){
-        setBoss(boss);
-        setOrario(orario);
-    }
+	public static String[] getHourBoss(int ora, int minuto, ArrayList<Boss> lists) {
+		String time = new StringBuilder(Integer.toString(0)).append(":").append(minuto).toString();
+		for (int cont = 0; cont < lists.size(); cont++) {
 
-    public String getOrario() {
-        return orario;
-    }
+			Boss boss = lists.get(cont);
 
-    public void setOrario(String orario) {
-        this.orario = orario;
-    }
+			if (boss.getOra().equals(time)) {
+				return boss.getNomeBoss();
+			}
 
-    public ArrayList<String> getBoss() {
-        return boss;
-    }
+		}
 
-    public void setBoss(ArrayList<String> boss) {
-        this.boss = boss;
-    }
+		throw new IndexOutOfBoundsException("Orario non valido");
+	}
+
+	public String[] getNomeBoss() {
+		return nomeBoss;
+	}
+
+	public void setNomeBoss(String[] nomeBoss) {
+		this.nomeBoss = nomeBoss;
+	}
+
+	public String getOra() {
+		return ora;
+	}
+
+	public void setOra(String ora) {
+		this.ora = ora;
+	}
 }

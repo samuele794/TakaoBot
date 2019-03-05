@@ -1,4 +1,4 @@
-package interfaces.RSS;
+package command.real.BDO.RSS;
 
 import beans.RSSMessage;
 import com.rometools.rome.feed.synd.SyndEntry;
@@ -15,7 +15,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
-public class RSSReader {
+public class BDORSSReader {
 
     /**
      * Metodo per leggere un feed RSS
@@ -50,7 +50,7 @@ public class RSSReader {
      * @param message Ultimo feed prelevato dal metodo di lettura
      * @return Messaggio pronto per l'invio a discord
      *
-     * @see interfaces.RSS.RSSReader#readRSS(String)  readRSS
+     * @see BDORSSReader#readRSS(String)  readRSS
      * @see net.dv8tion.jda.core.entities.MessageEmbed MessageEmbedded
      */
 
@@ -62,9 +62,9 @@ public class RSSReader {
             //esite 1 immagine
             String imageUrl = message.getDoc().select("img").get(0).attr("src");
             return  builder.setTitle(message.getTitle(), message.getLink())
-                    .setDescription(body).setColor(new Color(75, 25, 130)).setImage(imageUrl).build();
+                    .setDescription(body).setColor(new Color(131, 196, 250)).setImage(imageUrl).build();
         } else {
-            return  builder.setTitle(message.getTitle(), message.getLink()).setDescription(body).setColor(new Color(75, 25, 130)).build();
+            return  builder.setTitle(message.getTitle(), message.getLink()).setDescription(body).setColor(new Color(131, 196, 250)).build();
         }
 
     }

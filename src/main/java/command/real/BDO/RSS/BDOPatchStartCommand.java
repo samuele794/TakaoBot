@@ -23,10 +23,18 @@ public class BDOPatchStartCommand extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
 
         if (ControlCommand.controlCommand(event, getCommand())) {
-            SQLiteInterfaces.setBDOPatchChannel(event.getGuild().getId(),event.getChannel().getId());
-            new MessageBuilder().append("Invio delle patch di BDO configurato sul canale: ")
-                    .appendCodeBlock(event.getChannel().getName(),"").sendTo(event.getChannel()).queue();
 
+            String authorID = event.getAuthor().getId();
+            String ownerID = event.getGuild().getOwnerId();
+
+            if (!ownerID.equals(authorID)) {
+                event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
+            } else {
+
+                SQLiteInterfaces.setBDOPatchChannel(event.getGuild().getId(), event.getChannel().getId());
+                new MessageBuilder().append("Invio delle patch di BDO configurato sul canale: ")
+                        .appendCodeBlock(event.getChannel().getName(), "").sendTo(event.getChannel()).queue();
+            }
 
         }
     }

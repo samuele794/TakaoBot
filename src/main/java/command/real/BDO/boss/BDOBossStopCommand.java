@@ -1,4 +1,4 @@
-package command.real.BDO.RSS;
+package command.real.BDO.boss;
 
 import beans.ServerToChannel;
 import command.pattern.ControlCommand;
@@ -9,40 +9,37 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.util.ArrayList;
 
-public class BDOPatchStopCommand extends ListenerAdapter {
+public class BDOBossStopCommand extends ListenerAdapter {
 
 	public static String getCommand() {
-		return "BDOPatchStop";
+		return "BDOBossStop";
 	}
 
 	public static String getCommandDescription() {
-		return "Comando per disiscriversi al feed delle patch di BDO. \n" +
+		return "Questo comando permette disiscriversi agli allarmi dei boss di BDO. \n" +
 				"Il comando può essere lanciato su qualunque canale";
 	}
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
 		if (event.getAuthor().isBot()) return;
-		if (ControlCommand.controlCommand(event, getCommand())) {
 
+		if (ControlCommand.controlCommand(event, getCommand())) {
 			String authorID = event.getAuthor().getId();
 			String ownerID = event.getGuild().getOwnerId();
 
 			if (!ownerID.equals(authorID)) {
 				event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
 			} else {
-
-				ArrayList<ServerToChannel> listChannel = SQLiteInterfaces.getBDOPatchChannel();
+				ArrayList<ServerToChannel> listChannel = SQLiteInterfaces.getBDOBossChannel();
 				ServerToChannel removedChannelId = listChannel.get(listChannel.indexOf(new ServerToChannel(event.getGuild().getId(), null)));
 
-				SQLiteInterfaces.removeBDOPatchChannel(event.getGuild().getId());
+				SQLiteInterfaces.removeBDOBossChannel(event.getGuild().getId());
 
-				new MessageBuilder().append("Invio delle patch di BDO rimosso dal canale: ")
+				new MessageBuilder().append("Invio degli allarmi dei boss di BDO rimosso dal canale: ")
 						.appendCodeBlock(event.getJDA().getTextChannelById(removedChannelId.getChannelID()).getName(), "")
 						.sendTo(event.getChannel()).queue();
 			}
 		}
 	}
-
-
 }

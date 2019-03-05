@@ -24,15 +24,22 @@ public class BDONewsStopCommand extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().isBot()) return;
         if (ControlCommand.controlCommand(event, getCommand())) {
+            String authorID = event.getAuthor().getId();
+            String ownerID = event.getGuild().getOwnerId();
 
-            ArrayList<ServerToChannel> listChannel = SQLiteInterfaces.getBDONewsChannel();
-            ServerToChannel removedChannelId = listChannel.get(listChannel.indexOf(new ServerToChannel(event.getGuild().getId(), null)));
+            if (!ownerID.equals(authorID)) {
+                event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
+            } else {
 
-            SQLiteInterfaces.removeBDONewsChannel(event.getGuild().getId());
+                ArrayList<ServerToChannel> listChannel = SQLiteInterfaces.getBDONewsChannel();
+                ServerToChannel removedChannelId = listChannel.get(listChannel.indexOf(new ServerToChannel(event.getGuild().getId(), null)));
 
-            new MessageBuilder().append("Invio delle news di BDO rimosso dal canale: ")
-                    .appendCodeBlock(event.getJDA().getTextChannelById(removedChannelId.getChannelID()).getName(), "")
-                    .sendTo(event.getChannel()).queue();
+                SQLiteInterfaces.removeBDONewsChannel(event.getGuild().getId());
+
+                new MessageBuilder().append("Invio delle news di BDO rimosso dal canale: ")
+                        .appendCodeBlock(event.getJDA().getTextChannelById(removedChannelId.getChannelID()).getName(), "")
+                        .sendTo(event.getChannel()).queue();
+            }
         }
     }
 

@@ -7,25 +7,25 @@
           "Kutum",
           "Karanda"
         ],
-        "ora": "00:15"
+        "ora": "0:15"
       },
       {
         "nomeBoss": [
           "Karanda"
         ],
-        "ora": "02:00"
+        "ora": "2:00"
       },
       {
         "nomeBoss": [
           "Kzarka"
         ],
-        "ora": "05:00"
+        "ora": "5:00"
       },
       {
         "nomeBoss": [
           "Kzarka"
         ],
-        "ora": "09:00"
+        "ora": "9:00"
       },
       {
         "nomeBoss": [
@@ -60,25 +60,25 @@
         "nomeBoss": [
           "Karanda"
         ],
-        "ora": "00:15"
+        "ora": "0:15"
       },
       {
         "nomeBoss": [
           "Kutum"
         ],
-        "ora": "02:00"
+        "ora": "2:00"
       },
       {
         "nomeBoss": [
           "Kzarka"
         ],
-        "ora": "05:00"
+        "ora": "5:00"
       },
       {
         "nomeBoss": [
           "Nouver"
         ],
-        "ora": "09:00"
+        "ora": "9:00"
       },
       {
         "nomeBoss": [
@@ -114,25 +114,25 @@
           "Kutum",
           "Kzarka"
         ],
-        "ora": "00:15"
+        "ora": "0:15"
       },
       {
         "nomeBoss": [
           "Karanda"
         ],
-        "ora": "02:00"
+        "ora": "2:00"
       },
       {
         "nomeBoss": [
           "Kzarka"
         ],
-        "ora": "05:00"
+        "ora": "5:00"
       },
       {
         "nomeBoss": [
           "Karanda"
         ],
-        "ora": "09:00"
+        "ora": "9:00"
       },
       {
         "nomeBoss": [
@@ -158,6 +158,12 @@
           "Kzarka"
         ],
         "ora": "22:15"
+      },
+      {
+        "nomeBoss": [
+          "Quint/Muraka"
+        ],
+        "ora": "23:15"
       }
     ]
   },
@@ -168,13 +174,13 @@
         "nomeBoss": [
           "Nouver"
         ],
-        "ora": "00:15"
+        "ora": "0:15"
       },
       {
         "nomeBoss": [
           "Kutum"
         ],
-        "ora": "02:00"
+        "ora": "2:00"
       },
       {
         "nomeBoss": [
@@ -331,25 +337,25 @@
           "Nouver",
           "Kutum"
         ],
-        "ora": "00:15"
+        "ora": "0:15"
       },
       {
         "nomeBoss": [
           "Kzarka"
         ],
-        "ora": "02:00"
+        "ora": "2:00"
       },
       {
         "nomeBoss": [
           "Kutum"
         ],
-        "ora": "05:00"
+        "ora": "5:00"
       },
       {
         "nomeBoss": [
           "Nouver"
         ],
-        "ora": "09:00"
+        "ora": "9:00"
       },
       {
         "nomeBoss": [

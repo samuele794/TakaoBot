@@ -37,7 +37,6 @@ public class ConfigurationCommand extends ListenerAdapter {
 
             if (!ownerID.equals(authorID)) {
                 event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
-                return;
             } else {
 				if (event.getMessage().isMentioned(event.getJDA().getSelfUser())) {
 

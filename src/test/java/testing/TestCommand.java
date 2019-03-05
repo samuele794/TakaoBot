@@ -1,28 +1,51 @@
 package testing;
 
+import beans.BDOBossBean.Giorno;
 import command.pattern.ControlCommand;
+import command.real.BDO.boss.BossRetriver;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+import java.time.LocalDateTime;
+import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.Locale;
+
+import static command.real.BDO.boss.BossJob.processHour;
+
 public class TestCommand extends ListenerAdapter {
-    @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.getAuthor().isBot()) return;
-        // We don't want to respond to other bot accounts, including ourself
-        Message message = event.getMessage();
-        String content = message.getContentRaw();
-        // getContentRaw() is an atomic getter
-        // getContentDisplay() is a lazy getter which modifies the content for e.g. console view (strip discord formatting)
+	@Override
+	public void onMessageReceived(MessageReceivedEvent event) {
+		if (event.getAuthor().isBot()) return;
+		// We don't want to respond to other bot accounts, including ourself
+		Message message = event.getMessage();
+		String content = message.getContentRaw();
+		// getContentRaw() is an atomic getter
+		// getContentDisplay() is a lazy getter which modifies the content for e.g. console view (strip discord formatting)
         /*if (content.equals("!ping")) {
             MessageChannel channel = event.getChannel();
             channel.sendMessage("Pong!").queue(); // Important to call .queue() on the RestAction returned by sendMessage(...)
         }*/
 
-        if (ControlCommand.controlCommand(event, "ping")) {
-            MessageChannel channel = event.getChannel();
-            channel.sendMessage("Pong!").queue();
+		if (ControlCommand.controlCommand(event, "ping")) {
+			MessageChannel channel = event.getChannel();
+//            channel.sendMessage("Pong!").queue();
+
+			LocalDateTime time = LocalDateTime.now();
+
+
+			ArrayList<Giorno> list = BossRetriver.getBossList();
+
+			Giorno booDay = Giorno.getDayBosses(time.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH), list);
+			processHour(time, booDay);
+
+
+
+//             event.getJDA().getTextChannelById("533348957649109002").getHistoryBefore("541393314721693696", 50).queue(messageHistory -> {
+//                 messageHistory.getChannel();
+//             });
 
            /* SchedulerFactory sf = new StdSchedulerFactory();
             try {
@@ -42,7 +65,7 @@ public class TestCommand extends ListenerAdapter {
             } catch (SchedulerException e) {
                 e.printStackTrace();
             }*/
-        }
-    }
+		}
+	}
 
 }
