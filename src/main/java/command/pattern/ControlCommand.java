@@ -8,11 +8,20 @@ public class ControlCommand {
     /**
      * Metodo per eseguire il controllo se il comando inserito è quello di controllo
      *
-     * @param event evento del messaggio
+     * @param event       evento del messaggio
      * @param commandName nome del comando
      * @return boolean il comando corrisponde a quello ricevuto con quello controllato
      */
+
+//    private static final Logger LOGGER = LogManager.getLogger(ControlCommand.class.getName());
+
     public static boolean controlCommand(MessageReceivedEvent event, String commandName) {
+
+//        System.out.println("Comando inviato da server: " + event.getGuild().getName());
+//        System.out.println("Inviato da: " + event.getAuthor().getName() + "#" + event.getAuthor().getDiscriminator());
+
+//        LOGGER.log(Level.ALL,"Comando inviato da server: " + event.getGuild().getName());
+//        LOGGER.debug("Inviato da: " + event.getAuthor().getName() + "#" + event.getAuthor().getDiscriminator());
 
         if (!event.isFromType(ChannelType.PRIVATE)) {
             if ((event.getMessage().getContentRaw().startsWith(SQLiteInterfaces.getSimbol(event.getGuild().getId()) + commandName)
