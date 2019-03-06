@@ -29,7 +29,7 @@ public class DiscordScheduler {
 
 			CronTrigger trigger = newTrigger()
 					.withIdentity("BossCronTrigger", "group1")
-					.withSchedule(cronSchedule("0 0/5 0 * * ? *"))
+					.withSchedule(cronSchedule("0 0/5 * 1/1 * ? *"))
 					.build();
 
 			scheduler.scheduleJob(job, trigger);

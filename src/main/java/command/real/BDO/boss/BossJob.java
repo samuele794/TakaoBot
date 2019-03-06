@@ -7,7 +7,6 @@ import interfaces.SQLiteInterfaces;
 import net.dv8tion.jda.core.MessageBuilder;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -97,20 +96,24 @@ public class BossJob implements Job {
 	private static void processMinute4500(LocalDateTime time, Giorno giorno) {
 		switch (time.getMinute()) {
 			case 45: {
-				Boss.getHourBoss(time.getHour() + 1, 0, giorno.getBosses());
+				String[] listBoss = Boss.getHourBoss(time.getHour() + 1, 0, giorno.getBosses());
+				publish(listBoss, "15", time.format(DateTimeFormatter.ofPattern("HH:mm")));
 			}
 			break;
 			case 50: {
-				Boss.getHourBoss(time.getHour() + 1, 0, giorno.getBosses());
+				String[] listBoss = Boss.getHourBoss(time.getHour() + 1, 0, giorno.getBosses());
+				publish(listBoss, "10", time.format(DateTimeFormatter.ofPattern("HH:mm")));
 			}
 			break;
 			case 55: {
-				Boss.getHourBoss(time.getHour() + 1, 0, giorno.getBosses());
+				String[] listBoss = Boss.getHourBoss(time.getHour() + 1, 0, giorno.getBosses());
+				publish(listBoss, "5", time.format(DateTimeFormatter.ofPattern("HH:mm")));
 			}
 		}
 
 		if (time.getMinute() == 0) {
-			Boss.getHourBoss(time.getHour(), 0, giorno.getBosses());
+			String[] listBoss = Boss.getHourBoss(time.getHour(), 0, giorno.getBosses());
+			publish(listBoss, "0", time.format(DateTimeFormatter.ofPattern("HH:mm")));
 		}
 	}
 
@@ -147,7 +150,7 @@ public class BossJob implements Job {
 		ArrayList<ServerToChannel> listServerChannel = SQLiteInterfaces.getBDOBossChannel();
 
 		MessageBuilder builder = new MessageBuilder();
-		builder.append(oraAttuale).append(" ");
+		builder.append(oraAttuale).append(" -> 	");
 
 		for (String boss : bosses) {
 			builder.append(boss).append(" ");
@@ -156,7 +159,7 @@ public class BossJob implements Job {
 		if (orarioMancante.equals("0")) {
 			builder.append("sta spawnando");
 		} else {
-			builder.append("in arrivo tra: ").append(orarioMancante);
+			builder.append("in arrivo tra: ").append(orarioMancante).append(" minuti");
 		}
 
 		for (ServerToChannel channel : listServerChannel) {

@@ -12,7 +12,7 @@ public class Boss {
 	}
 
 	public static String[] getHourBoss(int ora, int minuto, ArrayList<Boss> lists) {
-		String time = new StringBuilder(Integer.toString(0)).append(":").append(minuto).toString();
+		String time = new StringBuilder(Integer.toString(ora)).append(":").append(minuto).toString();
 		for (int cont = 0; cont < lists.size(); cont++) {
 
 			Boss boss = lists.get(cont);

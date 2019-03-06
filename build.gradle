@@ -7,7 +7,7 @@ plugins {
 mainClassName = 'starter.start'
 
 group 'it.github.samuele794.discordbotTakao'
-version '1.1-SNAPSHOT'
+version '1.0.1-SNAPSHOT'
 def jdaVersion = '3.8.1_448'
 
 
