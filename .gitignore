@@ -56,3 +56,5 @@ tokenDiscord.txt
 *.db
 .idea/
 gradle/wrapper/gradle-wrapper.jar
+src/main/bin/logback.xml
+src/main/bin/jsonboss.json
