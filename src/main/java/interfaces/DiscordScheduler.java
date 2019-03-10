@@ -3,7 +3,6 @@ package interfaces;
 import command.real.BDO.RSS.BDORSScheduler;
 import command.real.BDO.boss.BossJob;
 import net.dv8tion.jda.core.JDA;
-import org.apache.logging.log4j.LogManager;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
@@ -35,7 +34,7 @@ public class DiscordScheduler {
 			scheduler.scheduleJob(job, trigger);
 			scheduler.start();
 		} catch (SchedulerException ex) {
-			LogManager.getLogger().error("Errore nel job boss", ex);
+			ex.printStackTrace();
 		}
 
 	}

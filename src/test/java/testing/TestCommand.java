@@ -1,19 +1,10 @@
 package testing;
 
-import beans.BDOBossBean.Giorno;
 import command.pattern.ControlCommand;
-import command.real.BDO.boss.BossRetriver;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-
-import java.time.LocalDateTime;
-import java.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.Locale;
-
-import static command.real.BDO.boss.BossJob.processHour;
 
 public class TestCommand extends ListenerAdapter {
 	@Override
@@ -32,15 +23,6 @@ public class TestCommand extends ListenerAdapter {
 		if (ControlCommand.controlCommand(event, "ping")) {
 			MessageChannel channel = event.getChannel();
 //            channel.sendMessage("Pong!").queue();
-
-			LocalDateTime time = LocalDateTime.now();
-
-
-			ArrayList<Giorno> list = BossRetriver.getBossList();
-
-			Giorno booDay = Giorno.getDayBosses(time.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH), list);
-			processHour(time, booDay);
-
 
 
 //             event.getJDA().getTextChannelById("533348957649109002").getHistoryBefore("541393314721693696", 50).queue(messageHistory -> {

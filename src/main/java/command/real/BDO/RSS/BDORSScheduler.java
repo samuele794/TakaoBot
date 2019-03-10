@@ -6,10 +6,10 @@ import interfaces.SQLiteInterfaces;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.TimerTask;
 
 public class BDORSScheduler {
-
 
 
 	public static TimerTask taskFeedRSSBDO(JDA jda) {
