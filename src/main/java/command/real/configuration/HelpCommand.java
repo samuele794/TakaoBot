@@ -35,7 +35,8 @@ public class HelpCommand extends ListenerAdapter {
 			EmbedBuilder builder = new EmbedBuilder();
 
 			builder.setTitle("Lista Comandi").setColor(new Color(132, 197, 251))
-					.setDescription("Questi comandi possono essere usati menzionando il bot e scrivendo il comando,")
+					.setDescription("Questi comandi possono essere usati menzionando il bot e scrivendo il comando senza simbolo," +
+							"oppure usando i comandi direttamente come segue:")
 
 					.addField(simbol + ConfigurationCommand.getCommand(), ConfigurationCommand.getCommandDescription(), false)
 					.addField(simbol + BDONewsStartCommand.getCommand(), BDONewsStartCommand.getCommandDescription(), false)

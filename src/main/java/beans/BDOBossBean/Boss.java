@@ -11,7 +11,7 @@ public class Boss {
 		setOra(ora);
 	}
 
-	public static String[] getHourBoss(int ora, int minuto, ArrayList<Boss> lists) {
+	public static String[] getHourBoss(int ora, int minuto, ArrayList<Boss> lists) throws BossException {
 		String time = new StringBuilder(Integer.toString(ora)).append(":").append(minuto).toString();
 		for (int cont = 0; cont < lists.size(); cont++) {
 
@@ -23,7 +23,7 @@ public class Boss {
 
 		}
 
-		throw new IndexOutOfBoundsException("Orario non valido");
+		throw new BossException("Orario non valido");
 	}
 
 	public String[] getNomeBoss() {

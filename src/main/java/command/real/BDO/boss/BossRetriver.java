@@ -1,6 +1,7 @@
 package command.real.BDO.boss;
 
 import beans.BDOBossBean.Boss;
+import beans.BDOBossBean.BossException;
 import beans.BDOBossBean.Giorno;
 import beans.ServerToChannel;
 import com.google.gson.reflect.TypeToken;
@@ -75,7 +76,7 @@ public class BossRetriver {
 			//1:45-1:55
 			processMinute4500(ora, minuto, giorno);
 		} else if (ora == 2) {
-			//2:00
+			//h2:00
 			processMinute4500(ora, minuto, giorno);
 		} else if (ora == 4) {
 			//4:45-4:55
@@ -91,7 +92,6 @@ public class BossRetriver {
 			processMinute4500(ora, minuto, giorno);
 		} else if (ora == 11) {
 			//11:45-11:55
-			System.out.println("11");
 			processMinute4500(ora, minuto, giorno);
 		} else if (ora == 12) {
 			//12:00
@@ -108,6 +108,8 @@ public class BossRetriver {
 		} else if (ora == 19) {
 			//19:00
 			processMinute4500(ora, minuto, giorno);
+		} else if (ora == 23) {
+			processMinute0015(ora, minuto, giorno);
 		} else if (ora == 22) {
 			//22:00-22:15
 			processMinute0015(ora, minuto, giorno);
@@ -117,7 +119,8 @@ public class BossRetriver {
 
 	/**
 	 * Metodo per ottenere il boss che spawna alle 00
-	 * @param ora ora attuale
+	 *
+	 * @param ora    ora attuale
 	 * @param minuto minuto attuale
 	 * @param giorno giorno attuale
 	 */
@@ -128,26 +131,29 @@ public class BossRetriver {
 				return;
 			}
 		}
-
-		if (minuto == 45) {
-			String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
-			publish(listBoss, "15");
-		} else if (minuto == 50) {
-			System.out.println("Minuti 50");
-			String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
-			publish(listBoss, "10");
-		} else if (minuto == 55) {
-			String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
-			publish(listBoss, "5");
-		} else if (minuto == 0) {
-			String[] listBoss = Boss.getHourBoss(ora, 0, giorno.getBosses());
-			publish(listBoss, "0");
+		try {
+			if (minuto == 45) {
+				String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
+				publish(listBoss, "15");
+			} else if (minuto == 50) {
+				String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
+				publish(listBoss, "10");
+			} else if (minuto == 55) {
+				String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
+				publish(listBoss, "5");
+			} else if (minuto == 0) {
+				String[] listBoss = Boss.getHourBoss(ora, 0, giorno.getBosses());
+				publish(listBoss, "0");
+			}
+		}catch (BossException ex){
+			TakaoLog.logInfo(ex.getMessage());
 		}
 	}
 
 	/**
 	 * Metodo per ottenere il boss che spawna alle 15
-	 * @param ora ora attuale
+	 *
+	 * @param ora    ora attuale
 	 * @param minuto minuto attuale
 	 * @param giorno giorno attuale
 	 */
@@ -158,28 +164,35 @@ public class BossRetriver {
 				return;
 			}
 		}
+		try {
+			if (minuto == 0) {
+				String[] listBoss;
 
-		if (minuto == 0) {
-			String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
-			publish(listBoss, "15");
+				listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
 
-		} else if (minuto == 5) {
-			String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
-			publish(listBoss, "10");
+				publish(listBoss, "15");
 
-		} else if (minuto == 10) {
-			String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
-			publish(listBoss, "5");
+			} else if (minuto == 5) {
+				String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
+				publish(listBoss, "10");
 
-		} else if (minuto == 15) {
-			String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
-			publish(listBoss, "0");
+			} else if (minuto == 10) {
+				String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
+				publish(listBoss, "5");
+
+			} else if (minuto == 15) {
+				String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
+				publish(listBoss, "0");
+			}
+		} catch (BossException ex) {
+			TakaoLog.logInfo(ex.getMessage());
 		}
 	}
 
 	/**
 	 * Metoto per eseguire la pubblicazione dei messaggi
-	 * @param bosses lista boss trovati
+	 *
+	 * @param bosses         lista boss trovati
 	 * @param orarioMancante minuti mancanti allo spawn dei boss
 	 */
 	private static void publish(String[] bosses, String orarioMancante) {
