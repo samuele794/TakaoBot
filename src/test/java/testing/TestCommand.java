@@ -22,31 +22,15 @@ public class TestCommand extends ListenerAdapter {
 
 		if (ControlCommand.controlCommand(event, "ping")) {
 			MessageChannel channel = event.getChannel();
-//            channel.sendMessage("Pong!").queue();
 
+			if (event.getMember().getVoiceState().inVoiceChannel()) {
 
-//             event.getJDA().getTextChannelById("533348957649109002").getHistoryBefore("541393314721693696", 50).queue(messageHistory -> {
-//                 messageHistory.getChannel();
-//             });
+				String voiceChannelID = event.getMember().getVoiceState().getAudioChannel().getId();
 
-           /* SchedulerFactory sf = new StdSchedulerFactory();
-            try {
-                Scheduler scheduler= sf.getScheduler();
-                JobDetail job = newJob(HandJOB.class)
-                        .withIdentity("job1", "group1")
-                        .build();
+				event.getChannel().sendMessage(voiceChannelID).queue();
+			}
 
-                CronTrigger trigger = newTrigger()
-                        .withIdentity("trigger1", "group1")
-                        .withSchedule(cronSchedule("0 0/5 0 * * ? *"))
-                        .build();
-
-                scheduler.scheduleJob(job, trigger);
-                scheduler.deleteJob(new JobKey("job1", "group1"));
-                scheduler.start();
-            } catch (SchedulerException e) {
-                e.printStackTrace();
-            }*/
+//			  channel.sendMessage("Pong!").queue();
 		}
 	}
 

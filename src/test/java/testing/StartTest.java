@@ -1,9 +1,7 @@
 package testing;
 
 import com.google.gson.Gson;
-import command.real.BDO.boss.BDOBossStartCommand;
-import command.real.BDO.boss.BDOBossStopCommand;
-import interfaces.DiscordScheduler;
+import command.real.sound.PlayerControlCommand;
 import interfaces.SQLiteInterfaces;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -39,6 +37,7 @@ public class StartTest {
 
 		SQLiteInterfaces.initializeDB();
 
+
 		try {
 			jda = new JDABuilder("NTMwMzA1MjEzNDkyNDk0MzM4.DyPQMw.JJdFy0eybfmA9tuab4vU_Te__BI").build();
 		} catch (LoginException e) {
@@ -46,13 +45,12 @@ public class StartTest {
 			return;
 		}
 
-		DiscordScheduler.startScheduling(jda);
+//		DiscordScheduler.startScheduling(jda);
 
 
 		jda.addEventListener(new TestCommand());
-		jda.addEventListener(new PrivateMessage());
-		jda.addEventListener(new BDOBossStartCommand());
-		jda.addEventListener(new BDOBossStopCommand());
+//		jda.addEventListener(new PrivateMessage());
+		jda.addEventListener(new PlayerControlCommand());
 
 		System.out.println(jda.asBot().getInviteUrl(Permission.ADMINISTRATOR));
 

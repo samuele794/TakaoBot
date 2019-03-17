@@ -61,7 +61,8 @@ public class ConfigurationCommand extends ListenerAdapter {
     }
 
     private void configuration(MessageReceivedEvent event) {
-        if (!(event.getMessage().getContentRaw().contains("\"") | event.getMessage().getContentRaw().contains("\\"))) {
+		if (!(event.getMessage().getContentRaw().contains("\"") | event.getMessage().getContentRaw().contains("\\") |
+				event.getMessage().getContentRaw().contains("'"))) {
 
             List<String> listMessage = Arrays.asList(event.getMessage().getContentRaw().split(" "));
             String newCommand = listMessage.get(listMessage.size() - 1);
