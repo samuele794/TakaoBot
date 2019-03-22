@@ -24,8 +24,8 @@ public class ControlCommand {
 //        LOGGER.debug("Inviato da: " + event.getAuthor().getName() + "#" + event.getAuthor().getDiscriminator());
 
         if (!event.isFromType(ChannelType.PRIVATE)) {
-            if ((event.getMessage().getContentRaw().startsWith(SQLiteInterfaces.getSimbol(event.getGuild().getId()) + commandName)
-                    || (event.getMessage().isMentioned(event.getJDA().getSelfUser()) && event.getMessage().getContentRaw().contains(commandName)))) {
+			if (event.getMessage().getContentRaw().startsWith(SQLiteInterfaces.getSimbol(event.getGuild().getId()) + commandName)
+					|| (event.getMessage().isMentioned(event.getJDA().getSelfUser()) && event.getMessage().getContentRaw().contains(commandName))) {
                 return true;
             } else {
                 return false;

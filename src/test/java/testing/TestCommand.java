@@ -2,7 +2,6 @@ package testing;
 
 import command.pattern.ControlCommand;
 import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -21,14 +20,6 @@ public class TestCommand extends ListenerAdapter {
         }*/
 
 		if (ControlCommand.controlCommand(event, "ping")) {
-			MessageChannel channel = event.getChannel();
-
-			if (event.getMember().getVoiceState().inVoiceChannel()) {
-
-				String voiceChannelID = event.getMember().getVoiceState().getAudioChannel().getId();
-
-				event.getChannel().sendMessage(voiceChannelID).queue();
-			}
 
 //			  channel.sendMessage("Pong!").queue();
 		}

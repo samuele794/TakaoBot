@@ -39,7 +39,7 @@ public class StartTest {
 
 
 		try {
-			jda = new JDABuilder("NTMwMzA1MjEzNDkyNDk0MzM4.DyPQMw.JJdFy0eybfmA9tuab4vU_Te__BI").build();
+			jda = new JDABuilder("").build();
 		} catch (LoginException e) {
 			e.printStackTrace();
 			return;

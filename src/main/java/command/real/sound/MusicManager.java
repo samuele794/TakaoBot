@@ -22,9 +22,13 @@ import net.dv8tion.jda.core.exceptions.PermissionException;
 
 import java.util.*;
 
+/**
+ * Classe per gestire il musicBot
+ */
+
 public class MusicManager {
 
-	private static final int DEFAULT_VOLUME = 100; //(0 - 150, where 100 is default max volume)
+	private static final int DEFAULT_VOLUME = 5; //(0 - 150, where 100 is default max volume)
 	private final Map<String, GuildMusicManager> musicManagers;
 	private AudioPlayerManager playerManager;
 
@@ -42,6 +46,12 @@ public class MusicManager {
 		musicManagers = new HashMap<>();
 	}
 
+	/**
+	 * Parsing del messaggio per ottenere l'url
+	 *
+	 * @param event
+	 * @return
+	 */
 	private static String getUrl(MessageReceivedEvent event) {
 		List<String> listMessage = Arrays.asList(event.getMessage().getContentRaw().split(" "));
 		return listMessage.get(listMessage.size() - 1);
@@ -58,8 +68,12 @@ public class MusicManager {
 			return String.format("%02d:%02d", minutes, seconds);
 	}
 
-
-	public void join(MessageReceivedEvent event) {
+	/**
+	 * Metodo per eseguire il join nel canale
+	 *
+	 * @param event
+	 */
+	private void join(MessageReceivedEvent event) {
 
 		Guild guild = event.getGuild();
 		GuildMusicManager guildMusicManager = getMusicManager(guild.getId());
@@ -85,19 +99,31 @@ public class MusicManager {
 
 	}
 
-	//controllato
-	public void leave(MessageReceivedEvent event) {
+	/**
+	 * Metodo per far uscire il bot dalla lobby, bloccherà la queue
+	 * e la svuoterà
+	 *
+	 * @param event
+	 */
+	void leave(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
+		if (!guildMusicManager.scheduler.getQueue().isEmpty()) {
+			guildMusicManager.scheduler.getQueue().clear();
+		}
 
-		guildMusicManager.scheduler.getQueue().clear();
 		guildMusicManager.player.stopTrack();
 		guildMusicManager.player.setPaused(false);
+		guildMusicManager.player.destroy();
 		event.getGuild().getAudioManager().setSendingHandler(null);
 		event.getGuild().getAudioManager().closeAudioConnection();
 	}
 
-	public void play(MessageReceivedEvent event) {
+	/**
+	 * Metodo per riprodurre l'url audio passato come parametro
+	 * @param event
+	 */
+	void play(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 		Guild guild = event.getGuild();
@@ -124,22 +150,33 @@ public class MusicManager {
 		}
 	}
 
-	public void playPlaylist(MessageReceivedEvent event) {
+	/**
+	 * Metodo per riprodurre una playlist dall'url passato come parametro
+	 * @param event
+	 */
+	void playPlaylist(MessageReceivedEvent event) {
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 
 		loadAndPlay(guildMusicManager, event.getChannel(), getUrl(event), true);
 	}
 
-	//controllato
-	public void skip(MessageReceivedEvent event) {
+	/**
+	 * Metodo per saltare la traccia attualmente in riproduzione
+	 * @param event
+	 */
+	void skip(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 		guildMusicManager.scheduler.nextTrack();
 		event.getChannel().sendMessage("Canzone saltata").queue();
 	}
 
-	// controllato
-	public void pauseResume(MessageReceivedEvent event) {
+	/**
+	 * Metodo per mettere in pausa o riprendere la traccia attualmente
+	 * in riproduzione
+	 * @param event
+	 */
+	void pauseResume(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 		AudioPlayer player = guildMusicManager.player;
@@ -156,8 +193,11 @@ public class MusicManager {
 			event.getChannel().sendMessage("Ripresa riproduzione").queue();
 	}
 
-	//controllato
-	public void stop(MessageReceivedEvent event) {
+	/**
+	 * Metodo per stoppare la riproduzione e pulire la coda
+	 * @param event
+	 */
+	void stop(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 
@@ -168,6 +208,11 @@ public class MusicManager {
 
 	}
 
+	/**
+	 * Metodo per cambiare il volume, attualmente non in uso.
+	 * Bisogno di calcolo computazionale extra per il cambio del volume.
+	 * @param event
+	 */
 	private void changeVolume(MessageReceivedEvent event) {
 //		if (command.length == 1) {
 //			event.getChannel().sendMessage("Current player volume: **" + player.getVolume() + "**").queue();
@@ -183,7 +228,11 @@ public class MusicManager {
 //		}
 	}
 
-	public void restart(MessageReceivedEvent event) {
+	/**
+	 * Metodo per riavviare la traccia attualmente in riproduzione
+	 * @param event
+	 */
+	void restart(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 
@@ -194,12 +243,18 @@ public class MusicManager {
 		if (track != null) {
 			event.getChannel().sendMessage("Riavvio traccia: " + track.getInfo().title).queue();
 			guildMusicManager.player.playTrack(track.makeClone());
-		} else {
-			event.getChannel().sendMessage("No track has been previously started, so the player cannot replay a track!").queue();
 		}
+//		else {
+//			//Nessuna traccia è stata pre
+//			event.getChannel().sendMessage("No track has been previously started, so the player cannot replay a track!").queue();
+//		}
 	}
 
-	public void repeat(MessageReceivedEvent event) {
+	/**
+	 * Metodo per ripetere la traccia attualmente in riproduzione
+	 * @param event
+	 */
+	void repeat(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 		guildMusicManager.scheduler.setRepeating(!guildMusicManager.scheduler.isRepeating());
@@ -207,7 +262,12 @@ public class MusicManager {
 
 	}
 
-	public void reset(MessageReceivedEvent event) {
+	/**
+	 * Metodo per resettare il bot in caso di problemi.
+	 * Pulisce la coda, e resetta i canali audio
+	 * @param event
+	 */
+	void reset(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 
@@ -222,7 +282,11 @@ public class MusicManager {
 		event.getChannel().sendMessage("Riproduttore resettato").queue();
 	}
 
-	public void nowPlay(MessageReceivedEvent event) {
+	/**
+	 * Metodo per ottenere la traccia attualmente in riproduzione
+	 * @param event
+	 */
+	void nowPlay(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 
@@ -240,7 +304,11 @@ public class MusicManager {
 			event.getChannel().sendMessage("Non sto riproducendo nulla!").queue();
 	}
 
-	public void getListQueue(MessageReceivedEvent event) {
+	/**
+	 * Metodo per ottenere la lista della coda
+	 * @param event
+	 */
+	void getListQueue(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 		Queue<AudioTrack> queue = guildMusicManager.scheduler.getQueue();
@@ -268,8 +336,11 @@ public class MusicManager {
 		}
 	}
 
-	public void shuffleQueue(MessageReceivedEvent event) {
-
+	/**
+	 * Metodo per randomizzare la coda
+	 * @param event
+	 */
+	void shuffleQueue(MessageReceivedEvent event) {
 
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
 
@@ -282,6 +353,13 @@ public class MusicManager {
 		event.getChannel().sendMessage("Coda mischiata").queue();
 	}
 
+	/**
+	 * Metodo per caricare una traccia o una playlist nella coda
+	 * @param mng
+	 * @param channel
+	 * @param url
+	 * @param addPlaylist
+	 */
 	private void loadAndPlay(GuildMusicManager mng, final MessageChannel channel, String url, final boolean addPlaylist) {
 		final String trackUrl;
 

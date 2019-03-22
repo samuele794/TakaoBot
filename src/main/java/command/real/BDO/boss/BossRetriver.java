@@ -18,7 +18,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static starter.Start.jda;
 
@@ -67,7 +66,7 @@ public class BossRetriver {
 	 * @param giorno giorno attuale
 	 */
 	public static void processHour(int ora, int minuto, Giorno giorno) {
-		TakaoLog.logInfo("Giorno" + giorno + " " + ora + ":" + minuto);
+		TakaoLog.logInfo("Giorno" + giorno.getGiorno() + " " + ora + ":" + minuto);
 
 		if (ora == 0) {
 			//00:00-00:15
@@ -212,9 +211,7 @@ public class BossRetriver {
 		} else {
 			builder.append("in arrivo tra: ").append(orarioMancante).append(" minuti");
 		}
-		Iterator<ServerToChannel> iterator = listServerChannel.iterator();
-		while (iterator.hasNext()) {
-			ServerToChannel channel = iterator.next();
+		for (ServerToChannel channel : listServerChannel) {
 			jda.getGuildById(channel.getServerID()).getTextChannelById(channel.getChannelID()).sendMessage(builder.build()).queue();
 		}
 
