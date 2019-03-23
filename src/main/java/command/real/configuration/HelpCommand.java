@@ -38,6 +38,7 @@ public class HelpCommand extends ListenerAdapter {
 					.setDescription("Questi comandi possono essere usati menzionando il bot e scrivendo il comando senza simbolo," +
 							"oppure usando i comandi direttamente come segue:")
 
+					.addField(simbol + InfoCommand.getCommand(), InfoCommand.getCommandDescription(), false)
 					.addField(simbol + ConfigurationCommand.getCommand(), ConfigurationCommand.getCommandDescription(), false)
 					.addField(simbol + BDONewsStartCommand.getCommand(), BDONewsStartCommand.getCommandDescription(), false)
 					.addField(simbol + BDONewsStopCommand.getCommand(), BDONewsStopCommand.getCommandDescription(), false)
