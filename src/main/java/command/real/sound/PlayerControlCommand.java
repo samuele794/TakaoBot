@@ -37,7 +37,7 @@ public class PlayerControlCommand extends ListenerAdapter {
 			musicManager.skip(event);
 
 		} else if (ControlCommand.controlCommand(event, "pausa") |
-				ControlCommand.controlCommand(event, "pauseResume") |
+				ControlCommand.controlCommand(event, "pause") |
 				ControlCommand.controlCommand(event, "resume") |
 				ControlCommand.controlCommand(event, "riprendi")) {
 

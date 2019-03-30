@@ -10,6 +10,7 @@ import command.real.BDO.boss.BDOBossStopCommand;
 import command.real.JoinListener;
 import command.real.configuration.ConfigurationCommand;
 import command.real.configuration.HelpCommand;
+import command.real.sound.PlayerControlCommand;
 import interfaces.DiscordScheduler;
 import interfaces.DiscordTokenInterfaces;
 import interfaces.SQLiteInterfaces;
@@ -65,7 +66,7 @@ public class Start {
 //		TEMPORANEAMENTE DISATTIVATO CAUSA NON SUPPORTO AD ARM
 //		(QUALCUNO HA DIMENTICATO NELLE SPECIFICHE DELLA LIBRERIA
 //		DI DIRE CHE NON SUPPORTA I PROCESSORI ARM)
-//		jda.addEventListener(new PlayerControlCommand());
+		jda.addEventListener(new PlayerControlCommand());
 
 		System.out.println(jda.asBot().getInviteUrl(Permission.ADMINISTRATOR));
 

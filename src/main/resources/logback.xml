@@ -1,26 +1,37 @@
-<configuration>
+<configuration scan="true" debug="true">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <appender name="fileAppender1" class="ch.qos.logback.core.FileAppender">
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>DEBUG</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-        <file>/home/samuele794/Scrivania/takaoBot/log.txt</file>
-        <append>true</append>
-        <encoder>
-            <pattern>%d [%thread] %-5level %logger{35} - %msg%n</pattern>
+    <timestamp key="byDay" datePattern="yyyy-MM-dd-HH-mm-ss"/>
+    <property name="fileName" value="takaoLog"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>takaoLog/${fileName}-${byDay}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
         </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>takaoLog/jcg.%i.log.zip</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>10</MaxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>2MB</MaxFileSize>
+        </triggeringPolicy>
+
     </appender>
 
-    <root level="DEBUG">
+    <logger name="interfaces.TakaoLog" level="DEBUG">
+        <appender-ref ref="FILE"/>
+    </logger>
+
+
+    <root level="debug">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="fileAppender1"/>
     </root>
-
 </configuration>

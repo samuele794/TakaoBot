@@ -28,7 +28,7 @@ import java.util.*;
 
 public class MusicManager {
 
-	private static final int DEFAULT_VOLUME = 5; //(0 - 150, where 100 is default max volume)
+	private static final int DEFAULT_VOLUME = 25; //(0 - 150, where 100 is default max volume)
 	private final Map<String, GuildMusicManager> musicManagers;
 	private AudioPlayerManager playerManager;
 
