@@ -3,6 +3,7 @@ package command.real.configuration;
 import command.pattern.ControlCommand;
 import interfaces.SQLiteInterfaces;
 import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -30,12 +31,9 @@ public class ConfigurationCommand extends ListenerAdapter {
             return;
         }
 
-        String authorID = event.getAuthor().getId();
-        String ownerID = event.getGuild().getOwnerId();
-
         if (ControlCommand.controlCommand(event, getCommand())) {
 
-            if (!ownerID.equals(authorID)) {
+            if (!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.ADMINISTRATOR)) {
                 event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
             } else {
 				if (event.getMessage().isMentioned(event.getJDA().getSelfUser())) {
