@@ -14,7 +14,7 @@ public class BDOBossStartCommand extends ListenerAdapter {
 	}
 
 	public static String getCommandDescription() {
-		return "Questo comando permette di iscriversi algli allarmi dei boss di BDO. \n" +
+		return "Questo comando permette di iscriversi agli allarmi dei boss di BDO. \n" +
 				"Il comando deve essere lanciato sul canale su cui si desidera ricevere i boss";
 	}
 

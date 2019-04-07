@@ -214,18 +214,18 @@ public class MusicManager {
 	 * @param event
 	 */
 	private void changeVolume(MessageReceivedEvent event) {
-//		if (command.length == 1) {
-//			event.getChannel().sendMessage("Current player volume: **" + player.getVolume() + "**").queue();
-//		} else {
-//			try {
-//				int newVolume = Math.max(10, Math.min(100, Integer.parseInt(command[1])));
-//				int oldVolume = player.getVolume();
-//				player.setVolume(newVolume);
-//				event.getChannel().sendMessage("Player volume changed from `" + oldVolume + "` to `" + newVolume + "`").queue();
-//			} catch (NumberFormatException e) {
-//				event.getChannel().sendMessage("`" + command[1] + "` is not a valid integer. (10 - 100)").queue();
-//			}
-//		}
+/*		if (command.length == 1) {
+			event.getChannel().sendMessage("Current player volume: **" + player.getVolume() + "**").queue();
+		} else {
+			try {
+				int newVolume = Math.max(10, Math.min(100, Integer.parseInt(command[1])));
+				int oldVolume = player.getVolume();
+				player.setVolume(newVolume);
+				event.getChannel().sendMessage("Player volume changed from `" + oldVolume + "` to `" + newVolume + "`").queue();
+			} catch (NumberFormatException e) {
+				event.getChannel().sendMessage("`" + command[1] + "` is not a valid integer. (10 - 100)").queue();
+			}
+		}*/
 	}
 
 	/**
@@ -351,6 +351,19 @@ public class MusicManager {
 
 		guildMusicManager.scheduler.shuffle();
 		event.getChannel().sendMessage("Coda mischiata").queue();
+	}
+
+
+	void clearQueue(MessageReceivedEvent event) {
+		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
+
+		if (!guildMusicManager.scheduler.getQueue().isEmpty()) {
+			guildMusicManager.scheduler.getQueue().clear();
+			event.getChannel().sendMessage("Coda Pulita").queue();
+		} else {
+			event.getChannel().sendMessage("La coda è già vuota").queue();
+		}
+
 	}
 
 	/**

@@ -73,6 +73,11 @@ public class PlayerControlCommand extends ListenerAdapter {
 		} else if (ControlCommand.controlCommand(event, "shuffle")) {
 
 			musicManager.shuffleQueue(event);
+
+		} else if (ControlCommand.controlCommand(event, "clear") |
+				ControlCommand.controlCommand(event, "pulisci")) {
+
+			musicManager.clearQueue(event);
 		}
 	}
 
