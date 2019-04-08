@@ -4,6 +4,7 @@ import beans.RSSMessage;
 import beans.ServerToChannel;
 import interfaces.SQLiteInterfaces;
 import interfaces.TakaoLog;
+import interfaces.TwitterManager;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.MessageEmbed;
@@ -16,13 +17,12 @@ import static starter.Start.jda;
 
 public class AtmScheduler {
 
-	private final static String QUERY_PARAM = "exclude:retweets exclude:replies";
 	private static TwitterManager manager = new TwitterManager().getTwitterManagerWithStream();
 	private static String twitterUrl = "https://twitter.com/atm_informa/status/";
 //	https://twitter.com/atm_informa/status/[id of status]
 
 	public static void startAtmTweetScheduler() {
-
+		String QUERY_PARAM = "exclude:retweets exclude:replies";
 		StatusListener listener = new StatusListener() {
 			@Override
 			public void onStatus(Status status) {

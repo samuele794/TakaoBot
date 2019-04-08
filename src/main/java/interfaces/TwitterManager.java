@@ -1,5 +1,6 @@
-package command.real.tpl.atmAlert;
+package interfaces;
 
+import command.real.tpl.atmAlert.AtmScheduler;
 import twitter4j.FilterQuery;
 import twitter4j.StatusListener;
 import twitter4j.TwitterStream;
@@ -20,10 +21,21 @@ public class TwitterManager {
 
 	public TwitterManager getTwitterManagerWithStream() {
 		if (twitterStreamFactory == null) {
+
+			String fileName = "twitter4j.properties";
+
+			File file = new File("resources/" + fileName);
+
+			if (!file.exists()) {
+				//risorsa su IDE
+				file = new File(AtmScheduler.class.getClassLoader().getResource("twitter4j.properties").getFile());
+			}
+
+
 			FileInputStream input = null;
 			try {
-				input = new FileInputStream(new File(AtmScheduler.class.getClassLoader().getResource("twitter4j.properties").toURI()));
-			} catch (FileNotFoundException | URISyntaxException e) {
+				input = new FileInputStream(file);
+			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
 

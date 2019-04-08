@@ -7,6 +7,8 @@ import command.real.BDO.RSS.BDOPatchStartCommand;
 import command.real.BDO.RSS.BDOPatchStopCommand;
 import command.real.BDO.boss.BDOBossStartCommand;
 import command.real.BDO.boss.BDOBossStopCommand;
+import command.real.tpl.atmAlert.ATMAlertStartCommand;
+import command.real.tpl.atmAlert.ATMAlertStopCommand;
 import interfaces.SQLiteInterfaces;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -45,7 +47,9 @@ public class HelpCommand extends ListenerAdapter {
 					.addField(simbol + BDOPatchStartCommand.getCommand(), BDOPatchStartCommand.getCommandDescription(), false)
 					.addField(simbol + BDOPatchStopCommand.getCommand(), BDOPatchStopCommand.getCommandDescription(), false)
 					.addField(simbol + BDOBossStartCommand.getCommand(), BDOBossStartCommand.getCommandDescription(), false)
-					.addField(simbol + BDOBossStopCommand.getCommand(), BDOBossStopCommand.getCommandDescription(), false);
+					.addField(simbol + BDOBossStopCommand.getCommand(), BDOBossStopCommand.getCommandDescription(), false)
+					.addField(simbol + ATMAlertStartCommand.getCommand(), ATMAlertStartCommand.getCommandDescription(), false)
+					.addField(simbol + ATMAlertStopCommand.getCommand(), ATMAlertStopCommand.getCommandDescription(), false);
 
 			event.getAuthor().openPrivateChannel().queue(privateChannel -> {
 				privateChannel.sendMessage(builder.build()).queue();
