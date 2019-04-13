@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+@Deprecated
 public class SQLiteInterfaces {
 
 	private static final String SERVERS_DISCORD = "ServersDiscord";

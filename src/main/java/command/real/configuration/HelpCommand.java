@@ -9,7 +9,7 @@ import command.real.BDO.boss.BDOBossStartCommand;
 import command.real.BDO.boss.BDOBossStopCommand;
 import command.real.tpl.atmAlert.ATMAlertStartCommand;
 import command.real.tpl.atmAlert.ATMAlertStopCommand;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -33,7 +33,7 @@ public class HelpCommand extends ListenerAdapter {
 
 		if (ControlCommand.controlCommand(event, getCommand())) {
 
-			String simbol = SQLiteInterfaces.getSimbol(event.getGuild().getId());
+			String simbol = PostgreSQLInterface.getSimbol(event.getGuild().getId());
 			EmbedBuilder builder = new EmbedBuilder();
 
 			builder.setTitle("Lista Comandi").setColor(new Color(132, 197, 251))

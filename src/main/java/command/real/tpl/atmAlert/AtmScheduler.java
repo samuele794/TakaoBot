@@ -2,7 +2,7 @@ package command.real.tpl.atmAlert;
 
 import beans.RSSMessage;
 import beans.ServerToChannel;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
 import interfaces.TakaoLog;
 import interfaces.TwitterManager;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -83,16 +83,16 @@ public class AtmScheduler {
 			public void run() {
 				RSSMessage message = ATMRSSReader.readRSS("https://www.atm.it/_layouts/atm/apps/PublishingRSS.aspx?web=388a6572-890f-4e0f-a3c7-a3dd463f7252&c=News%20Infomobilita");
 
-				String lastATMAlert = SQLiteInterfaces.getLastATMAlert();
+				String lastATMAlert = PostgreSQLInterface.getLastATMAlert();
 
 				if (lastATMAlert != null) {
 					if (!lastATMAlert.equals(message.getLink())) {
 						publish(message);
-						SQLiteInterfaces.setLastATMAlert(message.getLink());
+						PostgreSQLInterface.setLastATMAlert(message.getLink());
 					}
 				} else {
 					publish(message);
-					SQLiteInterfaces.setLastATMAlert(message.getLink());
+					PostgreSQLInterface.setLastATMAlert(message.getLink());
 				}
 
 
@@ -102,7 +102,7 @@ public class AtmScheduler {
 	}
 
 	private static void publish(RSSMessage message) {
-		ArrayList<ServerToChannel> serverList = SQLiteInterfaces.getATMAlertChannel();
+		ArrayList<ServerToChannel> serverList = PostgreSQLInterface.getATMAlertChannel();
 		MessageEmbed messageEmbed = ATMRSSReader.prepareRSStoEmbeddedMessage(message);
 		for (ServerToChannel item : serverList) {
 			jda.getGuildById(item.getServerID()).
@@ -133,7 +133,7 @@ public class AtmScheduler {
 				messageEmbed.setImage(mediaUrl);
 			}
 
-			ArrayList<ServerToChannel> channelList = SQLiteInterfaces.getATMAlertChannel();
+			ArrayList<ServerToChannel> channelList = PostgreSQLInterface.getATMAlertChannel();
 			for (ServerToChannel item : channelList) {
 				jda.getGuildById(item.getServerID()).getTextChannelById(item.getChannelID()).sendMessage(messageEmbed.build()).queue();
 			}

@@ -1,7 +1,7 @@
 package command.real.configuration;
 
 import command.pattern.ControlCommand;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.ChannelType;
@@ -64,10 +64,10 @@ public class ConfigurationCommand extends ListenerAdapter {
 
             List<String> listMessage = Arrays.asList(event.getMessage().getContentRaw().split(" "));
             String newCommand = listMessage.get(listMessage.size() - 1);
-            SQLiteInterfaces.setSimbol(newCommand, event.getGuild().getId());
+            PostgreSQLInterface.setSimbol(newCommand, event.getGuild().getId());
 
             new MessageBuilder().append("Simbolo di comando configurato. Nuovo simbolo di comando: ")
-                    .appendCodeBlock(SQLiteInterfaces.getSimbol(event.getGuild().getId()), "").sendTo(event.getChannel()).queue();
+                    .appendCodeBlock(PostgreSQLInterface.getSimbol(event.getGuild().getId()), "").sendTo(event.getChannel()).queue();
         } else {
             new MessageBuilder().append("Simbolo di comando non conforme").sendTo(event.getChannel()).queue();
         }

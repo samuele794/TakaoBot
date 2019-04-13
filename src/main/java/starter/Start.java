@@ -10,10 +10,14 @@ import command.real.BDO.boss.BDOBossStopCommand;
 import command.real.JoinListener;
 import command.real.configuration.ConfigurationCommand;
 import command.real.configuration.HelpCommand;
+import command.real.configuration.InfoCommand;
 import command.real.sound.PlayerControlCommand;
+import command.real.tpl.atmAlert.ATMAlertStartCommand;
+import command.real.tpl.atmAlert.ATMAlertStopCommand;
 import interfaces.DiscordScheduler;
 import interfaces.DiscordTokenInterfaces;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
+import interfaces.TakaoLog;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.Permission;
@@ -29,12 +33,12 @@ public class Start {
 
 	public static void main(String[] args) {
 
-		SQLiteInterfaces.initializeDB();
+		PostgreSQLInterface.initializeDB();
 
 		try {
 			jda = new JDABuilder(DiscordTokenInterfaces.getToken()).build();
 		} catch (LoginException e) {
-			e.printStackTrace();
+			TakaoLog.logError(e.getMessage());
 			return;
 		}
 
@@ -56,6 +60,7 @@ public class Start {
 
 		//comandi reali
 		jda.addEventListener(new HelpCommand());
+		jda.addEventListener(new InfoCommand());
 		jda.addEventListener(new ConfigurationCommand());
 		jda.addEventListener(new BDONewsStartCommand());
 		jda.addEventListener(new BDONewsStopCommand());
@@ -63,10 +68,9 @@ public class Start {
 		jda.addEventListener(new BDOPatchStopCommand());
 		jda.addEventListener(new BDOBossStartCommand());
 		jda.addEventListener(new BDOBossStopCommand());
-//		TEMPORANEAMENTE DISATTIVATO CAUSA NON SUPPORTO AD ARM
-//		(QUALCUNO HA DIMENTICATO NELLE SPECIFICHE DELLA LIBRERIA
-//		DI DIRE CHE NON SUPPORTA I PROCESSORI ARM)
 		jda.addEventListener(new PlayerControlCommand());
+		jda.addEventListener(new ATMAlertStartCommand());
+		jda.addEventListener(new ATMAlertStopCommand());
 
 		System.out.println(jda.asBot().getInviteUrl(Permission.ADMINISTRATOR));
 

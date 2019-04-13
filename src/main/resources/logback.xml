@@ -1,12 +1,17 @@
-<configuration scan="true" debug="true">
+<configuration scan="true" debug="false">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <timestamp key="byDay" datePattern="yyyy-MM-dd-HH-mm-ss"/>
+    <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
     <property name="fileName" value="takaoLog"/>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+        <queueSize>1000</queueSize>
+    </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>takaoLog/${fileName}-${byDay}.log</file>
@@ -21,10 +26,14 @@
         </rollingPolicy>
 
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <MaxFileSize>2MB</MaxFileSize>
+            <MaxFileSize>20MB</MaxFileSize>
         </triggeringPolicy>
 
     </appender>
+
+    <logger name="org.hibernate.type.BasicTypeRegistry" level="OFF"/>
+    <logger name="o.quartz.core.QuartzSchedulerThread" level="OFF"/>
+
 
     <logger name="interfaces.TakaoLog" level="DEBUG">
         <appender-ref ref="FILE"/>
@@ -32,6 +41,7 @@
 
 
     <root level="debug">
+        <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

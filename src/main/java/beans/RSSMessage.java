@@ -32,7 +32,6 @@ public class RSSMessage {
      * Metodo per ottenre il titolo del feed
      *
      * @param title titolo del feed
-     * @return titolo del feed
      */
     public void setTitle(String title) {
         this.title = title;
@@ -40,7 +39,7 @@ public class RSSMessage {
 
     /**
      * Metodo per ottenere il link del feed
-     * @return
+	 * @return String
      */
     public String getLink() {
         return link;

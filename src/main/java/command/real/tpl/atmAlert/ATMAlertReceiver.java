@@ -10,14 +10,22 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.util.ArrayList;
 
-@Deprecated
-public class ATMAlertStopCommand extends ListenerAdapter {
+public class ATMAlertReceiver extends ListenerAdapter {
 
-	public static String getCommand() {
+	public static String getATMStartCommand() {
+		return "ATMAlertStart";
+	}
+
+	public static String getATMStartCommandDescription() {
+		return "Questo comando permette di iscriversi agli avvisi dell'ATM Milano \n" +
+				"Il comando deve essere lanciato sul canale su cui si desidera ricevere gli avvisi";
+	}
+
+	public static String getATMStopCommand() {
 		return "ATMAlertStop";
 	}
 
-	public static String getCommandDescription() {
+	public static String getATMStopCommandDescription() {
 		return "Questo comando permette disiscriversi agli avvisi dell'ATM Milano. \n" +
 				"Il comando può essere lanciato su qualunque canale";
 	}
@@ -26,7 +34,17 @@ public class ATMAlertStopCommand extends ListenerAdapter {
 	public void onMessageReceived(MessageReceivedEvent event) {
 		if (event.getAuthor().isBot()) return;
 
-		if (ControlCommand.controlCommand(event, getCommand())) {
+		String simbol = ControlCommand.getSimbolCommand(event.getGuild().getId());
+
+		if (ControlCommand.checkCommand(event, simbol, getATMStartCommand())) {
+			if (!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.ADMINISTRATOR)) {
+				event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
+			} else {
+				PostgreSQLInterface.setATMAlertChannel(event.getGuild().getId(), event.getChannel().getId());
+				new MessageBuilder().append("Invio degli avvisi dell'ATM configurato sul canale: ")
+						.appendCodeBlock(event.getChannel().getName(), "").sendTo(event.getChannel()).queue();
+			}
+		} else if (ControlCommand.checkCommand(event, simbol, getATMStopCommand())) {
 
 			if (!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.ADMINISTRATOR)) {
 				event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
@@ -41,5 +59,6 @@ public class ATMAlertStopCommand extends ListenerAdapter {
 						.sendTo(event.getChannel()).queue();
 			}
 		}
+
 	}
 }

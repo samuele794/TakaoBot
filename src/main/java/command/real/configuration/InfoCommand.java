@@ -30,7 +30,7 @@ public class InfoCommand extends ListenerAdapter {
 
 			String info = "Ciao, sono samuele794#8585 lo sviluppatore di questo bot, scritto Java 8 con l'utilizzo " +
 					"della libreria di base JDA (Java Discord Api). \n\n" +
-					"Il personaggio Takao di Arpeggio Of Blue Steel (蒼き鋼のアルペジオ, Aoki Hagane no Arpeggio) " +
+					"Il personaggio Takao di Arpeggio Of Blue Steel (\u84bc\u304d\u92fc\u306e\u30a2\u30eb\u30da\u30b8\u30aa, Aoki Hagane no Arpeggio) " +
 					"è stato creato da Ark Performance. \nNon sono il possessore di nessuna immagine " +
 					"utilizzata all'interno del bot. \n\n" +
 					"Se sei uno sviluppatore Java e vuoi contribuire al bot sei ben accetto. \n" +

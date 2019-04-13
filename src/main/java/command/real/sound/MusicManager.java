@@ -50,7 +50,7 @@ public class MusicManager {
 	 * Parsing del messaggio per ottenere l'url
 	 *
 	 * @param event
-	 * @return
+	 * @return String url della canzone
 	 */
 	private static String getUrl(MessageReceivedEvent event) {
 		List<String> listMessage = Arrays.asList(event.getMessage().getContentRaw().split(" "));

@@ -14,68 +14,69 @@ public class PlayerControlCommand extends ListenerAdapter {
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
-		if (event.getAuthor().isBot()) {
-			return;
-		}
+		if (event.getAuthor().isBot()) return;
 
-		if (ControlCommand.controlCommand(event, "leave")) {
+		String simbolCommand = ControlCommand.getSimbolCommand(event.getGuild().getId());
+
+
+		if (ControlCommand.checkCommand(event, simbolCommand, "leave")) {
 
 			musicManager.leave(event);
 
-		} else if (ControlCommand.controlCommand(event, "play")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "play")) {
 
 			musicManager.play(event);
 
-		} else if (ControlCommand.controlCommand(event, "playPlaylist") |
-				ControlCommand.controlCommand(event, "pp")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "playPlaylist") |
+				ControlCommand.checkCommand(event, simbolCommand, "pp")) {
 
 			musicManager.playPlaylist(event);
 
-		} else if (ControlCommand.controlCommand(event, "skip") |
-				ControlCommand.controlCommand(event, "salta")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "skip") |
+				ControlCommand.checkCommand(event, simbolCommand, "salta")) {
 
 			musicManager.skip(event);
 
-		} else if (ControlCommand.controlCommand(event, "pausa") |
-				ControlCommand.controlCommand(event, "pause") |
-				ControlCommand.controlCommand(event, "resume") |
-				ControlCommand.controlCommand(event, "riprendi")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "pausa") |
+				ControlCommand.checkCommand(event, simbolCommand, "pause") |
+				ControlCommand.checkCommand(event, simbolCommand, "resume") |
+				ControlCommand.checkCommand(event, simbolCommand, "riprendi")) {
 
 			musicManager.pauseResume(event);
 
-		} else if (ControlCommand.controlCommand(event, "stop")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "stop")) {
 
 			musicManager.stop(event);
 
-		} else if (ControlCommand.controlCommand(event, "restart")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "restart")) {
 
 			musicManager.restart(event);
 
-		} else if (ControlCommand.controlCommand(event, "repeat") |
-				ControlCommand.controlCommand(event, "ripeti")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "repeat") |
+				ControlCommand.checkCommand(event, simbolCommand, "ripeti")) {
 
 			musicManager.repeat(event);
 
-		} else if (ControlCommand.controlCommand(event, "reset")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "reset")) {
 
 			musicManager.reset(event);
 
-		} else if (ControlCommand.controlCommand(event, "nowplaying") |
-				ControlCommand.controlCommand(event, "np")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "nowplaying") |
+				ControlCommand.checkCommand(event, simbolCommand, "np")) {
 
 			musicManager.nowPlay(event);
 
-		} else if (ControlCommand.controlCommand(event, "queue") |
-				ControlCommand.controlCommand(event, "lista")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "queue") |
+				ControlCommand.checkCommand(event, simbolCommand, "lista")) {
 
 			musicManager.getListQueue(event);
 
-		} else if (ControlCommand.controlCommand(event, "shuffle")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "shuffle")) {
 
 			musicManager.shuffleQueue(event);
 
-		} else if (ControlCommand.controlCommand(event, "clear") |
-				ControlCommand.controlCommand(event, "pulisci")) {
+		} else if (ControlCommand.checkCommand(event, simbolCommand, "clear") |
+				ControlCommand.checkCommand(event, simbolCommand, "pulisci")) {
 
 			musicManager.clearQueue(event);
 		}

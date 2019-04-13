@@ -5,7 +5,7 @@ import beans.BDOBossBean.BossException;
 import beans.BDOBossBean.Giorno;
 import beans.ServerToChannel;
 import com.google.gson.reflect.TypeToken;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
 import interfaces.TakaoLog;
 import net.dv8tion.jda.core.MessageBuilder;
 import starter.Start;
@@ -28,7 +28,7 @@ public class BossRetriver {
 	/**
 	 * Ottieni la lista dei boss da file
 	 *
-	 * @return ArrayList<Giorno> lista Boss
+	 * @return ArrayList lista Boss
 	 */
 	public static ArrayList<Giorno> getBossList() {
 
@@ -195,7 +195,7 @@ public class BossRetriver {
 	 * @param orarioMancante minuti mancanti allo spawn dei boss
 	 */
 	private static void publish(String[] bosses, String orarioMancante) {
-		ArrayList<ServerToChannel> listServerChannel = SQLiteInterfaces.getBDOBossChannel();
+		ArrayList<ServerToChannel> listServerChannel = PostgreSQLInterface.getBDOBossChannel();
 
 		String oraAttuale = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
 

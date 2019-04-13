@@ -1,12 +1,13 @@
 package command.real.tpl.atmAlert;
 
 import command.pattern.ControlCommand;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+@Deprecated
 public class ATMAlertStartCommand extends ListenerAdapter {
 
 	public static String getCommand() {
@@ -27,7 +28,7 @@ public class ATMAlertStartCommand extends ListenerAdapter {
 			if (!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.ADMINISTRATOR)) {
 				event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
 			} else {
-				SQLiteInterfaces.setATMAlertChannel(event.getGuild().getId(), event.getChannel().getId());
+				PostgreSQLInterface.setATMAlertChannel(event.getGuild().getId(), event.getChannel().getId());
 				new MessageBuilder().append("Invio degli avvisi dell'ATM configurato sul canale: ")
 						.appendCodeBlock(event.getChannel().getName(), "").sendTo(event.getChannel()).queue();
 			}
