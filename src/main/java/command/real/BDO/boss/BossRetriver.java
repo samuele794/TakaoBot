@@ -144,7 +144,7 @@ public class BossRetriver {
 				String[] listBoss = Boss.getHourBoss(ora, 0, giorno.getBosses());
 				publish(listBoss, "0");
 			}
-		}catch (BossException ex){
+		} catch (BossException ex) {
 			TakaoLog.logInfo(ex.getMessage());
 		}
 	}
@@ -195,26 +195,27 @@ public class BossRetriver {
 	 * @param orarioMancante minuti mancanti allo spawn dei boss
 	 */
 	private static void publish(String[] bosses, String orarioMancante) {
-		ArrayList<ServerToChannel> listServerChannel = PostgreSQLInterface.getBDOBossChannel();
+		if (bosses != null) {
+			ArrayList<ServerToChannel> listServerChannel = PostgreSQLInterface.getBDOBossChannel();
 
-		String oraAttuale = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+			String oraAttuale = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
 
-		MessageBuilder builder = new MessageBuilder();
-		builder.append(oraAttuale).append(" -> 	");
+			MessageBuilder builder = new MessageBuilder();
+			builder.append(oraAttuale).append(" -> 	");
 
-		for (String boss : bosses) {
-			builder.append(boss).append(" ");
+			for (String boss : bosses) {
+				builder.append(boss).append(" ");
+			}
+
+			if (orarioMancante.equals("0")) {
+				builder.append("sta spawnando");
+			} else {
+				builder.append("in arrivo tra: ").append(orarioMancante).append(" minuti");
+			}
+			for (ServerToChannel channel : listServerChannel) {
+				jda.getGuildById(channel.getServerID()).getTextChannelById(channel.getChannelID()).sendMessage(builder.build()).queue();
+			}
 		}
-
-		if (orarioMancante.equals("0")) {
-			builder.append("sta spawnando");
-		} else {
-			builder.append("in arrivo tra: ").append(orarioMancante).append(" minuti");
-		}
-		for (ServerToChannel channel : listServerChannel) {
-			jda.getGuildById(channel.getServerID()).getTextChannelById(channel.getChannelID()).sendMessage(builder.build()).queue();
-		}
-
 	}
 
 }

@@ -44,7 +44,7 @@ public class DiscordScheduler {
 //		TASK ATM
 		AtmScheduler.startAtmTweetScheduler();
 		Timer timerTaskAtm = new Timer();
-		timerTaskAtm.scheduleAtFixedRate(AtmScheduler.taskFeedRSSATM(jda), 1800000, 1800000);
+		timerTaskAtm.scheduleAtFixedRate(AtmScheduler.taskFeedRSSATM(), 1800000, 1800000);
 
 	}
 }

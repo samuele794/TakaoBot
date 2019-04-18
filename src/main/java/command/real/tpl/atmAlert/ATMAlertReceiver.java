@@ -17,7 +17,7 @@ public class ATMAlertReceiver extends ListenerAdapter {
 	}
 
 	public static String getATMStartCommandDescription() {
-		return "Questo comando permette di iscriversi agli avvisi dell'ATM Milano \n" +
+		return "Questo comando permette di iscriversi agli avvisi dell'ATM Milano. \n" +
 				"Il comando deve essere lanciato sul canale su cui si desidera ricevere gli avvisi";
 	}
 

@@ -1,7 +1,7 @@
 package command.real.configuration;
 
 import command.pattern.ControlCommand;
-import command.real.BDO.RSS.BDONewsStartCommand;
+import command.real.BDO.BDOReceiver;
 import command.real.BDO.RSS.BDONewsStopCommand;
 import command.real.BDO.RSS.BDOPatchStartCommand;
 import command.real.BDO.RSS.BDOPatchStopCommand;
@@ -42,7 +42,7 @@ public class HelpCommand extends ListenerAdapter {
 
 					.addField(simbol + InfoCommand.getCommand(), InfoCommand.getCommandDescription(), false)
 					.addField(simbol + ConfigurationCommand.getCommand(), ConfigurationCommand.getCommandDescription(), false)
-					.addField(simbol + BDONewsStartCommand.getCommand(), BDONewsStartCommand.getCommandDescription(), false)
+					.addField(simbol + BDOReceiver.getBDONewsStartCommand(), BDOReceiver.getBDONewsStartCommandDecription(), false)
 					.addField(simbol + BDONewsStopCommand.getCommand(), BDONewsStopCommand.getCommandDescription(), false)
 					.addField(simbol + BDOPatchStartCommand.getCommand(), BDOPatchStartCommand.getCommandDescription(), false)
 					.addField(simbol + BDOPatchStopCommand.getCommand(), BDOPatchStopCommand.getCommandDescription(), false)

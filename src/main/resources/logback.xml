@@ -32,7 +32,7 @@
     </appender>
 
     <logger name="org.hibernate.type.BasicTypeRegistry" level="OFF"/>
-    <logger name="o.quartz.core.QuartzSchedulerThread" level="OFF"/>
+    <logger name="org.quartz.core.QuartzSchedulerThread" level="OFF"/>
 
 
     <logger name="interfaces.TakaoLog" level="DEBUG">

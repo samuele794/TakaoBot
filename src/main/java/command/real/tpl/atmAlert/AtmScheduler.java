@@ -6,7 +6,6 @@ import interfaces.PostgreSQLInterface;
 import interfaces.TakaoLog;
 import interfaces.TwitterManager;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import twitter4j.*;
 
@@ -26,6 +25,9 @@ public class AtmScheduler {
 		StatusListener listener = new StatusListener() {
 			@Override
 			public void onStatus(Status status) {
+
+				TakaoLog.logInfo("ATMUSERID     " + status.getUser().getScreenName() + "   " + status.getUser().getId());
+
 				if (!status.isRetweet()) {
 					((Runnable) () -> {
 						Status statusCopy = status;
@@ -77,7 +79,7 @@ public class AtmScheduler {
 
 	}
 
-	public static TimerTask taskFeedRSSATM(JDA jda) {
+	public static TimerTask taskFeedRSSATM() {
 		return new TimerTask() {
 			@Override
 			public void run() {

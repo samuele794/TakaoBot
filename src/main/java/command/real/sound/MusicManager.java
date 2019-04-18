@@ -156,6 +156,10 @@ public class MusicManager {
 	 */
 	void playPlaylist(MessageReceivedEvent event) {
 		GuildMusicManager guildMusicManager = getMusicManager(event.getGuild().getId());
+		Guild guild = event.getGuild();
+		if (guild.getAudioManager().getSendingHandler() == null) {
+			this.join(event);
+		}
 
 		loadAndPlay(guildMusicManager, event.getChannel(), getUrl(event), true);
 	}

@@ -1,19 +1,13 @@
 package starter;
 
 import com.google.gson.Gson;
-import command.real.BDO.RSS.BDONewsStartCommand;
-import command.real.BDO.RSS.BDONewsStopCommand;
-import command.real.BDO.RSS.BDOPatchStartCommand;
-import command.real.BDO.RSS.BDOPatchStopCommand;
-import command.real.BDO.boss.BDOBossStartCommand;
-import command.real.BDO.boss.BDOBossStopCommand;
+import command.real.BDO.BDOReceiver;
 import command.real.JoinListener;
 import command.real.configuration.ConfigurationCommand;
 import command.real.configuration.HelpCommand;
 import command.real.configuration.InfoCommand;
 import command.real.sound.PlayerControlCommand;
-import command.real.tpl.atmAlert.ATMAlertStartCommand;
-import command.real.tpl.atmAlert.ATMAlertStopCommand;
+import command.real.tpl.atmAlert.ATMAlertReceiver;
 import interfaces.DiscordScheduler;
 import interfaces.DiscordTokenInterfaces;
 import interfaces.PostgreSQLInterface;
@@ -62,15 +56,9 @@ public class Start {
 		jda.addEventListener(new HelpCommand());
 		jda.addEventListener(new InfoCommand());
 		jda.addEventListener(new ConfigurationCommand());
-		jda.addEventListener(new BDONewsStartCommand());
-		jda.addEventListener(new BDONewsStopCommand());
-		jda.addEventListener(new BDOPatchStartCommand());
-		jda.addEventListener(new BDOPatchStopCommand());
-		jda.addEventListener(new BDOBossStartCommand());
-		jda.addEventListener(new BDOBossStopCommand());
+		jda.addEventListener(new BDOReceiver());
 		jda.addEventListener(new PlayerControlCommand());
-		jda.addEventListener(new ATMAlertStartCommand());
-		jda.addEventListener(new ATMAlertStopCommand());
+		jda.addEventListener(new ATMAlertReceiver());
 
 		System.out.println(jda.asBot().getInviteUrl(Permission.ADMINISTRATOR));
 

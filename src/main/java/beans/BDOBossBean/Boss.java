@@ -23,7 +23,7 @@ public class Boss {
 
 		}
 
-		throw new BossException("Orario non valido");
+		return null;
 	}
 
 	public String[] getNomeBoss() {
