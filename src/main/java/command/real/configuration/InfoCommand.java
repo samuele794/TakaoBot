@@ -10,6 +10,7 @@ import java.awt.*;
 
 import static starter.Start.jda;
 
+@Deprecated
 public class InfoCommand extends ListenerAdapter {
 
 	public static String getCommand() {

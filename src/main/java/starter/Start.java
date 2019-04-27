@@ -3,9 +3,7 @@ package starter;
 import com.google.gson.Gson;
 import command.real.BDO.BDOReceiver;
 import command.real.JoinListener;
-import command.real.configuration.ConfigurationCommand;
-import command.real.configuration.HelpCommand;
-import command.real.configuration.InfoCommand;
+import command.real.configuration.ConfigurationReceiver;
 import command.real.sound.PlayerControlCommand;
 import command.real.tpl.atmAlert.ATMAlertReceiver;
 import interfaces.DiscordScheduler;
@@ -38,9 +36,6 @@ public class Start {
 
 		DiscordScheduler.startScheduling(jda);
 
-		//command testing
-		// jda.addEventListener(new BossCommand());
-
 		jda.addEventListener(new JoinListener());
 		jda.addEventListener(new ListenerAdapter() {
 			@Override
@@ -53,9 +48,7 @@ public class Start {
 		});
 
 		//comandi reali
-		jda.addEventListener(new HelpCommand());
-		jda.addEventListener(new InfoCommand());
-		jda.addEventListener(new ConfigurationCommand());
+		jda.addEventListener(new ConfigurationReceiver());
 		jda.addEventListener(new BDOReceiver());
 		jda.addEventListener(new PlayerControlCommand());
 		jda.addEventListener(new ATMAlertReceiver());

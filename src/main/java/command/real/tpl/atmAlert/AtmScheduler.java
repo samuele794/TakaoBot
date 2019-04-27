@@ -9,6 +9,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import twitter4j.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -28,20 +29,22 @@ public class AtmScheduler {
 
 				TakaoLog.logInfo("ATMUSERID     " + status.getUser().getScreenName() + "   " + status.getUser().getId());
 
-				if (!status.isRetweet()) {
-					((Runnable) () -> {
-						Status statusCopy = status;
-						long id = statusCopy.getId();
-						String text = statusCopy.getText();
-						String mediaUrl = null;
-						if (statusCopy.getMediaEntities().length != 0) {
-							mediaUrl = statusCopy.getMediaEntities()[0].getMediaURL();
-						}
-						String profileImageUrl = statusCopy.getUser().getProfileImageURL();
-						TakaoLog.logInfo("ATM Message" + id + " " + text);
-						System.out.println("ATM Message" + id + " " + text);
-						getMessage(id, text, mediaUrl, profileImageUrl);
-					}).run();
+				if (status.getUser().getId() == 988355810) {
+					if (!status.isRetweet()) {
+						((Runnable) () -> {
+							Status statusCopy = status;
+							long id = statusCopy.getId();
+							String text = statusCopy.getText();
+							String mediaUrl = null;
+							if (statusCopy.getMediaEntities().length != 0) {
+								mediaUrl = statusCopy.getMediaEntities()[0].getMediaURL();
+							}
+							String profileImageUrl = statusCopy.getUser().getProfileImageURL();
+							TakaoLog.logInfo("ATM Message" + id + " " + text);
+							System.out.println("ATM Message" + id + " " + text);
+							getMessage(id, text, mediaUrl, profileImageUrl);
+						}).run();
+					}
 				}
 
 			}
@@ -129,6 +132,7 @@ public class AtmScheduler {
 
 			messageEmbed.setAuthor("ATM (@atm_informa)", tweetUrl, profileImageUrl)
 					.setDescription(twitterMessage)
+					.setColor(new Color(244, 131, 37))
 					.setFooter("Ricevuto da Twitter", "https://i.imgur.com/vkm6lHX.png");
 
 			if (mediaUrl != null) {
