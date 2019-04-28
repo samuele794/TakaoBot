@@ -1,7 +1,7 @@
 package testing;
 
 import command.pattern.ControlCommand;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
@@ -27,7 +27,7 @@ public class PrivateMessage extends ListenerAdapter {
                 embedBuilder.setColor(Color.MAGENTA)
                         .setAuthor(user.getName(), null, user.getAvatarUrl())
                         .setTitle("Ciao " + event.getAuthor().getName())
-                        .setDescription("Il tuo simbolo di comando è: " + SQLiteInterfaces.getSimbol(event.getGuild().getId()));
+                        .setDescription("Il tuo simbolo di comando è: " + PostgreSQLInterface.getSimbol(event.getGuild().getId()));
                 privateChannel.sendMessage(embedBuilder.build()).queue();
 
 

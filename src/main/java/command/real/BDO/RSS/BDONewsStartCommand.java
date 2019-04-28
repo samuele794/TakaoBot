@@ -1,11 +1,13 @@
 package command.real.BDO.RSS;
 
 import command.pattern.ControlCommand;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
 import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+@Deprecated
 public class BDONewsStartCommand extends ListenerAdapter {
 
 	public static String getCommand() {
@@ -20,14 +22,16 @@ public class BDONewsStartCommand extends ListenerAdapter {
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
 		if (event.getAuthor().isBot()) return;
-		if (ControlCommand.controlCommand(event, getCommand())) {
-			String authorID = event.getAuthor().getId();
-			String ownerID = event.getGuild().getOwnerId();
 
-			if (!ownerID.equals(authorID)) {
+		event.getAuthor().getId();
+
+
+		if (ControlCommand.controlCommand(event, getCommand())) {
+
+			if (!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.ADMINISTRATOR)) {
 				event.getChannel().sendMessage(event.getAuthor().getName() + " non sei autorizzato all'uso di questo comando").queue();
 			} else {
-				SQLiteInterfaces.setBDONewsChannel(event.getGuild().getId(), event.getChannel().getId());
+				PostgreSQLInterface.setBDONewsChannel(event.getGuild().getId(), event.getChannel().getId());
 				new MessageBuilder().append("Invio delle news di BDO configurato sul canale: ")
 						.appendCodeBlock(event.getChannel().getName(), "").sendTo(event.getChannel()).queue();
 

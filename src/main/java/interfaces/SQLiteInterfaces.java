@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+@Deprecated
 public class SQLiteInterfaces {
 
 	private static final String SERVERS_DISCORD = "ServersDiscord";
@@ -358,12 +359,19 @@ public class SQLiteInterfaces {
 
 		String json = Start.gson.toJson(newsBDOList);
 
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement statement = connection.prepareStatement("UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastNewsBDO.name() + " = ? WHERE " + RSS_DB_COLUMN.ID.name() + " = 1");
+			statement = connection.prepareStatement("UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastNewsBDO.name() + " = ? WHERE " + RSS_DB_COLUMN.ID.name() + " = 1");
 			statement.setString(1, json);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				TakaoLog.logError(e.getMessage());
+			}
 		}
 	}
 
@@ -411,6 +419,127 @@ public class SQLiteInterfaces {
 	}
 
 	/**
+	 * Metodo per settare il canale per gli alert dell'ATM
+	 *
+	 * @param serverID  id del server
+	 * @param channelID id del canale testuale
+	 */
+	public static void setATMAlertChannel(String serverID, String channelID) {
+		String sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.ATMAlertIDChannel.name() + "= '" + channelID + "' WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+
+		try {
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Metodo per ottenere tutti i canali registrati agli alert di ATM
+	 *
+	 * @return lista dei server e dei relativi canali che si sono registrati
+	 * @see ServerToChannel ServerToChannel
+	 */
+	public static ArrayList<ServerToChannel> getATMAlertChannel() {
+		String sql = "SELECT " + SD_DB_COLUMN.SERVER_ID.name() + ", " + SD_DB_COLUMN.ATMAlertIDChannel.name() + " FROM " + SERVERS_DISCORD + " WHERE " + SD_DB_COLUMN.ATMAlertIDChannel.name() + " IS NOT NULL";
+		ArrayList<ServerToChannel> list = new ArrayList<>();
+
+		Statement statement = null;
+		ResultSet resutlt = null;
+		try {
+			statement = connection.createStatement();
+			resutlt = statement.executeQuery(sql);
+
+			while (resutlt.next()) {
+				list.add(new ServerToChannel(resutlt.getString(SD_DB_COLUMN.SERVER_ID.name()), resutlt.getString(SD_DB_COLUMN.ATMAlertIDChannel.name())));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {}
+
+			try {
+				resutlt.close();
+			} catch (SQLException e) {}
+		}
+
+		return list;
+
+	}
+
+	/**
+	 * Metodo per rimuovere il canale per gli alert di ATM
+	 *
+	 * @param serverID id del server
+	 */
+	public static void removeATMAlertChannel(String serverID) {
+		String sql = "UPDATE " + SERVERS_DISCORD + " SET " + SD_DB_COLUMN.ATMAlertIDChannel.name() + "= NULL WHERE " + SD_DB_COLUMN.SERVER_ID.name() + "='" + serverID + "';";
+
+		Statement statement = null;
+		try {
+			statement = connection.createStatement();
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {}
+		}
+	}
+
+	/**
+	 * Ottiene il link dell'ultima patch di BDO
+	 *
+	 * @return String link url dell'ultima patch
+	 */
+	public static String getLastATMAlert() {
+		String sql = "SELECT " + RSS_DB_COLUMN.LastATMAlert.name() + " FROM " + RSS_LINK + ";";
+
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(sql);
+
+			//false è vuoto
+			//true trovato
+			if (result.next()) {
+				return result.getString(RSS_DB_COLUMN.LastATMAlert.name());
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * Imposta l'ultima patch di BDO, se esiste l'aggiorna, altrimenti inserisce la riga.
+	 *
+	 * @param url url dell'ultimo feed rss aggiornato
+	 */
+	public static void setLastATMAlert(String url) {
+
+		String sql = "UPDATE " + RSS_LINK + " SET " + RSS_DB_COLUMN.LastATMAlert.name() + " = '" + url + "' WHERE " + RSS_DB_COLUMN.ID.name() + " = 1;";
+		Statement statement = null;
+		try {
+			statement = connection.createStatement();
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {}
+		}
+
+	}
+
+	/**
 	 * Nomi delle colonne sul db
 	 */
 	public enum SD_DB_COLUMN {
@@ -419,13 +548,15 @@ public class SQLiteInterfaces {
 		SIMBOL_COMMAND,
 		BDONewsIDChannel,
 		BDOPatchIDChannel,
-		BDOBossIDChannel
+		BDOBossIDChannel,
+		ATMAlertIDChannel
 	}
 
 	public enum RSS_DB_COLUMN {
 		ID,
 		LastNewsBDO,
-		LastPatchBDO
+		LastPatchBDO,
+		LastATMAlert
 	}
 
 

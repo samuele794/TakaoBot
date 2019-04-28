@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<script src="../js/jquery-3.4.0.min.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap-italia.min.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/commandStyle.css" />
+	<script src="../js/bootstrap-italia.min.js"></script>
+
+	<!-- CSS -->
+</head>
+
+<body>
+	<!-- JS -->
+
+	<div class="it-header-wrapper">
+		<div class="it-nav-wrapper">
+			<div class="it-header-center-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="it-header-center-content-wrapper">
+								<div class="it-brand-wrapper">
+									<a href="../index.html">
+										<img class="icon" src="../images/takaoLogo.png">
+										<div class="it-brand-text">
+											<h2 class="no_toc">TakaoBot</h2>
+										</div>
+									</a>
+								</div>
+								<div class="it-right-zone">
+									<div class="header-invite">
+										<a class="invite-bot-button"
+											href="https://discordapp.com/oauth2/authorize?scope=bot&client_id=324274586189561867&permissions=8"
+											target="_blank">
+											<button style="margin-left: 10px"
+												class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+												<i class="fab fa-discord" style="margin-right: 5px"></i>
+												INVITA IL BOT NEL TUO SERVER
+											</button>
+										</a>
+									</div>
+									<div class="it-socials d-none d-md-flex">
+										<span>Segui su</span>
+										<ul>
+											<li>
+												<a href="https://github.com/samuele794/TakaoBot" aria-label="Github"
+													target="_blank">
+													<svg class="icon">
+														<use xlink:href="../svg/sprite.svg#it-github"></use>
+													</svg>
+												</a>
+											</li>
+											<li>
+												<a href="https://twitter.com/takaoBot794" target="_blank"
+													aria-label="Twitter">
+													<svg class="icon">
+														<use xlink:href="../svg/sprite.svg#it-twitter"></use>
+													</svg>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="it-header-navbar-wrapper sticky-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<nav class="navbar navbar-expand-lg has-megamenu">
+								<button class="custom-navbar-toggler" type="button" aria-controls="nav10"
+									aria-expanded="false" aria-label="Toggle navigation" data-target="#nav10">
+									<svg class="icon">
+										<use xlink:href="../svg/sprite.svg#it-burger"></use>
+									</svg>
+								</button>
+								<div class="navbar-collapsable" id="nav10">
+									<div class="overlay"></div>
+									<div class="close-div sr-only">
+										<button class="btn close-menu" type="button">
+											<span class="it-close"></span>close
+										</button>
+									</div>
+									<div class="menu-wrapper">
+										<ul class="navbar-nav">
+											<li class="nav-item">
+												<a class="nav-link" href="../index.html"><span>Home</span>
+													<span class="sr-only">current</span></a>
+											</li>
+											<li class="nav-item active">
+												<a class="nav-link active" href="#">
+													<span>Comandi</span></a>
+											</li>
+											<li class="nav-item disabled">
+												<a class="nav-link disabled" href="#"><span>News</span></a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link"
+													href="../page/documentazione.html"><span>Documentazione</span></a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="../page/info.html"><span>Info</span></a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="../page/licence.html"><span>Licenze</span></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-4">
+				<nav class=" navbar it-navscroll-wrapper navbar-expand-lg it-top-navscroll it-left-side affix-top ">
+					<button class="custom-navbar-toggler" type="button" aria-controls="navbarNav" aria-expanded="false"
+						aria-label="Toggle navigation" data-target="#navbarNav" onclick="hideTop()">
+						<span class="it-list"></span>
+						Indice
+					</button>
+					<div class="navbar-collapsable" id="navbarNav">
+						<div class="overlay"></div>
+						<div class="close-div sr-only">
+							<button class="btn close-menu" type="button">
+								<span class="it-close"></span>close
+							</button>
+						</div>
+						<a class="it-back-button" href="#" onclick="showTop()">
+							<svg class="icon icon-sm icon-primary align-top">
+								<use xlink:href="../svg/sprite.svg#it-chevron-left"></use>
+							</svg>
+							<span>Back</span>
+						</a>
+						<div class="menu-wrapper">
+							<div class="link-list-wrapper">
+								<h3>Indice</h3>
+
+								<div id="accordionDiv1" class="collapse-div" role="tablist">
+									<div class="collapse-header" id="headingA1">
+										<button data-toggle="collapse" data-target="#accordion1" aria-expanded="false"
+											aria-controls="accordion1">
+											Configurazione e Info
+										</button>
+									</div>
+									<div id="accordion1" class="collapse" role="tabpanel" aria-labelledby="headingA1"
+										data-parent="#accordionDiv1">
+										<div class="collapse-body">
+											<ul>
+												<li>
+													<a href="#1_1" onclick="showTop()"><span>Info</span></a>
+												</li>
+												<li>
+													<a href="#1_2" onclick="showTop()"><span>Help</span></a>
+												</li>
+												<li>
+													<a href="#1_3" onclick="showTop()"><span>Configuration
+															Command</span></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="collapse-header" id="headingA2">
+										<button data-toggle="collapse" data-target="#accordion2" aria-expanded="false"
+											aria-controls="accordion2">
+											Black Desert Online
+										</button>
+									</div>
+									<div id="accordion2" class="collapse" role="tabpanel" aria-labelledby="headingA2"
+										data-parent="#accordionDiv1">
+										<div class="collapse-body">
+											<ul>
+												<li class="nav-link">
+													<a class="nav-link" href="#2_1" onclick="showTop()"><span>BDO News
+															Start</span></a>
+												</li>
+
+												<li class="nav-link">
+													<a class="nav-link" href="#2_2" onclick="showTop()"><span>BDO News
+															Stop</span></a>
+												</li>
+
+												<li class="nav-link">
+													<a class="nav-link" href="#2_3" onclick="showTop()"><span>BDO Patch
+															Start</span></a>
+												</li>
+
+												<li class="nav-link">
+													<a class="nav-link" href="#2_4" onclick="showTop()"><span>BDO Patch
+															Stop</span></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="collapse-header" id="headingA3">
+										<button data-toggle="collapse" data-target="#accordion3" aria-expanded="false"
+											aria-controls="accordion3">
+											Auto Trasporti Milano ATM
+										</button>
+									</div>
+									<div id="accordion3" class="collapse" role="tabpanel" aria-labelledby="headingA3"
+										data-parent="#accordionDiv1">
+										<div class="collapse-body">
+											<ul>
+												<li class="nav-link">
+													<a class="nav-link" href="#3_1" onclick="showTop()"><span>ATM Alert
+															Start</span></a>
+												</li>
+
+												<li class="nav-link">
+													<a class="nav-link" href="#3_2" onclick="showTop()"><span>ATM Alert
+															Stop</span></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+				<br /><br />
+			</div>
+			<div style="margin-top: 25px" class="col-12 col-lg-8">
+				<h4>
+					Qua troverai la lista di tutti i comandi del bot.
+					<br />
+					Il prefisso usabile per i comandi varia in base al server in cui
+					viene configurato.
+					<br />
+					Qua verranno descritti i comandi usando il simbolo predefinito.
+				</h4>
+
+				<h6>
+					I comandi possono essere usati taggando il bot
+					<code>@TakaoBot &lt;comando&gt;</code> <br />
+					o usando il simbolo di comando seguito dal nome.
+				</h6>
+				<br />
+				<h2 class="it-page-section" id="1">Configurazione e Info</h2>
+				<br />
+				<div id="1_1">
+					<h3 class="it-page-section">Info</h3>
+					<p>
+						<kbd>%info</kbd> <br />
+						Questo comando permette il richiamo delle info del bot
+					</p>
+				</div>
+				<br />
+				<div id="1_2">
+					<h4 class="it-page-section">Help</h4>
+					<p>
+						<kbd>%help</kbd><br />
+						Questo comando permette il richiamo dell'aiuto per i comandi
+						direttamente dal bot
+					</p>
+				</div>
+				<br />
+				<h4 class="it-page-section" id="1_3">Configuration Command</h4>
+				<p>
+					<kbd>%configurationCommand &lt;simbolo del comando&gt;</kbd><br />
+					Questo comando permette la configurazione del prefisso per i
+					comandi. <br />
+					Questo comando è riservato al solo utilizzo da parte del
+					proprietario del server
+				</p>
+				<br />
+				<h2 class="it-page-section" id="2">
+					Black Desert Online
+					<a href="https://www.blackdesertonline.com/" target="_blank">
+						<img src="../images/logoBDO.png" class="logoCommand" />
+					</a>
+				</h2>
+
+				<br />
+				<h4 class="it-page-section" id="2_1">BDO News Start</h4>
+				<p>
+					<kbd>%BDONewsStart</kbd><br />
+					Questo comando permette di iscriversi al feed delle news di BDO.
+					<br />
+					Il comando deve essere lanciato sul canale su cui si desidera
+					ricevere le news.
+				</p>
+				<br />
+				<h4 class="it-page-section" id="2_2">BDO News Stop</h4>
+				<p>
+					<kbd>%BDONewsStop</kbd><br />
+					Questo comando permette di disiscriversi al feed delle news di BDO.
+					<br />
+					Il comando può essere lanciato su qualunque canale.
+				</p>
+				<br />
+				<h4 class="it-page-section" id="2_3">BDO Patch Start</h4>
+				<p>
+					<kbd>%BDOPatchStart</kbd><br />
+					Questo comando permette di iscriversi al feed delle patch di BDO.
+					<br />
+					Il comando deve essere lanciato sul canale su cui si desidera
+					ricevere le patch.
+				</p>
+				<br />
+				<h4 class="it-page-section" id="2_4">BDO Patch Stop</h4>
+				<p>
+					<kbd>%BDOPatchStop</kbd><br />
+					Questo comando permette di disiscriversi al feed delle patch di BDO.
+					<br />
+					Il comando può essere lanciato su qualunque canale.
+				</p>
+
+				<br />
+				<h2 class="it-page-section" id="3">
+					Auto Trasporti Milano ATM
+					<a href="https://www.atm.it/" target="_blank">
+						<img class="logoCommand" src="https://i.imgur.com/2cMpNuI.png" />
+					</a>
+				</h2>
+
+				<h7>ATTENZIONE: gli alert in tempo reale potrebbero non essere precisi
+					al 100%, <br />
+					in caso l'ATM non utilizzi i tag filtrati passerranno messaggio
+					solamenti informativi.
+				</h7>
+				<br /><br />
+				<h4 class="it-page-section" id="3_1">ATM Alert Start</h4>
+				<p>
+					<kbd>%ATMAlertStart</kbd><br />
+					Questo comando permette di iscriversi agli avvisi dell'ATM Milano.
+					<br />
+					Il comando deve essere lanciato sul canale su cui si desidera
+					ricevere gli avvisi. <br /><br />
+				</p>
+				<br />
+				<h4 class="it-page-section" id="3_2">ATM Alert Start</h4>
+				<p>
+					<kbd>%ATMAlertStop</kbd><br />
+					Questo comando permette disiscriversi agli avvisi dell'ATM Milano.
+					<br />
+					Il comando può essere lanciato su qualunque canale
+				</p>
+
+				<!-- <h3 class="it-page-section" id="1_2_0">Nested item 1.2</h3>
+			 <p>Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue,sodales ac rhoncus in, ultricies
+				 a neque. Morbi non semper felis, at lacinia nibh. Nam quis elit massa. Interdum et malesuada fames ac
+				 ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper sem, vel
+				 sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada
+				 vel ut quam. Cras vehicula rutrum vehicula. Suspendisse efficitur eget purus vitae convallis. Integer
+				 euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque penatibus et magnis dis
+				 parturient montes, nascetur ridiculus mus.</p>
+			 <h3 class="it-page-section" id="1_3_0">Nested item 1.3</h3>
+			 <p>Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue,sodales ac rhoncus in, ultricies
+				 a neque. Morbi non semper felis, at lacinia nibh. Nam quis elit massa. Interdum et malesuada fames ac
+				 ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper sem, vel
+				 sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada
+				 vel ut quam. Cras vehicula rutrum vehicula. Suspendisse efficitur eget purus vitae convallis. Integer
+				 euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque penatibus et magnis dis
+				 parturient montes, nascetur ridiculus mus.</p>
+			 <h2 class="it-page-section" id="2_0">Introduzione 2</h2>
+			 <p>Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue,sodales ac rhoncus in, ultricies
+				 a neque. Morbi non semper felis, at lacinia nibh. Nam quis elit massa. Interdum et malesuada fames ac
+				 ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper sem, vel
+				 sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada
+				 vel ut quam. Cras vehicula rutrum vehicula. Suspendisse efficitur eget purus vitae convallis. Integer
+				 euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque penatibus et magnis dis
+				 parturient montes, nascetur ridiculus mus.</p>
+			 <h3 class="it-page-section" id="2_1_0">Nested item 2.1</h3>
+			 <p>Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue,sodales ac rhoncus in, ultricies
+				 a neque. Morbi non semper felis, at lacinia nibh. Nam quis elit massa. Interdum et malesuada fames ac
+				 ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper sem, vel
+				 sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada
+				 vel ut quam. Cras vehicula rutrum vehicula. Suspendisse efficitur eget purus vitae convallis. Integer
+				 euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque penatibus et magnis dis
+				 parturient montes, nascetur ridiculus mus.</p>
+			 <h4 class="it-page-section" id="2_1_1">Nested item 2.1.1</h4>
+			 <p>Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue,sodales ac rhoncus in, ultricies
+				 a neque. Morbi non semper felis, at lacinia nibh. Nam quis elit massa. Interdum et malesuada fames ac
+				 ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper sem, vel
+				 sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada
+				 vel ut quam. Cras vehicula rutrum vehicula. Suspendisse efficitur eget purus vitae convallis. Integer
+				 euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque penatibus et magnis dis
+				 parturient montes, nascetur ridiculus mus.</p>
+			 <h4 class="it-page-section" id="2_1_2">Nested item 2.1.2</h4>
+			 <p>Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue,sodales ac rhoncus in, ultricies
+				 a neque. Morbi non semper felis, at lacinia nibh. Nam quis elit massa. Interdum et malesuada fames ac
+				 ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper sem, vel
+				 sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada
+				 vel ut quam. Cras vehicula rutrum vehicula. Suspendisse efficitur eget purus vitae convallis. Integer
+				 euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque penatibus et magnis dis
+				 parturient montes, nascetur ridiculus mus.</p>
+			 <h4 class="it-page-section" id="2_1_3">Nested item 2.1.3</h4>
+			 <p>Proin placerat ipsum massa, ac commodo velit tempor quis. In ante augue,sodales ac rhoncus in, ultricies
+				 a neque. Morbi non semper felis, at lacinia nibh. Nam quis elit massa. Interdum et malesuada fames ac
+				 ante ipsum primis in faucibus. Aliquam laoreet, diam quis blandit porttitor, leo erat semper sem, vel
+				 sagittis dolor quam eu magna. Nunc feugiat pretium tempor. Nam eget augue quis tellus viverra malesuada
+				 vel ut quam. Cras vehicula rutrum vehicula. Suspendisse efficitur eget purus vitae convallis. Integer
+				 euismod pharetra lorem, non ullamcorper lorem euismod vel. Orci varius natoque penatibus et magnis dis
+				 parturient montes, nascetur ridiculus mus.</p>-->
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+			</div>
+		</div>
+	</div>
+
+	<!--<div class="container my-4">
+
+
+    <h1>Lorem Ipsum</h1>
+    <p>Ab illo tempore, ab est sed immemorabili.<br/>
+        Ullamco laboris nisi ut aliquid ex ea commodi consequat.<br/>
+        Quis aute iure reprehenderit in voluptate velit esse.<br/>
+        Petierunt uti sibi concilium totius Galliae in diem certam indicere.</p>
+    <p>Pellentesque habitant morbi tristique senectus et netus.</p>
+
+</div>-->
+
+	<footer class="it-footer">
+		<div class="it-footer-main">
+			<div class="container">
+				<section>
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="it-brand-wrapper">
+								<a href="../index.html">
+									<img class="icon" src="../images/takaoLogo.png">
+									<div class="it-brand-text">
+										<div class="it-brand-text">
+											<h2 class="no_toc">TakaoBot</h2>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="py-4 border-white border-top">
+					<div class="row">
+						<div class="col-lg-4 col-md-4 pb-2">
+							<div class="pb-2">
+								<h4>
+									<a href="#" title="Vai alla pagina: Seguici su">Link Utili</a>
+								</h4>
+								<ul class="list-inline text-left social">
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="https://twitter.com/takaoBot794"
+											target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="../svg/sprite.svg#it-twitter"></use>
+											</svg>
+											<span class="sr-only">Twitter</span></a>
+									</li>
+
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="https://paypal.me/samuele794" target="_blank">
+											<div style="font-size: 20px" class="fab fa-paypal"></div>
+											<span class="sr-only">PayPal</span>
+										</a>
+									</li>
+
+									<li class="list-inline-item">
+										<a class="p-2 text-white"
+											href="https://www.linkedin.com/in/samuele-bruschi-a6a65815b/"
+											target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="../svg/sprite.svg#it-linkedin-square"></use>
+											</svg>
+											<span class="sr-only">Linkedin</span></a>
+									</li>
+
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="https://github.com/samuele794/TakaoBot"
+											target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="../svg/sprite.svg#it-github"></use>
+											</svg>
+											<span class="sr-only">Github</span></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="it-footer-small-prints clearfix">
+			<div class="container">
+				<h3 class="sr-only">Sezione Link Utili</h3>
+				<ul class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
+					<li class="list-inline-item">
+						<a href="../page/tos.html" title="Termini Servizio">Termini di Servizio</a>
+					</li>
+					<li class="list-inline-item">
+						<a class="view-slide" href="">Supporto</a>
+					</li>
+					<!-- <li class="list-inline-item"><a href="#" title="Mappa del sito">Mappa del sito</a></li> -->
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../js/bootstrap-italia.bundle.min.js"></script>
+	<script src="../js/commandScript.js"></script>
+	<script src="../js/tawk.js"></script>
+
+	<script>
+		function showTop() {
+			$(".it-header-wrapper").css("display", "block");
+		}
+
+		function hideTop() {
+			$(".it-header-wrapper").css("display", "none");
+		}
+
+		$(window).ready(function () {
+			if ($(window).width() <= 992)
+				$(".it-header-wrapper").addClass("sticky-top");
+			else $(".it-header-wrapper").removeClass("sticky-top");
+		});
+
+		$(window).resize(function () {
+			if ($(window).width() <= 992) {
+				$(".it-header-wrapper").addClass("sticky-top");
+				$("#navbarNav").hide();
+			} else $(".it-header-wrapper").removeClass("sticky-top");
+		});
+	</script>
+</body>
+
+</html>

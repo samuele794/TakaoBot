@@ -2,6 +2,7 @@ package interfaces;
 
 import command.real.BDO.RSS.BDORSScheduler;
 import command.real.BDO.boss.BossJob;
+import command.real.tpl.atmAlert.AtmScheduler;
 import net.dv8tion.jda.core.JDA;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
@@ -15,9 +16,12 @@ import static org.quartz.TriggerBuilder.newTrigger;
 public class DiscordScheduler {
 
 	public static void startScheduling(JDA jda) {
-		Timer timerTask = new Timer();
-		timerTask.scheduleAtFixedRate(BDORSScheduler.taskFeedRSSBDO(jda), 1800000, 1800000);
 
+//		TASK BDO PATCH AND NEWS
+		Timer timerTaskBDO = new Timer();
+		timerTaskBDO.scheduleAtFixedRate(BDORSScheduler.taskFeedRSSBDO(jda), 1800000, 1800000);
+
+//		TASK BOSS BDO
 		try {
 			SchedulerFactory sf = new StdSchedulerFactory();
 			Scheduler scheduler = sf.getScheduler();
@@ -36,6 +40,11 @@ public class DiscordScheduler {
 		} catch (SchedulerException ex) {
 			ex.printStackTrace();
 		}
+
+//		TASK ATM
+		AtmScheduler.startAtmTweetScheduler();
+		Timer timerTaskAtm = new Timer();
+		timerTaskAtm.scheduleAtFixedRate(AtmScheduler.taskFeedRSSATM(), 1800000, 1800000);
 
 	}
 }

@@ -2,6 +2,9 @@ package beans.BDOBossBean;
 
 import java.util.ArrayList;
 
+/**
+ * Rappresentazione del giorno di spawn dei boss di BDO
+ */
 public class Giorno {
 
 	private String giorno;

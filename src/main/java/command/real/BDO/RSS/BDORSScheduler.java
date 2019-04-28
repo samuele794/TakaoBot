@@ -2,7 +2,7 @@ package command.real.BDO.RSS;
 
 import beans.RSSMessage;
 import beans.ServerToChannel;
-import interfaces.SQLiteInterfaces;
+import interfaces.PostgreSQLInterface;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
@@ -21,7 +21,7 @@ public class BDORSScheduler {
 				RSSMessage rssNewsMessage = BDORSSReader.readRSS("https://community.blackdesertonline.com/index.php?forums/news-announcements.181/index.rss");
 				RSSMessage rssPatchMessage = BDORSSReader.readRSS("https://community.blackdesertonline.com/index.php?forums/patch-notes.5/index.rss");
 
-				ArrayList<String> newsBDOList = SQLiteInterfaces.getListNewsBDO();
+				ArrayList<String> newsBDOList = PostgreSQLInterface.getListNewsBDO();
 				//publishRSSNews
 				if (newsBDOList != null) {
 					if (newsBDOList.indexOf(rssNewsMessage.getLink()) == -1) {
@@ -33,18 +33,18 @@ public class BDORSScheduler {
 				}
 
 				//publishRSSPatch
-				if (SQLiteInterfaces.getLastPatchBDO() != null) {
-					if (!SQLiteInterfaces.getLastPatchBDO().equals(rssPatchMessage.getLink())) {
+				if (PostgreSQLInterface.getLastPatchBDO() != null) {
+					if (!PostgreSQLInterface.getLastPatchBDO().equals(rssPatchMessage.getLink())) {
 						MessageEmbed patchMessage = BDORSSReader.prepareRSStoEmbeddedMessage(rssPatchMessage);
-						ArrayList<ServerToChannel> patchhNews = SQLiteInterfaces.getBDOPatchChannel();
+						ArrayList<ServerToChannel> patchhNews = PostgreSQLInterface.getBDOPatchChannel();
 						publishMessage(patchMessage, patchhNews, jda);
-						SQLiteInterfaces.setLastPatchBDO(rssPatchMessage.getLink());
+						PostgreSQLInterface.setLastPatchBDO(rssPatchMessage.getLink());
 					}
 				} else {
 					MessageEmbed patchMessage = BDORSSReader.prepareRSStoEmbeddedMessage(rssPatchMessage);
-					ArrayList<ServerToChannel> patchhNews = SQLiteInterfaces.getBDOPatchChannel();
+					ArrayList<ServerToChannel> patchhNews = PostgreSQLInterface.getBDOPatchChannel();
 					publishMessage(patchMessage, patchhNews, jda);
-					SQLiteInterfaces.setLastPatchBDO(rssPatchMessage.getLink());
+					PostgreSQLInterface.setLastPatchBDO(rssPatchMessage.getLink());
 				}
 			}
 		};
@@ -52,10 +52,10 @@ public class BDORSScheduler {
 
 	private static void procedurePublish(RSSMessage rssNewsMessage, ArrayList<String> newsBDOList, JDA jda) {
 		MessageEmbed newsMessage = BDORSSReader.prepareRSStoEmbeddedMessage(rssNewsMessage);   //ottieni il messaggio embedded
-		ArrayList<ServerToChannel> listNews = SQLiteInterfaces.getBDONewsChannel();         //ottieni la delle ultime news già pubblicate
+		ArrayList<ServerToChannel> listNews = PostgreSQLInterface.getBDONewsChannel();         //ottieni la delle ultime news già pubblicate
 		publishMessage(newsMessage, listNews, jda);                                         //publish del messaggio
 		newsBDOList.add(rssNewsMessage.getLink());                                          //aggiunta dell'ultima news alla lista
-		SQLiteInterfaces.setNewsBDO(newsBDOList);                                           //salvataggio su db
+		PostgreSQLInterface.setNewsBDO(newsBDOList);                                           //salvataggio su db
 	}
 
 	private static void publishMessage(MessageEmbed newsMessage, ArrayList<ServerToChannel> servers, JDA jda) {
