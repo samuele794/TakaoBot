@@ -1,175 +1,233 @@
 <!DOCTYPE html>
-<!--
-	Interphase by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="google-site-verification" content="TcQebI6IpOTFeg3-N4TuCknmlr8fVOjDuVTqVAQL-_g" />
-		<title>TakaoBot - Bot per Discord</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-xlarge.css" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-	</head>
-	<body class="landing">
+<html lang="en">
 
-		<!-- Header -->
-			<header id="header">
-				<h1><a href="index.html">Takao Bot</a></h1>
-				<nav id="nav">
-					<ul>
-						<!--<li><a href="index.html">Home</a></li>-->
-						<li><a href="index.html" id="homeButton">TakaoBot</a></li>
-						<li><a href="javadocPage.html">Documentazione</a></li>
-						<li><a href="comandi.html">Comandi Bot</a></li>
-						<!--<li><a href="elements.html">Elements</a></li>-->
-					</ul>
-				</nav>
-			</header>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-		<!-- Banner -->
-			<section id="banner">
-				<h2 style="text-shadow: 0px 4px #222222">Questo è Takao Bot</h2>
-				<p style="text-shadow: 0px 2px #222222">Il bot discord nato in italiano</p>
-				<ul class="actions">
-					<li>
-						<a href="https://discordapp.com/oauth2/authorize?scope=bot&client_id=324274586189561867&permissions=8" target="_blank" class="button big">Invita il bot</a>
-					</li>
-				</ul>
-			</section>
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
 
-		<!-- One -->
-			<!--<section id="one" class="wrapper style1 align-center">
-				<div class="container">
-					<header>
-						<h2>Consectetur adipisicing elit</h2>
-						<p>Lorem ipsum dolor sit amet adipisicing elit. Delectus consequatur sed tempus.</p>
-					</header>
-					<div class="row 200%">
-						<section class="4u 12u$(small)">
-							<i class="icon big rounded fa-clock-o"></i>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quam consectetur quibusdam magni minus aut modi aliquid.</p>
-						</section>
-						<section class="4u 12u$(small)">
-							<i class="icon big rounded fa-comments"></i>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ullam consequatur repellat debitis maxime molestiae.</p>
-						</section>
-						<section class="4u$ 12u$(small)">
-							<i class="icon big rounded fa-user"></i>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eveniet, nesciunt molestias. Ipsam, voluptate vero.</p>
-						</section>
-					</div>
-				</div>
-			</section>-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <script src="./js/jquery-3.4.0.min.js"></script>
+  <link rel="stylesheet" href="./css/bootstrap-italia.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="./js/bootstrap-italia.min.js"></script>
+</head>
 
-		<!-- Two -->
-			<!--<section id="two" class="wrapper style2 align-center">
-				<div class="container">
-					<header>
-						<h2>Lorem ipsum dolor sit</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, autem.</p>
-					</header>
-					<div class="row">
-						<section class="feature 6u 12u$(small)">
-							<img class="image fit" src="images/pic01.jpg" alt="" />
-							<h3 class="title">Lorem ipsum dolor</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsa voluptate, quae quibusdam. Doloremque similique, reiciendis sit quibusdam aperiam? Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						</section>
-						<section class="feature 6u$ 12u$(small)">
-							<img class="image fit" src="images/pic02.jpg" alt="" />
-							<h3 class="title">Esse, fugiat, in</h3>
-							<p>Natus perspiciatis fugit illum porro iusto fuga nam voluptas minima voluptates deserunt, veniam reiciendis harum repellat necessitatibus. Animi, adipisci qui. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						</section>
-						<section class="feature 6u 12u$(small)">
-							<img class="image fit" src="images/pic03.jpg" alt="" />
-							<h3 class="title">Voluptates, repudiandae, dolor</h3>
-							<p>Voluptatibus repellendus tempora, quia! Consequuntur atque, rerum quis, ullam labore officiis ipsa beatae dolore, assumenda eos harum repudiandae, qui ab! Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						</section>
-						<section class="feature 6u$ 12u$(small)">
-							<img class="image fit" src="images/pic04.jpg" alt="" />
-							<h3 class="title">Eveniet, reiciendis, veniam</h3>
-							<p>Rem nulla molestiae inventore quibusdam repudiandae doloremque eveniet ullam, qui autem possimus saepe laudantium numquam sapiente vel. Repudiandae, nihil tempore. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						</section>
-					</div>
-					<footer>
-						<ul class="actions">
-							<li>
-								<a href="#" class="button alt big">Learn More</a>
-							</li>
-						</ul>
-					</footer>
-				</div>
-			</section>-->
+<body>
+  <div class="it-header-wrapper">
+    <div class="it-nav-wrapper">
+      <div class="it-header-center-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="it-header-center-content-wrapper">
+                <div class="it-brand-wrapper">
+                  <a href="#">
+                    <img class="icon" src="./images/takaoLogo.png">
+                    <div class="it-brand-text">
+                      <h2 class="no_toc">TakaoBot</h2>
+                    </div>
+                  </a>
+                </div>
+                <div class="it-right-zone">
+                  <div class="header-invite">
+                    <a class="invite-bot-button"
+                      href="https://discordapp.com/oauth2/authorize?scope=bot&client_id=324274586189561867&permissions=8"
+                      target="_blank">
+                      <button style="margin-left: 10px"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        <i class="fab fa-discord" style="margin-right: 5px"></i>
+                        INVITA IL BOT NEL TUO SERVER
+                      </button>
+                    </a>
+                  </div>
+                  <div class="it-socials d-none d-md-flex">
+                    <span>Segui su</span>
+                    <ul>
+                      <li>
+                        <a href="https://github.com/samuele794/TakaoBot" aria-label="Github" target="_blank">
+                          <svg class="icon">
+                            <use xlink:href="./svg/sprite.svg#it-github"></use>
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://twitter.com/takaoBot794" target="_blank" aria-label="Twitter">
+                          <svg class="icon">
+                            <use xlink:href="svg/sprite.svg#it-twitter" />
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="it-header-navbar-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <nav class="navbar navbar-expand-lg has-megamenu">
+                <button class="custom-navbar-toggler" type="button" aria-controls="nav10" aria-expanded="false"
+                  aria-label="Toggle navigation" data-target="#nav10">
+                  <svg class="icon">
+                    <use xlink:href="svg/sprite.svg#it-burger"></use>
+                  </svg>
+                </button>
+                <div class="navbar-collapsable" id="nav10">
+                  <div class="overlay"></div>
+                  <div class="close-div sr-only">
+                    <button class="btn close-menu" type="button">
+                      <span class="it-close"></span>close
+                    </button>
+                  </div>
+                  <div class="menu-wrapper">
+                    <ul class="navbar-nav">
+                      <li class="nav-item active">
+                        <a class="nav-link active" href="#"><span>Home</span><span class="sr-only">current</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="page/commands.html"><span>Comandi</span></a>
+                      </li>
+                      <li class="nav-item disabled">
+                        <a class="nav-link disabled" href="#"><span>News</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="page/documentazione.html"><span>Documentazione</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./page/info.html"><span>Info</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="page/licence.html"><span>Licenze</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="container">
-					<div class="row">
-						<!--<section class="4u 6u(medium) 12u$(small)">
-							<h3>Lorem ipsum</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, cumque!</p>
-							<ul class="alt">
-								<li><a href="#">Lorem ipsum dolor sit amet.</a></li>
-								<li><a href="#">Quod adipisci perferendis et itaque.</a></li>
-								<li><a href="#">Itaque eveniet ullam, veritatis reiciendis?</a></li>
-								<li><a href="#">Accusantium repellat accusamus a, soluta.</a></li>
-							</ul>
-						</section>
-						<section class="4u 6u$(medium) 12u$(small)">
-							<h3>Nostrum, repellat!</h3>
-							<p>Tenetur voluptate exercitationem eius tempora! Obcaecati suscipit, soluta earum blanditiis.</p>
-							<ul class="alt">
-								<li><a href="#">Lorem ipsum dolor sit amet.</a></li>
-								<li><a href="#">Id inventore, qui necessitatibus sunt.</a></li>
-								<li><a href="#">Deleniti eum odit nostrum eveniet.</a></li>
-								<li><a href="#">Illum consectetur quibusdam eos corporis.</a></li>
-							</ul>
-						</section>-->
-						<section class="4u$ 12u$(medium) 12u$(small)">
-							<h3>Contatti</h3>
-							<ul class="icons">
-								<!--<li><a href="#" class="icon rounded fa-twitter"><span class="label">Twitter</span></a></li>-->
-								<!--<li><a href="#" class="icon rounded fa-facebook"><span class="label">Facebook</span></a></li>-->
-								<li><a href="https://www.linkedin.com/in/samuele-bruschi-a6a65815b/" class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								<li><a href="https://github.com/samuele794/TakaoBot" class="icon rounded fa-github"><span class="label">Github</span></a></li>
-							</ul>
-							<!--<ul class="tabular">
-								<li>
-									<h3>Address</h3>
-									1234 Somewhere Road<br>
-									Nashville, TN 00000
-								</li>
-								<li>
-									<h3>Mail</h3>
-									<a href="#">someone@untitled.tld</a>
-								</li>
-								<li>
-									<h3>Phone</h3>
-									(000) 000-0000
-								</li>
-							</ul>-->
-						</section>
-					</div>
-					<ul class="copyright">
-						<!--<li>&copy; TakaoB. All rights reserved.</li>-->
-						<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
-						<!--<li>Images: <a href="http://unsplash.com">Unsplash</a></li>-->
-					</ul>
-				</div>
-			</footer>
+  <div class="section main-background">
+    <div class="container my-4">
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">
+            <b class="card-invite-bot-title">Takao Bot</b>
+          </h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          Il bot per Discord in Italiano
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <!-- Colored raised button -->
+          <a class="invite-bot-button"
+            href="https://discordapp.com/oauth2/authorize?scope=bot&client_id=324274586189561867&permissions=8"
+            target="_blank">
+            <button style="margin-left: 10px" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+              <i class="fab fa-discord" style="margin-right: 5px"></i> INVITA
+              IL BOT NEL TUO SERVER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-	</body>
+  <footer class="it-footer">
+    <div class="it-footer-main">
+      <div class="container">
+        <section>
+          <div class="row clearfix">
+            <div class="col-sm-12">
+              <div class="it-brand-wrapper">
+                <a href="#">
+                  <img class="icon" src="./images/takaoLogo.png">
+                  <div class="it-brand-text">
+                    <div class="it-brand-text">
+                      <h2 class="no_toc">TakaoBot</h2>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="py-4 border-white border-top">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 pb-2">
+              <div class="pb-2">
+                <h4>
+                  <a href="#" title="Vai alla pagina: Seguici su">Link Utili</a>
+                </h4>
+                <ul class="list-inline text-left social">
+                  <li class="list-inline-item">
+                    <a class="p-2 text-white" href="https://twitter.com/takaoBot794" target="_blank">
+                      <svg class="icon icon-sm icon-white align-top">
+                        <use xlink:href="svg/sprite.svg#it-twitter"></use>
+                      </svg>
+                      <span class="sr-only">Twitter</span></a>
+                  </li>
+
+                  <li class="list-inline-item">
+                    <a class="p-2 text-white" href="https://paypal.me/samuele794" target="_blank">
+                      <div style="font-size: 20px" class="fab fa-paypal"></div>
+                      <span class="sr-only">PayPal</span>
+                    </a>
+                  </li>
+
+                  <li class="list-inline-item">
+                    <a class="p-2 text-white" href="https://www.linkedin.com/in/samuele-bruschi-a6a65815b/"
+                      target="_blank">
+                      <svg class="icon icon-sm icon-white align-top">
+                        <use xlink:href="svg/sprite.svg#it-linkedin-square"></use>
+                      </svg>
+                      <span class="sr-only">Linkedin</span></a>
+                  </li>
+
+                  <li class="list-inline-item">
+                    <a class="p-2 text-white" href="https://github.com/samuele794/TakaoBot" target="_blank">
+                      <svg class="icon icon-sm icon-white align-top">
+                        <use xlink:href="svg/sprite.svg#it-github"></use>
+                      </svg>
+                      <span class="sr-only">Github</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="it-footer-small-prints clearfix">
+      <div class="container">
+        <h3 class="sr-only">Sezione Link Utili</h3>
+        <ul class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
+          <li class="list-inline-item">
+            <a href="./page/tos.html" title="Termini Servizio">Termini di Servizio</a>
+          </li>
+          <li class="list-inline-item">
+              <a class="view-slide" href="">Supporto</a>
+          </li>
+          <!-- <li class="list-inline-item"><a href="#" title="Mappa del sito">Mappa del sito</a></li> -->
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/tawk.js"></script>
+  <script src="./js/bootstrap-italia.bundle.min.js"></script>
+</body>
+
 </html>

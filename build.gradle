@@ -7,7 +7,7 @@ plugins {
 mainClassName = 'starter.start'
 
 group 'it.github.samuele794.discordbotTakao'
-version '1.0.1'
+version '1.2.0'
 def jdaVersion = '3.8.2_459'
 
 
@@ -86,7 +86,6 @@ javadoc {
     options.version(true)
     options.windowTitle("Documentazione TakaoBot")
     options.docTitle("Documentazione TakaoBot")
-
     exclude("com/sedmelluq/**")
 }
 

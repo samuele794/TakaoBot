@@ -1,0 +1,12 @@
+beans
+beans.BDOBossBean
+command.pattern
+command.real
+command.real.BDO
+command.real.BDO.RSS
+command.real.BDO.boss
+command.real.configuration
+command.real.sound
+command.real.tpl.atmAlert
+interfaces
+starter

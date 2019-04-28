@@ -1,0 +1,38 @@
+@media (min-width: 992px) {
+    .navbar.it-top-navscroll.affix-top {
+        top: 75px
+    }
+
+    .navbar.it-navscroll-wrapper .link-list-wrapper ul li a.active {
+        border-left: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar.it-top-navscroll {
+        top: auto
+    }
+
+    .navbar.it-navscroll-wrapper .link-list-wrapper ul li a.active {
+        border-left: 0;
+    }
+
+    .it-page-section {
+        padding-top: 150px
+    }
+}
+
+.logoCommand {
+    height: 32px;
+    margin-left: 10px;
+}
+
+kbd {
+    font-size: 16px;
+    background-color: #83C4FA;
+    color: #000000;
+}
+
+p {
+    font-size: 16px;
+}
