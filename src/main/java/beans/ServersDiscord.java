@@ -7,23 +7,53 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Tabella contenente tutti gli id dei canali per le funzionalità del bot
+ */
 @Entity
 @Table(name = "`ServersDiscord`")
 public class ServersDiscord {
 
+	/**
+	 * Id del server
+	 */
 	@Id
 	@Column(name = "`SERVER_ID`")
 	private String serverId;
+
+	/**
+	 * Nome del server
+	 */
 	@Column(name = "`NAME_SERVER`")
 	private String nameServer;
+
+	/**
+	 * Simbolo di comando
+	 */
 	@Column(name = "`SIMBOL_COMMAND`")
 	private String simbolCommand;
+
+	/**
+	 * ID Canale per invio news di BDO
+	 */
 	@Column(name = "`BDONewsIDChannel`")
 	private String bdoNewsIDChannel;
+
+	/**
+	 * ID Canale per invio patch di BDO
+	 */
 	@Column(name = "`BDOPatchIDChannel`")
 	private String bdoPatchIDChannel;
+
+	/**
+	 * ID Canale per invio alert boss di BDO
+	 */
 	@Column(name = "`BDOBossIDChannel`")
 	private String bdoBossIDChannel;
+
+	/**
+	 * ID Canale per invio degli alert dell'ATM
+	 */
 	@Column(name = "`ATMAlertIDChannel`")
 	private String atmAlertIDChannel;
 

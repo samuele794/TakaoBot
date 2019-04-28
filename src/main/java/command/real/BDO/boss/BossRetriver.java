@@ -1,7 +1,6 @@
 package command.real.BDO.boss;
 
 import beans.BDOBossBean.Boss;
-import beans.BDOBossBean.BossException;
 import beans.BDOBossBean.Giorno;
 import beans.ServerToChannel;
 import com.google.gson.reflect.TypeToken;
@@ -130,22 +129,19 @@ public class BossRetriver {
 				return;
 			}
 		}
-		try {
-			if (minuto == 45) {
-				String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
-				publish(listBoss, "15");
-			} else if (minuto == 50) {
-				String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
-				publish(listBoss, "10");
-			} else if (minuto == 55) {
-				String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
-				publish(listBoss, "5");
-			} else if (minuto == 0) {
-				String[] listBoss = Boss.getHourBoss(ora, 0, giorno.getBosses());
-				publish(listBoss, "0");
-			}
-		} catch (BossException ex) {
-			TakaoLog.logInfo(ex.getMessage());
+
+		if (minuto == 45) {
+			String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
+			publish(listBoss, "15");
+		} else if (minuto == 50) {
+			String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
+			publish(listBoss, "10");
+		} else if (minuto == 55) {
+			String[] listBoss = Boss.getHourBoss(ora + 1, 0, giorno.getBosses());
+			publish(listBoss, "5");
+		} else if (minuto == 0) {
+			String[] listBoss = Boss.getHourBoss(ora, 0, giorno.getBosses());
+			publish(listBoss, "0");
 		}
 	}
 
@@ -163,28 +159,25 @@ public class BossRetriver {
 				return;
 			}
 		}
-		try {
-			if (minuto == 0) {
-				String[] listBoss;
 
-				listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
+		if (minuto == 0) {
+			String[] listBoss;
 
-				publish(listBoss, "15");
+			listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
 
-			} else if (minuto == 5) {
-				String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
-				publish(listBoss, "10");
+			publish(listBoss, "15");
 
-			} else if (minuto == 10) {
-				String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
-				publish(listBoss, "5");
+		} else if (minuto == 5) {
+			String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
+			publish(listBoss, "10");
 
-			} else if (minuto == 15) {
-				String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
-				publish(listBoss, "0");
-			}
-		} catch (BossException ex) {
-			TakaoLog.logInfo(ex.getMessage());
+		} else if (minuto == 10) {
+			String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
+			publish(listBoss, "5");
+
+		} else if (minuto == 15) {
+			String[] listBoss = Boss.getHourBoss(ora, 15, giorno.getBosses());
+			publish(listBoss, "0");
 		}
 	}
 

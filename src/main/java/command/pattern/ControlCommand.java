@@ -3,7 +3,11 @@ package command.pattern;
 import interfaces.PostgreSQLInterface;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
+/**
+ * Classe per gestire i controlli tra i simbolo di comanndo e il comando stesso
+ */
 public class ControlCommand {
 	/**
 	 * Metodo per eseguire il controllo se il comando inserito è quello di controllo
@@ -34,11 +38,26 @@ public class ControlCommand {
 		}
 	}
 
+	/**
+	 * Metodo per ottere il simbolo di comando del server
+	 *
+	 * @param serverId ID del server
+	 * @return String simbolo di comando
+	 */
 	public static String getSimbolCommand(String serverId) {
 		return PostgreSQLInterface.getSimbol(serverId);
 	}
 
-	public static boolean checkCommand(MessageReceivedEvent event, String simbolCommand, String commandName) {
+	/**
+	 * Controllo del comando lanciato dalla chat se sia corretto con quelli attivi sul bot.
+	 * Combaciando il simbolo di comando con il nome del comando oppure con la menzione del bot, seguito dal nome del comando.
+	 *
+	 * @param event         Evento del messaggio
+	 * @param simbolCommand Simbolo di comando
+	 * @param commandName   Nome del comando
+	 * @return boolean Validità del comando
+	 */
+	public static boolean checkCommand(@NotNull MessageReceivedEvent event, @NotNull String simbolCommand, @NotNull String commandName) {
 		String completeCommand = simbolCommand + commandName.toLowerCase();
 
 		if (!event.isFromType(ChannelType.PRIVATE)) {

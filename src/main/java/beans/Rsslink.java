@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Tabella RSSLink
+ */
 @Entity
 @Table(name = "`RSSLink`")
 public class Rsslink {
@@ -12,10 +15,19 @@ public class Rsslink {
 	@Id
 	@Column(name = "`id`")
 	private long id;
+	/**
+	 * Lista link ultime news di BDO
+	 */
 	@Column(name = "`LastNewsBDO`")
 	private String lastNewsBDO;
 	@Column(name = "`LastPatchBDO`")
+	/**
+	 * Link ultima patch di BDO
+	 */
 	private String lastPatchBDO;
+	/**
+	 * Link ultimo feed di atm
+	 */
 	@Column(name = "`LastATMAlert`")
 	private String lastAtmAlert;
 
