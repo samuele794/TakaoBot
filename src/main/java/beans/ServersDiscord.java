@@ -60,11 +60,6 @@ public class ServersDiscord {
 	public ServersDiscord() {
 	}
 
-	public ServersDiscord(String serverId, String bdoNewsIDChannel) {
-		this.serverId = serverId;
-		this.bdoNewsIDChannel = bdoNewsIDChannel;
-	}
-
 	public String getServerId() {
 		return serverId;
 	}

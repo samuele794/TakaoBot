@@ -60,3 +60,5 @@ src/main/bin/logback.xml
 src/main/bin/jsonboss.json
 src/main/resources/twitter4j.properties
 src/main/resources/hibernate.cfg.xml
+SpringBootTakaoBot/src/main/resources/application-dev.properties
+SpringBootTakaoBot/src/main/resources/application-prod.properties

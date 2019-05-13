@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
-public class TwitterManager {
+public class  TwitterManager {
 
 	private TwitterStreamFactory twitterStreamFactory = null;
 	private TwitterStream twitterStream = null;
