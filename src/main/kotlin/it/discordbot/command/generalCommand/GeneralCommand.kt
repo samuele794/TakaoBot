@@ -76,8 +76,8 @@ class GeneralCommand : ListenerAdapter() {
 			setColor(Color(132, 197, 251))
 			setDescription("Questi comandi possono essere usati menzionando il bot e scrivendo il comando senza simbolo,"
 					+ "oppure usando i comandi direttamente come segue:")
-			addField(symbolCommand + GeneralCommand.INFO_COMMAND, GeneralCommand.INFO_COMMAND_DESCRIPTION, false)
-			addField(symbolCommand + GeneralCommand.CONFIGURATION_COMMAND, GeneralCommand.CONFIGURATION_COMMAND_DESCRIPTION, false)
+			addField(symbolCommand + INFO_COMMAND, INFO_COMMAND_DESCRIPTION, false)
+			addField(symbolCommand + CONFIGURATION_COMMAND, CONFIGURATION_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + BDOCommand.BDO_NEWS_START_COMMAND, BDOCommand.BDO_NEWS_START_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + BDOCommand.BDO_NEWS_STOP_COMMAND, BDOCommand.BDO_NEWS_STOP_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + BDOCommand.BDO_PATCH_START_COMMAND, BDOCommand.BDO_PATCH_START_COMMAND_DESCRIPTION, false)

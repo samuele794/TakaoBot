@@ -22,7 +22,7 @@ class ATMRSSScheduler {
 	@Autowired
 	lateinit var atmInterface: ATMInterface
 
-	@Scheduled(fixedRate = 1800000, initialDelay = 1800000)
+	@Scheduled(fixedRate = 900000, initialDelay = 900000)
 	fun taskFeedRSSATM() {
 		val message = atmrssReader.readRSS(ATM_RSS_LINK)
 
