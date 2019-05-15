@@ -4,7 +4,6 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason
-import org.springframework.stereotype.Component
 import java.util.*
 
 class TrackScheduler(val player: AudioPlayer) : AudioEventAdapter() {
@@ -17,11 +16,11 @@ class TrackScheduler(val player: AudioPlayer) : AudioEventAdapter() {
 	 *
 	 * @param track The track to play or add to queue.
 	 */
-	fun queue(track:AudioTrack){
+	fun queue(track: AudioTrack) {
 		// Calling startTrack with the noInterrupt set to true will start the track only if nothing is currently playing. If
 		// something is playing, it returns false and does nothing. In that case the player was already playing so this
 		// track goes to the queue instead.
-		if (!player.startTrack(track, true)){
+		if (!player.startTrack(track, true)) {
 			queue.offer(track)
 		}
 	}

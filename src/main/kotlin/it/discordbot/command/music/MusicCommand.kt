@@ -2,7 +2,7 @@ package it.discordbot.command.music
 
 import it.discordbot.command.checkCommand
 import it.discordbot.command.music.config.MusicManager
-import it.discordbot.database.interfaces.ServerManagementInterface
+import it.discordbot.database.filter.ServerManagementInterface
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired

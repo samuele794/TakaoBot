@@ -30,7 +30,7 @@ class TwitterManager {
 	private lateinit var twitterStream: TwitterStream
 
 	@PostConstruct
-	fun initTwitter(){
+	fun initTwitter() {
 		val configuration = ConfigurationBuilder().apply {
 			setOAuthConsumerKey(twitterConsumerKey)
 			setOAuthConsumerSecret(twitterConsumerSecret)
@@ -42,7 +42,7 @@ class TwitterManager {
 		twitterStream = twitterStreamFactory.instance
 	}
 
-	fun setTwitterStreamListener(listener: StatusListener):TwitterManager{
+	fun setTwitterStreamListener(listener: StatusListener): TwitterManager {
 		twitterStream.addListener(listener)
 		return this
 	}

@@ -3,6 +3,7 @@ package it.discordbot.command.BDO.RSS
 import com.rometools.rome.io.SyndFeedInput
 import com.rometools.rome.io.XmlReader
 import it.discordbot.beans.RSSMessage
+import it.discordbot.command.pattern.RSSReader
 import net.dv8tion.jda.core.EmbedBuilder
 import net.dv8tion.jda.core.entities.MessageEmbed
 import org.jsoup.Jsoup
@@ -11,17 +12,18 @@ import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 import java.awt.Color
 import java.net.URL
+import java.util.regex.Pattern
 
 @Scope("singleton")
 @Component
-class BDORSSReader {
+class BDORSSReader : RSSReader {
 
 	/**
 	 * Metodo per leggere un feed RSS
 	 * @param url Url da cui bisogna leggere il feed
 	 * @return Ultimo feed registrato
 	 */
-	fun readRSS(url: String): RSSMessage {
+	override fun readRSS(url: String): RSSMessage {
 
 		var title: String
 		var link: String
@@ -39,7 +41,36 @@ class BDORSSReader {
 		return RSSMessage(title, link, doc)
 	}
 
-	fun prepareRSStoEmbeddedMessage(message: RSSMessage): MessageEmbed {
+	private fun linkNumberParser(link: String): Int {
+		return link.substring(1, link.length - 1).toInt()
+	}
+
+	fun isNew(linkRSS: String, linkDB: String): Boolean {
+		val regex1 = Pattern.compile(
+				"\\.(\\d+)/?\$",
+				Pattern.CASE_INSENSITIVE or Pattern.UNICODE_CASE or Pattern.COMMENTS)
+
+		val regex2 = Pattern.compile(
+				"\\.(\\d+)/?\$",
+				Pattern.CASE_INSENSITIVE or Pattern.UNICODE_CASE or Pattern.COMMENTS)
+
+		val regexMatcher1 = regex1.matcher(linkRSS)
+		regexMatcher1.find()
+
+		val numberRSS = linkNumberParser(regexMatcher1.group())
+
+		val regexMatcher2 = regex2.matcher(linkDB)
+		regexMatcher2.find()
+
+		val numberDB = linkNumberParser(regexMatcher2.group())
+		return if (numberRSS == numberDB) {
+			false
+		} else {
+			numberDB < numberRSS
+		}
+	}
+
+	override fun prepareRSStoMessageEmbed(message: RSSMessage): MessageEmbed {
 		val body = Jsoup.parse(message.doc.toString().replace("(?i)<br[^>]*>", "br2n"))
 				.text()
 				.replace("br2n".toRegex(), "\n")

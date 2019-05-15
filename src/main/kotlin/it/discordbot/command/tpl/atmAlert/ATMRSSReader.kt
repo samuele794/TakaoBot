@@ -3,6 +3,7 @@ package it.discordbot.command.tpl.atmAlert
 import com.rometools.rome.io.SyndFeedInput
 import com.rometools.rome.io.XmlReader
 import it.discordbot.beans.RSSMessage
+import it.discordbot.command.pattern.RSSReader
 import net.dv8tion.jda.core.EmbedBuilder
 import net.dv8tion.jda.core.entities.MessageEmbed
 import org.jsoup.Jsoup
@@ -15,9 +16,9 @@ import java.util.regex.Pattern
 
 @Scope("singleton")
 @Component
-class ATMRSSReader {
+class ATMRSSReader : RSSReader {
 
-	fun readRSS(url: String): RSSMessage {
+	override fun readRSS(url: String): RSSMessage {
 
 		var title: String
 		var link: String
@@ -35,7 +36,7 @@ class ATMRSSReader {
 		return RSSMessage(title, link, doc)
 	}
 
-	fun prepareRSStoEmbeddedMessage(message: RSSMessage): MessageEmbed {
+	override fun prepareRSStoMessageEmbed(message: RSSMessage): MessageEmbed {
 		var regex = Pattern.compile(
 				"</h3>|</p>|<br>",
 				Pattern.CASE_INSENSITIVE or Pattern.UNICODE_CASE or Pattern.COMMENTS)

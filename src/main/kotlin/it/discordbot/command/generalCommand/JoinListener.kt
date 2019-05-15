@@ -1,7 +1,7 @@
 package it.discordbot.command.generalCommand
 
 import it.discordbot.core.TakaoLog
-import it.discordbot.database.interfaces.ServerManagementInterface
+import it.discordbot.database.filter.ServerManagementInterface
 import net.dv8tion.jda.core.events.guild.GuildJoinEvent
 import net.dv8tion.jda.core.events.guild.GuildLeaveEvent
 import net.dv8tion.jda.core.events.guild.update.GuildUpdateNameEvent

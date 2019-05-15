@@ -3,7 +3,7 @@ package it.discordbot.command.BDO.boss
 import it.discordbot.beans.boss.Boss
 import it.discordbot.beans.boss.Giorno
 import it.discordbot.core.JDAController
-import it.discordbot.database.interfaces.BDOBossInterface
+import it.discordbot.database.filter.BDOBossInterface
 import net.dv8tion.jda.core.MessageBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
@@ -124,7 +124,7 @@ class BossUtil {
 				}
 			}.build()
 
-			for (serverChannel in listServerChannel){
+			for (serverChannel in listServerChannel) {
 				JDAController.jda.getGuildById(serverChannel.serverID)
 						.getTextChannelById(serverChannel.channelID)
 						.sendMessage(message).queue()

@@ -8,15 +8,15 @@ class TakaoLog {
 	companion object {
 		private var logger = LoggerFactory.getLogger(TakaoLog::class.java)
 
-		fun logDebug(message:String){
+		fun logDebug(message: String) {
 			logger.debug(message)
 		}
 
-		fun logInfo(message: String){
+		fun logInfo(message: String) {
 			logger.info(message)
 		}
 
-		fun logError(message: String){
+		fun logError(message: String) {
 			logger.error(message)
 		}
 	}

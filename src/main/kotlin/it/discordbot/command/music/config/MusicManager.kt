@@ -406,7 +406,7 @@ class MusicManager {
 				if (addPlaylist) {
 					channel.sendMessage("Aggiunte **" + playlist.tracks.size + "** tracce alla coda").queue()
 //					tracks.forEach(Consumer<AudioTrack> { mng.scheduler.queue() })
-					tracks.forEach { _ -> Consumer<AudioTrack> {mng.scheduler.queue} }
+					tracks.forEach { _ -> Consumer<AudioTrack> { mng.scheduler.queue } }
 				} else {
 					channel.sendMessage("Aggiunto alla coda " + firstTrack!!.info.title).queue()
 					mng.scheduler.queue(firstTrack)

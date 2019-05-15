@@ -1,6 +1,6 @@
 package it.discordbot.command.BDO.boss
 
-import it.discordbot.database.interfaces.BDOBossInterface
+import it.discordbot.database.filter.BDOBossInterface
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.scheduling.annotation.Scheduled

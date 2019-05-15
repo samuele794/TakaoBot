@@ -1,4 +1,4 @@
-package it.discordbot.database.interfaces
+package it.discordbot.database.filter
 
 import it.discordbot.beans.ServerToChannel
 import it.discordbot.database.repository.RSSLinkRepository
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 
 @Scope("singleton")
 @Component
-class ATMInterface {
+class BDONewsInterface {
 
 	@Autowired
 	lateinit var serverDiscordRepository: ServerDiscordRepository
@@ -17,35 +17,40 @@ class ATMInterface {
 	@Autowired
 	lateinit var rssLinkRepository: RSSLinkRepository
 
-	fun setATMAlertChannel(serverID: String, channelID: String) {
+	fun setBDONewsChannel(serverID: String, channelID: String) {
 		val serverDiscord = serverDiscordRepository.findServerDiscordByServerId(serverID)
-		serverDiscord.atmAlertIDChannel = channelID
+		serverDiscord.bdoNewsIDChannel = channelID
 		serverDiscordRepository.save(serverDiscord)
 	}
 
-	fun removeATMAlertChannel(serverID: String): String? {
+	fun removeBDONewsChannel(serverID: String): String? {
 		val serverDiscord = serverDiscordRepository.findServerDiscordByServerId(serverID)
-		val atmChannelRemoveID = serverDiscord.atmAlertIDChannel
-		serverDiscord.atmAlertIDChannel = null
+		val newsChannelRemoveID = serverDiscord.bdoNewsIDChannel
+		serverDiscord.bdoNewsIDChannel = null
 		serverDiscordRepository.save(serverDiscord)
-		return atmChannelRemoveID
+		return newsChannelRemoveID
 	}
 
-	fun getATMAlertChannels(): ArrayList<ServerToChannel> {
-		return serverDiscordRepository.getAllATMAlertChannels()
+	fun getBDONewsChannels(): ArrayList<ServerToChannel> {
+		return serverDiscordRepository.getAllBDONewsChannels()
 	}
 
-	fun setLastATMAlert(url: String) {
+	fun getLastBDONews(): String {
+
+		val bdoRSSNews = rssLinkRepository.getFirstById().lastNewsBDO
+
+		if (bdoRSSNews == null) {
+			return ""
+		} else {
+			return bdoRSSNews
+		}
+
+	}
+
+	fun setBDONews(link: String) {
 		rssLinkRepository.getFirstById().apply {
-			lastAtmAlert = url
+			lastNewsBDO = link
 			rssLinkRepository.save(this)
 		}
 	}
-
-	fun getLastATMAlert(): String? {
-		rssLinkRepository.getFirstById().apply {
-			return lastAtmAlert
-		}
-	}
-
 }

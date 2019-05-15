@@ -3,7 +3,7 @@ package it.discordbot.command.tpl.atmAlert
 import it.discordbot.core.JDAController
 import it.discordbot.core.TakaoLog
 import it.discordbot.core.TwitterManager
-import it.discordbot.database.interfaces.ATMInterface
+import it.discordbot.database.filter.ATMInterface
 import net.dv8tion.jda.core.EmbedBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
@@ -31,33 +31,31 @@ class ATMTwitterScheduler {
 	}
 
 	@PostConstruct
-	fun initATMTwitterScheduler(){
+	fun initATMTwitterScheduler() {
 		val listener = object : StatusListener {
 			override fun onStatus(status: Status) {
-				if (status.user.id == ATM_TWITTER_ID) {
+				if (status.user.id == ATM_TWITTER_ID && status.isRetweet) {
+					TakaoLog.logInfo("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text)
+					thread(start = true) {
 
-					if (!status.isRetweet) {
-						TakaoLog.logInfo("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text)
-						thread(start = true) {
-							val statusCopy = status
+						val tweetID: Long
+						var tweetMessage: String
+						var mediaUrl: String? = null
+						val profileImageUrl: String
 
-							val tweetID: Long
-							val tweetMessage: String
-							var mediaUrl: String? = null
-							val profileImageUrl: String
-
-							statusCopy.apply {
-								tweetID = id
-								tweetMessage = text
-								profileImageUrl = user.profileImageURL
-								if (mediaEntities.isNotEmpty()) {
-									mediaUrl = mediaEntities[0].mediaURL
+						status.apply {
+							tweetID = id
+							tweetMessage = text
+							profileImageUrl = user.profileImageURL
+							if (mediaEntities.isNotEmpty()) {
+								mediaUrl = mediaEntities[0].mediaURL
+								if (mediaEntities.size > 1) {
+									tweetMessage = "$tweetMessage\n\n Altre immagini le puoi trovare sul tweet."
 								}
+
 							}
-
-							publish(tweetID, tweetMessage, mediaUrl, profileImageUrl)
-
 						}
+						publish(tweetID, tweetMessage, mediaUrl, profileImageUrl)
 					}
 				}
 
@@ -83,9 +81,10 @@ class ATMTwitterScheduler {
 
 			}
 		}
-		var query = FilterQuery().track(QUERY_PARAM)
-
-		query.follow(ATM_TWITTER_ID)
+		val query = FilterQuery().apply {
+			track(QUERY_PARAM)
+			follow(ATM_TWITTER_ID)
+		}
 
 		twitterManager.apply {
 			setTwitterStreamListener(listener)
@@ -102,7 +101,10 @@ class ATMTwitterScheduler {
 				twitterMessage.contains("#M2") ||
 				twitterMessage.contains("#M3") ||
 				twitterMessage.contains("#M5") ||
-				twitterMessage.contains("\ud83d\udea6")) {
+				twitterMessage.contains("\ud83d\udea6") ||
+				twitterMessage.contains("sciopero", ignoreCase = true) ||
+				twitterMessage.contains("manifestazione", ignoreCase = true) ||
+				twitterMessage.contains("aggiornamento", ignoreCase = true)) {
 			val message = EmbedBuilder().apply {
 				setAuthor("ATM (@atm_informa)", tweetUrl, profileImageUrl)
 				setDescription(twitterMessage)

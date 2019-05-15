@@ -5,7 +5,7 @@ import it.discordbot.command.checkAdminPermission
 import it.discordbot.command.checkCommand
 import it.discordbot.command.rejectCommand
 import it.discordbot.core.JDAController
-import it.discordbot.database.interfaces.ServerManagementInterface
+import it.discordbot.database.filter.ServerManagementInterface
 import net.dv8tion.jda.core.EmbedBuilder
 import net.dv8tion.jda.core.MessageBuilder
 import net.dv8tion.jda.core.entities.ChannelType

@@ -1,8 +1,7 @@
 package it.discordbot.command.music.config
 
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer
-import org.springframework.stereotype.Component
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager
 
 class GuildMusicManager(val manager: AudioPlayerManager) {
 

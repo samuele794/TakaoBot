@@ -3,8 +3,8 @@ package it.discordbot.command.tpl.atmAlert
 import it.discordbot.command.checkAdminPermission
 import it.discordbot.command.checkCommand
 import it.discordbot.command.rejectCommand
-import it.discordbot.database.interfaces.ATMInterface
-import it.discordbot.database.interfaces.ServerManagementInterface
+import it.discordbot.database.filter.ATMInterface
+import it.discordbot.database.filter.ServerManagementInterface
 import net.dv8tion.jda.core.MessageBuilder
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter

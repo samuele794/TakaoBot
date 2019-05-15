@@ -1,6 +1,5 @@
 package it.discordbot.command
 
-import it.discordbot.database.interfaces.ServerManagementInterface
 import net.dv8tion.jda.core.Permission
 import net.dv8tion.jda.core.entities.ChannelType
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
@@ -11,9 +10,10 @@ fun checkCommand(@NotNull event: MessageReceivedEvent,
 				 @NotNull commandName: String): Boolean {
 
 	val completeCommand = simbolCommand + commandName.toLowerCase()
+	val commandEvent = event.message.contentRaw.split(" ")[0].toLowerCase()
 
 	return if (!event.isFromType(ChannelType.PRIVATE)) {
-		if (event.message.contentRaw == completeCommand ||
+		if (commandEvent == completeCommand ||
 				event.message.isMentioned(event.jda.selfUser) &&
 				event.message.contentRaw.contains(commandName)) {
 			true

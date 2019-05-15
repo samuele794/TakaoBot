@@ -5,9 +5,6 @@ import it.discordbot.beans.ServerToChannel
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
-import javax.persistence.ColumnResult
-import javax.persistence.ConstructorResult
-import javax.persistence.SqlResultSetMapping
 
 @Repository
 interface ServerDiscordRepository : CrudRepository<ServerDiscord, String> {

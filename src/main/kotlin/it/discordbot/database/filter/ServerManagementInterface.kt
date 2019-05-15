@@ -1,4 +1,4 @@
-package it.discordbot.database.interfaces
+package it.discordbot.database.filter
 
 import it.discordbot.beans.ServerDiscord
 import it.discordbot.database.repository.ServerDiscordRepository
@@ -25,7 +25,7 @@ class ServerManagementInterface {
 		serverDiscordRepository.save(serverDiscord)
 	}
 
-	fun newServer(serverID: String, serverName:String){
+	fun newServer(serverID: String, serverName: String) {
 		val serverDiscord = ServerDiscord()
 		serverDiscord.let {
 			it.serverId = serverID
@@ -34,7 +34,7 @@ class ServerManagementInterface {
 		serverDiscordRepository.save(serverDiscord)
 	}
 
-	fun deleteServer(serverID: String){
+	fun deleteServer(serverID: String) {
 		serverDiscordRepository.deleteById(serverID)
 	}
 }

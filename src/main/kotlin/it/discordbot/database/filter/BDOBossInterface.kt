@@ -1,4 +1,4 @@
-package it.discordbot.database.interfaces
+package it.discordbot.database.filter
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Controller
+
 @Scope("singleton")
 @Controller
 class BDOBossInterface {
@@ -16,7 +17,7 @@ class BDOBossInterface {
 	@Autowired
 	lateinit var serverDiscordRepository: ServerDiscordRepository
 
-	fun setBDOBossChannel(serverID:String , channelID: String){
+	fun setBDOBossChannel(serverID: String, channelID: String) {
 		val serverDiscord = serverDiscordRepository.findServerDiscordByServerId(serverID)
 		serverDiscord.bdoBossIDChannel = channelID
 		serverDiscordRepository.save(serverDiscord)
@@ -30,11 +31,11 @@ class BDOBossInterface {
 		return bossChannelRemoveID
 	}
 
-	fun getBDOBossChannels(): ArrayList<ServerToChannel>{
+	fun getBDOBossChannels(): ArrayList<ServerToChannel> {
 		return serverDiscordRepository.getAllBDOBossChannels()
 	}
 
-	fun getBDOBossList():ArrayList<Giorno>{
+	fun getBDOBossList(): ArrayList<Giorno> {
 		val inputStreamBoss = ClassPathResource("jsonboss.json").inputStream
 		val list = jacksonObjectMapper().readValue<ArrayList<Giorno>>(inputStreamBoss)
 		inputStreamBoss.close()

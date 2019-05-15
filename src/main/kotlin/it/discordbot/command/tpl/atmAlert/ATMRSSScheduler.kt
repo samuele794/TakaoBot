@@ -1,8 +1,11 @@
 package it.discordbot.command.tpl.atmAlert
 
 import it.discordbot.beans.RSSMessage
+import it.discordbot.beans.ServerToChannel
+import it.discordbot.command.pattern.RSSScheduler
 import it.discordbot.core.JDAController
-import it.discordbot.database.interfaces.ATMInterface
+import it.discordbot.database.filter.ATMInterface
+import net.dv8tion.jda.core.entities.MessageEmbed
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.scheduling.annotation.Scheduled
@@ -10,7 +13,7 @@ import org.springframework.stereotype.Service
 
 @Scope("singleton")
 @Service
-class ATMRSSScheduler {
+class ATMRSSScheduler : RSSScheduler {
 
 	companion object {
 		const val ATM_RSS_LINK = "https://www.atm.it/_layouts/atm/apps/PublishingRSS.aspx?web=388a6572-890f-4e0f-a3c7-a3dd463f7252&c=News%20Infomobilita"
@@ -30,26 +33,28 @@ class ATMRSSScheduler {
 
 		if (lastATMAlert != null) {
 			if (lastATMAlert != message.link) {
-				publish(message)
-				atmInterface.setLastATMAlert(message.link)
+				procedurePublish(message)
 			}
 		} else {
-			publish(message)
-			atmInterface.setLastATMAlert(message.link)
+			procedurePublish(message)
 		}
+	}
+
+	override fun procedurePublish(rssMessage: RSSMessage) {
+		val serverList = atmInterface.getATMAlertChannels()
+		val messageEmbed = atmrssReader.prepareRSStoMessageEmbed(rssMessage)
+		publishMessage(messageEmbed, serverList)
+		atmInterface.setLastATMAlert(rssMessage.link)
 
 	}
 
-	private fun publish(message: RSSMessage) {
-		val serverList = atmInterface.getATMAlertChannels()
-		val messageEmbed = atmrssReader.prepareRSStoEmbeddedMessage(message)
-		for (server in serverList) {
-			JDAController.jda.getGuildById(server.serverID)
-					.getTextChannelById(server.channelID)
-					.sendMessage(messageEmbed)
+	override fun publishMessage(message: MessageEmbed, serversToChannel: ArrayList<ServerToChannel>) {
+		for (obj in serversToChannel) {
+			JDAController.jda.getGuildById(obj.serverID)
+					.getTextChannelById(obj.channelID)
+					.sendMessage(message)
 					.queue()
 		}
-
 	}
 
 }

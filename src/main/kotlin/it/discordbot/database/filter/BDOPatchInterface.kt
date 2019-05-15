@@ -1,14 +1,11 @@
-package it.discordbot.database.interfaces
+package it.discordbot.database.filter
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import it.discordbot.beans.ServerToChannel
 import it.discordbot.database.repository.RSSLinkRepository
 import it.discordbot.database.repository.ServerDiscordRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
-import org.springframework.stereotype.Controller
 
 @Scope("singleton")
 @Component
@@ -20,7 +17,7 @@ class BDOPatchInterface {
 	@Autowired
 	lateinit var rssLinkRepository: RSSLinkRepository
 
-	fun setBDOPatchChannel(serverID:String , channelID: String){
+	fun setBDOPatchChannel(serverID: String, channelID: String) {
 		val serverDiscord = serverDiscordRepository.findServerDiscordByServerId(serverID)
 		serverDiscord.bdoPatchIDChannel = channelID
 		serverDiscordRepository.save(serverDiscord)
@@ -34,19 +31,23 @@ class BDOPatchInterface {
 		return patchChannelRemoveID
 	}
 
-	fun getBDOPatchChannels(): ArrayList<ServerToChannel>{
+	fun getBDOPatchChannels(): ArrayList<ServerToChannel> {
 		return serverDiscordRepository.getAllBDOPatchChannels()
 	}
 
-	/*fun getBDOPatchList(): ArrayList<String>{
-		return jacksonObjectMapper().readValue(rssLinkRepository.getFirstById().lastPatchBDO)
-	}*/
+	fun getLastBDOPatch(): String {
 
-	fun getBDOPatchList(): String?{
-		return rssLinkRepository.getFirstById().lastPatchBDO
+		val bdoRSSPatch = rssLinkRepository.getFirstById().lastPatchBDO
+
+		if (bdoRSSPatch == null) {
+			return ""
+		} else {
+			return bdoRSSPatch
+		}
+
 	}
 
-	fun setLastPatch(linkPatch:String){
+	fun setLastPatch(linkPatch: String) {
 		val rssLink = rssLinkRepository.getFirstById()
 		rssLink.lastPatchBDO = linkPatch
 		rssLinkRepository.save(rssLink)

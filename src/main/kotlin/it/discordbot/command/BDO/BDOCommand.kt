@@ -3,10 +3,10 @@ package it.discordbot.command.BDO
 import it.discordbot.command.checkAdminPermission
 import it.discordbot.command.checkCommand
 import it.discordbot.command.rejectCommand
-import it.discordbot.database.interfaces.BDOBossInterface
-import it.discordbot.database.interfaces.BDONewsInterface
-import it.discordbot.database.interfaces.BDOPatchInterface
-import it.discordbot.database.interfaces.ServerManagementInterface
+import it.discordbot.database.filter.BDOBossInterface
+import it.discordbot.database.filter.BDONewsInterface
+import it.discordbot.database.filter.BDOPatchInterface
+import it.discordbot.database.filter.ServerManagementInterface
 import net.dv8tion.jda.core.MessageBuilder
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
@@ -63,14 +63,14 @@ class BDOCommand : ListenerAdapter() {
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 
-		if (checkCommand(event, symbolCommand, BDOCommand.BDO_BOSS_START_COMMAND)) {
+		if (checkCommand(event, symbolCommand, BDO_BOSS_START_COMMAND)) {
 			if (!checkAdminPermission(event)) {
 				rejectCommand(event)
 			} else {
 				bdoBossInterface.setBDOBossChannel(event.guild.id, event.textChannel.id)
 				sendMessageAddChannel(event, "Invio degli allarmi dei boss di BDO configurato sul canale: ")
 			}
-		} else if (checkCommand(event, symbolCommand, BDOCommand.BDO_BOSS_STOP_COMMAND)) {
+		} else if (checkCommand(event, symbolCommand, BDO_BOSS_STOP_COMMAND)) {
 			if (!checkAdminPermission(event)) {
 				rejectCommand(event)
 			} else {
@@ -78,14 +78,14 @@ class BDOCommand : ListenerAdapter() {
 				if (removedChannelId != null)
 					sendMessageRemoveChannel(event, "Invio degli allarmi dei boss di BDO rimosso dal canale: ", removedChannelId)
 			}
-		} else if (checkCommand(event, symbolCommand, BDOCommand.BDO_NEWS_START_COMMAND)) {
+		} else if (checkCommand(event, symbolCommand, BDO_NEWS_START_COMMAND)) {
 			if (!checkAdminPermission(event)) {
 				rejectCommand(event)
 			} else {
 				bdoNewsInterface.setBDONewsChannel(event.guild.id, event.textChannel.id)
 				sendMessageAddChannel(event, "Invio delle news di BDO configurato sul canale: ")
 			}
-		} else if (checkCommand(event, symbolCommand, BDOCommand.BDO_NEWS_STOP_COMMAND)) {
+		} else if (checkCommand(event, symbolCommand, BDO_NEWS_STOP_COMMAND)) {
 			if (!checkAdminPermission(event)) {
 				rejectCommand(event)
 			} else {
@@ -93,14 +93,14 @@ class BDOCommand : ListenerAdapter() {
 				if (removedChannelId != null)
 					sendMessageRemoveChannel(event, "Invio delle news di BDO rimosso dal canale: ", removedChannelId)
 			}
-		} else if (checkCommand(event, symbolCommand, BDOCommand.BDO_PATCH_START_COMMAND)) {
+		} else if (checkCommand(event, symbolCommand, BDO_PATCH_START_COMMAND)) {
 			if (!checkAdminPermission(event)) {
 				rejectCommand(event)
 			} else {
 				bdoPatchInterface.setBDOPatchChannel(event.guild.id, event.textChannel.id)
 				sendMessageAddChannel(event, "Invio delle patch di BDO configurato sul canale: ")
 			}
-		} else if (checkCommand(event, symbolCommand, BDOCommand.BDO_PATCH_STOP_COMMAND)) {
+		} else if (checkCommand(event, symbolCommand, BDO_PATCH_STOP_COMMAND)) {
 			if (!checkAdminPermission(event)) {
 				rejectCommand(event)
 			} else {
