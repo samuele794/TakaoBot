@@ -64,7 +64,7 @@ class GeneralCommand : ListenerAdapter() {
 			}
 
 			checkCommand(event, symbolCommand, HELP_COMMAND) ||
-			checkCommand(event, symbolCommand, HELP_COMMAND2)-> {
+					checkCommand(event, symbolCommand, HELP_COMMAND2) -> {
 				event.author.openPrivateChannel().queue {
 					it.sendMessage(getHelp(event.guild.id)).queue()
 				}
@@ -90,6 +90,7 @@ class GeneralCommand : ListenerAdapter() {
 			addField(symbolCommand + BDOCommand.BDO_PATCH_STOP_COMMAND, BDOCommand.BDO_PATCH_STOP_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + BDOCommand.BDO_BOSS_START_COMMAND, BDOCommand.BDO_BOSS_START_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + BDOCommand.BDO_BOSS_STOP_COMMAND, BDOCommand.BDO_BOSS_STOP_COMMAND_DESCRIPTION, false)
+			addField(symbolCommand + BDOCommand.BDO_BOSS_TABLE, BDOCommand.BDO_BOSS_TABLE_COMMAND_DESCRIPTION, false)
 		}.build()
 	}
 

@@ -7,12 +7,14 @@ import it.discordbot.database.filter.BDOBossInterface
 import it.discordbot.database.filter.BDONewsInterface
 import it.discordbot.database.filter.BDOPatchInterface
 import it.discordbot.database.filter.ServerManagementInterface
+import net.dv8tion.jda.core.EmbedBuilder
 import net.dv8tion.jda.core.MessageBuilder
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
+import java.awt.Color
 
 /**
  * Listener per contenere i comandi di BDO
@@ -47,6 +49,11 @@ class BDOCommand : ListenerAdapter() {
 
 		const val BDO_BOSS_STOP_COMMAND_DESCRIPTION = "Questo comando permette disiscriversi agli allarmi dei boss di BDO. \n Il comando può essere lanciato su qualunque canale"
 
+		const val BDO_BOSS_TABLE = "BDOBossTable"
+
+		const val BDO_BOSS_TABLE_COMMAND_DESCRIPTION = "Questo comando ti fa vedere la tabella dei boss di BDO."
+
+
 		const val BDO_NEWS_START_COMMAND = "BDONewsStart"
 
 		const val BDO_NEWS_START_COMMAND_DESCRIPTION = "Questo comando permette di iscriversi al feed delle news di BDO. \n Il comando deve essere lanciato sul canale su cui si desidera ricevere le news"
@@ -70,7 +77,7 @@ class BDOCommand : ListenerAdapter() {
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 
-		when{
+		when {
 			checkCommand(event, symbolCommand, BDO_BOSS_START_COMMAND) -> {
 				if (checkAdminPermission(event)) {
 					bdoBossInterface.setBDOBossChannel(event.guild.id, event.textChannel.id)
@@ -80,7 +87,7 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_BOSS_STOP_COMMAND) ->{
+			checkCommand(event, symbolCommand, BDO_BOSS_STOP_COMMAND) -> {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {
@@ -88,6 +95,13 @@ class BDOCommand : ListenerAdapter() {
 					if (removedChannelId != null)
 						sendMessageRemoveChannel(event, "Invio degli allarmi dei boss di BDO rimosso dal canale: ", removedChannelId)
 				}
+			}
+
+			checkCommand(event, symbolCommand, BDO_BOSS_TABLE) -> {
+				event.textChannel.sendMessage(EmbedBuilder().apply {
+					setImage("https://i.imgur.com/0JdziL3.png")
+					setColor(Color(40,40,40))
+				}.build()).queue()
 			}
 
 			checkCommand(event, symbolCommand, BDO_NEWS_START_COMMAND) -> {
