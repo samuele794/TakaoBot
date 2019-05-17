@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>it.discordbot.command - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="./index.html">it.discordbot.command</a><br/>
+<br/>
+<h2>Package it.discordbot.command</h2>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="check-admin-permission.html">checkAdminPermission</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">checkAdminPermission</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command$checkAdminPermission(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Metodo che controlla se l'utente ha i permessi di amministrare il server</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="check-command.html">checkCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">checkCommand</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command$checkCommand(net.dv8tion.jda.core.events.message.MessageReceivedEvent, kotlin.String, kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">, </span><span class="identifier" id="it.discordbot.command$checkCommand(net.dv8tion.jda.core.events.message.MessageReceivedEvent, kotlin.String, kotlin.String)/simbolCommand">simbolCommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="it.discordbot.command$checkCommand(net.dv8tion.jda.core.events.message.MessageReceivedEvent, kotlin.String, kotlin.String)/commandName">commandName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Metodo per controllare se il comando inserito dall'utente
+è il comando controllato.
+Viene controllato se il messaggio è con il simbolo di comando
+o viene citato il bot.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="reject-command.html">rejectCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">rejectCommand</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command$rejectCommand(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per inviare il messaggio prefatto che l'utente non ha i permessi necessari</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

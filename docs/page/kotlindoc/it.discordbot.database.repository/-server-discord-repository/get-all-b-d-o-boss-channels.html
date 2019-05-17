@@ -1,0 +1,14 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ServerDiscordRepository.getAllBDOBossChannels - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.database.repository</a>&nbsp;/&nbsp;<a href="index.html">ServerDiscordRepository</a>&nbsp;/&nbsp;<a href="./get-all-b-d-o-boss-channels.html">getAllBDOBossChannels</a><br/>
+<br/>
+<h1>getAllBDOBossChannels</h1>
+<a name="it.discordbot.database.repository.ServerDiscordRepository$getAllBDOBossChannels()"></a>
+<code><span class="identifier">@Query</span><span class="symbol">(</span>"SELECT new it.discordbot.beans.ServerToChannel(serv.serverId, serv.bdoBossIDChannel) from ServerDiscord serv where serv.bdoBossIDChannel is not null"<span class="symbol">)</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAllBDOBossChannels</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../../it.discordbot.beans/-server-to-channel/index.html"><span class="identifier">ServerToChannel</span></a><span class="symbol">&gt;</span></code>
+</BODY>
+</HTML>

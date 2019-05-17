@@ -1,0 +1,225 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MusicManager - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.music.config</a>&nbsp;/&nbsp;<a href="./index.html">MusicManager</a><br/>
+<br/>
+<h1>MusicManager</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Component</span> <span class="keyword">class </span><span class="identifier">MusicManager</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">MusicManager</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-d-e-f-a-u-l-t_-v-o-l-u-m-e.html">DEFAULT_VOLUME</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">DEFAULT_VOLUME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="music-managers.html">musicManagers</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">musicManagers</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-guild-music-manager/index.html"><span class="identifier">GuildMusicManager</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="player-manager.html">playerManager</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">playerManager</span><span class="symbol">: </span><span class="identifier">AudioPlayerManager</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="change-volume.html">changeVolume</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">changeVolume</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$changeVolume(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per cambiare il volume, attualmente non in uso.
+Bisogno di calcolo computazionale extra per il cambio del volume.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="clear-queue.html">clearQueue</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">clearQueue</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$clearQueue(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-list-queue.html">getListQueue</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getListQueue</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$getListQueue(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per ottenere la lista della coda</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-music-manager.html">getMusicManager</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getMusicManager</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$getMusicManager(kotlin.String)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-guild-music-manager/index.html"><span class="identifier">GuildMusicManager</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-timestamp.html">getTimestamp</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getTimestamp</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$getTimestamp(kotlin.Long)/milliseconds">milliseconds</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-url.html">getUrl</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getUrl</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$getUrl(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Parsing del messaggio per ottenere l'url</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="join.html">join</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">join</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$join(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per eseguire il join nel canale</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="leave.html">leave</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">leave</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$leave(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per far uscire il bot dalla lobby, bloccherà la queue
+e la svuoterà</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="load-and-play.html">loadAndPlay</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">loadAndPlay</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$loadAndPlay(it.discordbot.command.music.config.GuildMusicManager, net.dv8tion.jda.core.entities.MessageChannel, kotlin.String, kotlin.Boolean)/mng">mng</span><span class="symbol">:</span>&nbsp;<a href="../-guild-music-manager/index.html"><span class="identifier">GuildMusicManager</span></a><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$loadAndPlay(it.discordbot.command.music.config.GuildMusicManager, net.dv8tion.jda.core.entities.MessageChannel, kotlin.String, kotlin.Boolean)/channel">channel</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageChannel</span><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$loadAndPlay(it.discordbot.command.music.config.GuildMusicManager, net.dv8tion.jda.core.entities.MessageChannel, kotlin.String, kotlin.Boolean)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$loadAndPlay(it.discordbot.command.music.config.GuildMusicManager, net.dv8tion.jda.core.entities.MessageChannel, kotlin.String, kotlin.Boolean)/addPlaylist">addPlaylist</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per caricare una traccia o una playlist nella coda</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="now-play.html">nowPlay</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">nowPlay</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$nowPlay(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per ottenere la traccia attualmente in riproduzione</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="pause-resume.html">pauseResume</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">pauseResume</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$pauseResume(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per mettere in pausa o riprendere la traccia attualmente
+in riproduzione</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="play.html">play</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">play</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$play(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per riprodurre l'url audio passato come parametro</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="play-playlist.html">playPlaylist</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">playPlaylist</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$playPlaylist(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per riprodurre una playlist dall'url passato come parametro</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="repeat.html">repeat</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">repeat</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$repeat(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per ripetere la traccia attualmente in riproduzione</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="reset.html">reset</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">reset</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$reset(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per resettare il bot in caso di problemi.
+Pulisce la coda, e resetta i canali audio</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="restart.html">restart</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">restart</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$restart(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per riavviare la traccia attualmente in riproduzione</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="shuffle-queue.html">shuffleQueue</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">shuffleQueue</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$shuffleQueue(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per randomizzare la coda</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="skip.html">skip</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">skip</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$skip(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per saltare la traccia attualmente in riproduzione</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="stop.html">stop</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">stop</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.music.config.MusicManager$stop(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per stoppare la riproduzione e pulire la coda</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

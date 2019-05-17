@@ -14,10 +14,24 @@
 	<script src="../js/jquery-3.4.0.min.js"></script>
 	<link rel="stylesheet" href="../css/bootstrap-italia.min.css" />
 	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/docStyle.css" />
 	<script src="../js/bootstrap-italia.min.js"></script>
 
 	<!-- CSS -->
 </head>
+
+<script>
+	function backButton() {
+		var url = document.getElementById("ifram").contentWindow.location.href
+		if (!url.includes("/kotlindoc/index.html")) {
+			document.getElementById("ifram").contentWindow.history.back()
+		}
+	}
+
+	function forwardButton() {
+		document.getElementById("ifram").contentWindow.history.forward()
+	}
+</script>
 
 <body>
 	<!-- JS -->
@@ -129,9 +143,21 @@
 
 	<div class="section main-background">
 		<div class="container my-4">
-			<div class="embed-responsive embed-responsive-16by9">
-				<iframe class="embed-responsive-item" title="Documentazione TakaoBot" src="../page/javadoc/index.html"
-					allowfullscreen></iframe>
+			<div class="embed-responsive embed-responsive-16by9" id="parent">
+				<iframe id="ifram" class="embed-responsive-item" title="Documentazione TakaoBot"
+					src="../page/kotlindoc/index.html" allowfullscreen>
+				</iframe>
+				<button id="button-left" class="btn btn-primary btn-icon" onclick="backButton()">
+					<svg style="top: 10px" class="icon icon-white">
+						<use xlink:href="../svg/sprite.svg#it-arrow-left"></use>
+					</svg>
+				</button>
+
+				<button id="button-right" class="btn btn-primary btn-icon" onclick="forwardButton()">
+					<svg style="top: 10px" class="icon icon-white">
+						<use xlink:href="../svg/sprite.svg#it-arrow-right"></use>
+					</svg>
+				</button>
 			</div>
 		</div>
 	</div>
@@ -180,7 +206,9 @@
 									</li>
 
 									<li class="list-inline-item">
-										<a class="p-2 text-white" href="https://www.linkedin.com/in/samuele-bruschi-a6a65815b/" target="_blank">
+										<a class="p-2 text-white"
+											href="https://www.linkedin.com/in/samuele-bruschi-a6a65815b/"
+											target="_blank">
 											<svg class="icon icon-sm icon-white align-top">
 												<use xlink:href="../svg/sprite.svg#it-linkedin-square"></use>
 											</svg>

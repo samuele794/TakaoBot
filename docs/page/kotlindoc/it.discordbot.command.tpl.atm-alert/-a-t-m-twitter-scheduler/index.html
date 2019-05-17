@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ATMTwitterScheduler - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.tpl.atmAlert</a>&nbsp;/&nbsp;<a href="./index.html">ATMTwitterScheduler</a><br/>
+<br/>
+<h1>ATMTwitterScheduler</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">ATMTwitterScheduler</span></code>
+<p>Classe per la schedulaziooe dei messaggi Twitter di ATM</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ATMTwitterScheduler</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Classe per la schedulaziooe dei messaggi Twitter di ATM</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="atm-interface.html">atmInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">atmInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-a-t-m-interface/index.html"><span class="identifier">ATMInterface</span></a></code>
+<p>ATMInterface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="twitter-manager.html">twitterManager</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">twitterManager</span><span class="symbol">: </span><a href="../../it.discordbot.core/-twitter-manager/index.html"><span class="identifier">TwitterManager</span></a></code>
+<p>TwitterManager</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="init-a-t-m-twitter-scheduler.html">initATMTwitterScheduler</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">initATMTwitterScheduler</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="publish.html">publish</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">publish</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.tpl.atmAlert.ATMTwitterScheduler$publish(kotlin.Long, kotlin.String, kotlin.String, kotlin.String)/tweetID">tweetID</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.tpl.atmAlert.ATMTwitterScheduler$publish(kotlin.Long, kotlin.String, kotlin.String, kotlin.String)/twitterMessage">twitterMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.tpl.atmAlert.ATMTwitterScheduler$publish(kotlin.Long, kotlin.String, kotlin.String, kotlin.String)/mediaUrl">mediaUrl</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.tpl.atmAlert.ATMTwitterScheduler$publish(kotlin.Long, kotlin.String, kotlin.String, kotlin.String)/profileImageUrl">profileImageUrl</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-a-t-m_-t-w-i-t-t-e-r_-i-d.html">ATM_TWITTER_ID</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_TWITTER_ID</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-q-u-e-r-y_-p-a-r-a-m.html">QUERY_PARAM</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">QUERY_PARAM</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-t-w-i-t-t-e-r_-i-m-a-g-e.html">TWITTER_IMAGE</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">TWITTER_IMAGE</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-t-w-i-t-t-e-r_-u-r-l.html">TWITTER_URL</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">TWITTER_URL</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

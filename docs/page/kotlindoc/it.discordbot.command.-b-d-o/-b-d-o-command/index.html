@@ -1,0 +1,184 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BDOCommand - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.BDO</a>&nbsp;/&nbsp;<a href="./index.html">BDOCommand</a><br/>
+<br/>
+<h1>BDOCommand</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">BDOCommand</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ListenerAdapter</span></code>
+<p>Listener per contenere i comandi di BDO</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">BDOCommand</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Listener per contenere i comandi di BDO</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="bdo-boss-interface.html">bdoBossInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdoBossInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-b-d-o-boss-interface/index.html"><span class="identifier">BDOBossInterface</span></a></code>
+<p>BDOBossInterface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="bdo-news-interface.html">bdoNewsInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdoNewsInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-b-d-o-news-interface/index.html"><span class="identifier">BDONewsInterface</span></a></code>
+<p>BDONewsInterface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="bdo-patch-interface.html">bdoPatchInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdoPatchInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-b-d-o-patch-interface/index.html"><span class="identifier">BDOPatchInterface</span></a></code>
+<p>BDOPatchInterface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="server-management-interface.html">serverManagementInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">serverManagementInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-server-management-interface/index.html"><span class="identifier">ServerManagementInterface</span></a></code>
+<p>ServerManagementInterface</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="on-message-received.html">onMessageReceived</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onMessageReceived</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.BDO.BDOCommand$onMessageReceived(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="send-message-add-channel.html">sendMessageAddChannel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sendMessageAddChannel</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.BDO.BDOCommand$sendMessageAddChannel(net.dv8tion.jda.core.events.message.MessageReceivedEvent, kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.BDO.BDOCommand$sendMessageAddChannel(net.dv8tion.jda.core.events.message.MessageReceivedEvent, kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="send-message-remove-channel.html">sendMessageRemoveChannel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sendMessageRemoveChannel</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.BDO.BDOCommand$sendMessageRemoveChannel(net.dv8tion.jda.core.events.message.MessageReceivedEvent, kotlin.String, kotlin.String)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.BDO.BDOCommand$sendMessageRemoveChannel(net.dv8tion.jda.core.events.message.MessageReceivedEvent, kotlin.String, kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.BDO.BDOCommand$sendMessageRemoveChannel(net.dv8tion.jda.core.events.message.MessageReceivedEvent, kotlin.String, kotlin.String)/channelID">channelID</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-b-d-o_-b-o-s-s_-s-t-a-r-t_-c-o-m-m-a-n-d.html">BDO_BOSS_START_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_BOSS_START_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-b-o-s-s_-s-t-a-r-t_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">BDO_BOSS_START_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_BOSS_START_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-b-o-s-s_-s-t-o-p_-c-o-m-m-a-n-d.html">BDO_BOSS_STOP_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_BOSS_STOP_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-b-o-s-s_-s-t-o-p_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">BDO_BOSS_STOP_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_BOSS_STOP_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-n-e-w-s_-s-t-a-r-t_-c-o-m-m-a-n-d.html">BDO_NEWS_START_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_NEWS_START_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-n-e-w-s_-s-t-a-r-t_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">BDO_NEWS_START_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_NEWS_START_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-n-e-w-s_-s-t-o-p_-c-o-m-m-a-n-d.html">BDO_NEWS_STOP_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_NEWS_STOP_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-n-e-w-s_-s-t-o-p_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">BDO_NEWS_STOP_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_NEWS_STOP_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-p-a-t-c-h_-s-t-a-r-t_-c-o-m-m-a-n-d.html">BDO_PATCH_START_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_PATCH_START_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-p-a-t-c-h_-s-t-a-r-t_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">BDO_PATCH_START_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_PATCH_START_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-p-a-t-c-h_-s-t-o-p_-c-o-m-m-a-n-d.html">BDO_PATCH_STOP_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_PATCH_STOP_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-b-d-o_-p-a-t-c-h_-s-t-o-p_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">BDO_PATCH_STOP_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">BDO_PATCH_STOP_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

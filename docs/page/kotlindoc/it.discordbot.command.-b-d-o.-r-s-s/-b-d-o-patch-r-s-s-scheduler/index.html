@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BDOPatchRSSScheduler - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.BDO.RSS</a>&nbsp;/&nbsp;<a href="./index.html">BDOPatchRSSScheduler</a><br/>
+<br/>
+<h1>BDOPatchRSSScheduler</h1>
+<code><span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">BDOPatchRSSScheduler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../it.discordbot.command.pattern/-r-s-s-scheduler/index.html"><span class="identifier">RSSScheduler</span></a></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">BDOPatchRSSScheduler</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="bdo-patch-interface.html">bdoPatchInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdoPatchInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-b-d-o-patch-interface/index.html"><span class="identifier">BDOPatchInterface</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="bdorss-reader.html">bdorssReader</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdorssReader</span><span class="symbol">: </span><a href="../-b-d-o-r-s-s-reader/index.html"><span class="identifier">BDORSSReader</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="procedure-publish.html">procedurePublish</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">procedurePublish</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.BDO.RSS.BDOPatchRSSScheduler$procedurePublish(it.discordbot.beans.RSSMessage)/rssMessage">rssMessage</span><span class="symbol">:</span>&nbsp;<a href="../../it.discordbot.beans/-r-s-s-message/index.html"><span class="identifier">RSSMessage</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per la preparazione alla pubblicazione dei messaggi RSS</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="publish-message.html">publishMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">publishMessage</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.BDO.RSS.BDOPatchRSSScheduler$publishMessage(net.dv8tion.jda.core.entities.MessageEmbed, java.util.ArrayList((it.discordbot.beans.ServerToChannel)))/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageEmbed</span><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.BDO.RSS.BDOPatchRSSScheduler$publishMessage(net.dv8tion.jda.core.entities.MessageEmbed, java.util.ArrayList((it.discordbot.beans.ServerToChannel)))/serversToChannel">serversToChannel</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../../it.discordbot.beans/-server-to-channel/index.html"><span class="identifier">ServerToChannel</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per la pubblicazione dei messaggi</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="task-feed-r-s-s-b-d-o-patch.html">taskFeedRSSBDOPatch</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">taskFeedRSSBDOPatch</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
