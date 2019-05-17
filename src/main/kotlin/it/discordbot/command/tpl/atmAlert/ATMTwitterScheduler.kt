@@ -13,6 +13,11 @@ import java.awt.Color
 import javax.annotation.PostConstruct
 import kotlin.concurrent.thread
 
+/**
+ * Classe per la schedulaziooe dei messaggi Twitter di ATM
+ * @property twitterManager TwitterManager
+ * @property atmInterface ATMInterface
+ */
 @Scope("singleton")
 @Service
 class ATMTwitterScheduler {

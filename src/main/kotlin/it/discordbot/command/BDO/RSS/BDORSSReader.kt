@@ -14,6 +14,9 @@ import java.awt.Color
 import java.net.URL
 import java.util.regex.Pattern
 
+/**
+ * Classe per leggere gli RSS di BDO
+ */
 @Scope("singleton")
 @Component
 class BDORSSReader : RSSReader {
@@ -45,6 +48,14 @@ class BDORSSReader : RSSReader {
 		return link.substring(1, link.length - 1).toInt()
 	}
 
+	/**
+	 * Metodo per confrontare se una news o una patch di BDO è nuova
+	 * rispetto all'ultima pubblicata dal bot
+	 *
+	 * @param linkRSS String
+	 * @param linkDB String
+	 * @return Boolean
+	 */
 	fun isNew(linkRSS: String, linkDB: String): Boolean {
 		val regex1 = Pattern.compile(
 				"\\.(\\d+)/?\$",

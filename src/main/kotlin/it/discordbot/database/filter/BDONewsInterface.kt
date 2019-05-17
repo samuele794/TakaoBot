@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
+/**
+ * Classe di interfacciamento al db per le funzioni di BDO News
+ * @property serverDiscordRepository ServerDiscordRepository
+ * @property rssLinkRepository RSSLinkRepository
+ */
 @Scope("singleton")
 @Component
 class BDONewsInterface {

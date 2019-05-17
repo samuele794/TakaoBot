@@ -11,6 +11,11 @@ import org.springframework.context.annotation.Scope
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 
+/**
+ * Classe per la schedulaziooe dei messaggi RSS di ATM
+ * @property atmrssReader ATMRSSReader
+ * @property atmInterface ATMInterface
+ */
 @Scope("singleton")
 @Service
 class ATMRSSScheduler : RSSScheduler {

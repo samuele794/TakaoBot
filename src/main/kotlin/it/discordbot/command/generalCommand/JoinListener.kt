@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
 
+/**
+ * Listener per contenere quando il bot entra o esce
+ * da un server Discord
+ * @property serverManagementInterface ServerManagementInterface
+ */
 @Scope("singleton")
 @Service
 class JoinListener : ListenerAdapter() {

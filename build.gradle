@@ -48,6 +48,8 @@ task dokkaPureKotlindoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputDirectory = "$buildDir/kotlindoc"
     jdkVersion = 8
     includeNonPublic = true
+    noJdkLink = false
+    noStdlibLink = false
 }
 
 task dokkaPureJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
@@ -55,13 +57,17 @@ task dokkaPureJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputDirectory = "$buildDir/javadoc"
     jdkVersion = 8
     includeNonPublic = true
+    noJdkLink = false
+    noStdlibLink = false
 }
 
 task dokkaKotlindocAsJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputFormat = 'html-as-java'
-    outputDirectory = "$buildDir/javadoc"
+    outputDirectory = "$buildDir/kotlin-as-javadoc"
     jdkVersion = 8
     includeNonPublic = true
+    noJdkLink = false
+    noStdlibLink = false
 }
 
 

@@ -14,6 +14,9 @@ import java.awt.Color
 import java.net.URL
 import java.util.regex.Pattern
 
+/**
+ * Classe per leggere il feed RSS di atm
+ */
 @Scope("singleton")
 @Component
 class ATMRSSReader : RSSReader {

@@ -10,6 +10,10 @@ import org.springframework.context.annotation.Scope
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Controller
 
+/**
+ * Classe di interfacciamento al db per le funzioni di BDO Boss
+ * @property serverDiscordRepository ServerDiscordRepository
+ */
 @Scope("singleton")
 @Controller
 class BDOBossInterface {

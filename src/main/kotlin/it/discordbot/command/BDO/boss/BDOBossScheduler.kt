@@ -9,6 +9,11 @@ import java.time.LocalDateTime
 import java.time.format.TextStyle
 import java.util.*
 
+/**
+ * Classe per la schedulazione dei boss
+ * @property bdoBossInterface BDOBossInterface
+ * @property bossUtil BossUtil
+ */
 @Scope("singleton")
 @Service
 class BDOBossScheduler {
@@ -19,12 +24,15 @@ class BDOBossScheduler {
 	@Autowired
 	lateinit var bossUtil: BossUtil
 
+	/**
+	 * Job per la schedulazione dei boss
+	 */
 	@Scheduled(cron = "0 0/5 * * * *")
 	fun bossJob() {
 		val time = LocalDateTime.now()
 		val list = bdoBossInterface.getBDOBossList()
 		bossUtil.getDayBosses(time.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH), list).apply {
-			bossUtil.processHour(time.hour, time.minute, this)
+			bossUtil.publishBoss(time.hour, time.minute, this)
 		}
 
 	}

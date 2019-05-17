@@ -12,6 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
 
+/**
+ * Per i comandi dell'ATM
+ * @property serverManagementInterface ServerManagementInterface
+ * @property atmInterface ATMInterface
+ */
 @Scope("singleton")
 @Service
 class ATMCommand : ListenerAdapter() {

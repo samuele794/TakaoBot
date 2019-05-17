@@ -14,6 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
 
+/**
+ * Listener per contenere i comandi di BDO
+ * @property serverManagementInterface ServerManagementInterface
+ * @property bdoNewsInterface BDONewsInterface
+ * @property bdoPatchInterface BDOPatchInterface
+ * @property bdoBossInterface BDOBossInterface
+ */
 @Scope("singleton")
 @Service
 class BDOCommand : ListenerAdapter() {

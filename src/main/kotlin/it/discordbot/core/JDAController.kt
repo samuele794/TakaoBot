@@ -14,6 +14,16 @@ import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 import javax.annotation.PostConstruct
 
+/**
+ * Classe principale di avviamento del Bot Discord
+ * @property jdaToken String Chiave API per il bot Discord
+ * @property testCommand TestCommand
+ * @property generalCommand GeneralCommand
+ * @property bdoCommand BDOCommand
+ * @property atmCommand ATMCommand
+ * @property musicCommand MusicCommand
+ * @property joinListener JoinListener
+ */
 @Scope(value = "singleton")
 @Component
 class JDAController {

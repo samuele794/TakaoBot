@@ -38,18 +38,18 @@ class BDOPatchRSSScheduler : RSSScheduler {
 
 	}
 
-	override fun procedurePublish(rssPatchMessage: RSSMessage) {
-		val patchMessage = bdorssReader.prepareRSStoMessageEmbed(rssPatchMessage)   //ottieni il messaggio embedded
+	override fun procedurePublish(rssMessage: RSSMessage) {
+		val patchMessage = bdorssReader.prepareRSStoMessageEmbed(rssMessage)   //ottieni il messaggio embedded
 		val listNewsChannel = bdoPatchInterface.getBDOPatchChannels()
 		publishMessage(patchMessage, listNewsChannel)
-		bdoPatchInterface.setLastPatch(rssPatchMessage.link) //salvataggio su db
+		bdoPatchInterface.setLastPatch(rssMessage.link) //salvataggio su db
 	}
 
-	override fun publishMessage(patchMessage: MessageEmbed, servers: ArrayList<ServerToChannel>) {
-		for (obj in servers) {
+	override fun publishMessage(message: MessageEmbed, serversToChannel: ArrayList<ServerToChannel>) {
+		for (obj in serversToChannel) {
 			JDAController.jda.getGuildById(obj.serverID)
 					.getTextChannelById(obj.channelID)
-					.sendMessage(patchMessage).queue()
+					.sendMessage(message).queue()
 		}
 	}
 

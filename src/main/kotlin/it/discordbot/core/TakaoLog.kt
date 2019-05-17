@@ -3,6 +3,9 @@ package it.discordbot.core
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
+/**
+ * Logger Unico per il bot
+ */
 @Component
 class TakaoLog {
 	companion object {

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
+/**
+ * Classe di interfacciamento al db per le funzioni base del BOT
+ * @property serverDiscordRepository ServerDiscordRepository
+ */
 @Scope("singleton")
 @Component
 class ServerManagementInterface {

@@ -19,7 +19,7 @@ import java.awt.Color
 import java.util.*
 
 /**
- * Classe per contenere comandi di uso generale e di configurazione del bot
+ * Listener per contenere comandi di uso generale e di configurazione del bot
  * @property serverManagementInterface ServerManagementInterface
  */
 @Scope(value = "singleton")

@@ -10,6 +10,15 @@ import twitter4j.TwitterStreamFactory
 import twitter4j.conf.ConfigurationBuilder
 import javax.annotation.PostConstruct
 
+/**
+ * Classe che si occupa di collegarsi ai sistemi di twitter
+ * @property twitterConsumerKey String ConsumerKey
+ * @property twitterConsumerSecret String ConsumerSecret
+ * @property twitterAccessToken String AccessToken
+ * @property twitterAccessTokenSecret String AccessTokenSecret
+ * @property twitterStreamFactory TwitterStreamFactory
+ * @property twitterStream TwitterStream
+ */
 @Scope("singleton")
 @Component
 class TwitterManager {
@@ -42,6 +51,11 @@ class TwitterManager {
 		twitterStream = twitterStreamFactory.instance
 	}
 
+	/**
+	 * Metodo per aggiungere un listener di Twitter
+	 * @param listener StatusListener
+	 * @return TwitterManager
+	 */
 	fun setTwitterStreamListener(listener: StatusListener): TwitterManager {
 		twitterStream.addListener(listener)
 		return this

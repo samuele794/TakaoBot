@@ -11,6 +11,11 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.util.*
 
+/**
+ * Classe per la schedulaziooe dei messaggi di news di BDO
+ * @property bdorssReader BDORSSReader
+ * @property bdoNewsInterface BDONewsInterface
+ */
 @Service
 class BDONewsRSSScheduler : RSSScheduler {
 
@@ -20,7 +25,12 @@ class BDONewsRSSScheduler : RSSScheduler {
 	@Autowired
 	lateinit var bdoNewsInterface: BDONewsInterface
 
-
+	/**
+	 * Task per schedulare il controllo e la pubblicazione di una
+	 * nuova news di BDO.
+	 *
+	 * Il controllo è fatto ogni 30 minuti.
+	 */
 	@Scheduled(fixedRate = 1800000, initialDelay = 1800000)
 	fun taskFeedRSSBDONews() {
 		val rssNewsMessage = bdorssReader.readRSS("https://community.blackdesertonline.com/index.php?forums/news-announcements.181/index.rss")

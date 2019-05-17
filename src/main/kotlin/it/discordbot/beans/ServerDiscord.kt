@@ -6,6 +6,16 @@ import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
 
+/**
+ * Entità che rappresenta la tabella dei Server Discord
+ * @property serverId String? id del server
+ * @property nameServer String? nome del server
+ * @property simbolCommand String? simbolo di comando del server
+ * @property bdoNewsIDChannel String? id del canale per le news di BDO
+ * @property bdoPatchIDChannel String? id del canale per le path di BDO
+ * @property bdoBossIDChannel String? id del canale per gli alert dei boss di BDO
+ * @property atmAlertIDChannel String? id del canale per gli alert e news di ATM
+ */
 @Entity
 @Table(name = "`ServersDiscord`")
 class ServerDiscord {
