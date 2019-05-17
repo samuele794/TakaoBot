@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 class ServerManagementInterface {
 
 	@Autowired
-	lateinit private var serverDiscordRepository: ServerDiscordRepository
+	private lateinit var serverDiscordRepository: ServerDiscordRepository
 
 
 	fun getSimbolCommand(serverID: String): String {

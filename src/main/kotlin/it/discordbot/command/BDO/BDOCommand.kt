@@ -34,19 +34,19 @@ class BDOCommand : ListenerAdapter() {
 
 		const val BDO_BOSS_START_COMMAND = "BDOBossStart"
 
-		const val BDO_BOSS_START_COMMAND_DESCRIPTION = "Questo comando permette di iscriversi agli allarmi dei boss di BDO. \n" + "Il comando deve essere lanciato sul canale su cui si desidera ricevere i boss"
+		const val BDO_BOSS_START_COMMAND_DESCRIPTION = "Questo comando permette di iscriversi agli allarmi dei boss di BDO. \n Il comando deve essere lanciato sul canale su cui si desidera ricevere i boss"
 
 		const val BDO_BOSS_STOP_COMMAND = "BDOBossStop"
 
-		const val BDO_BOSS_STOP_COMMAND_DESCRIPTION = "Questo comando permette disiscriversi agli allarmi dei boss di BDO. \n" + "Il comando può essere lanciato su qualunque canale"
+		const val BDO_BOSS_STOP_COMMAND_DESCRIPTION = "Questo comando permette disiscriversi agli allarmi dei boss di BDO. \n Il comando può essere lanciato su qualunque canale"
 
 		const val BDO_NEWS_START_COMMAND = "BDONewsStart"
 
-		const val BDO_NEWS_START_COMMAND_DESCRIPTION = "Questo comando permette di iscriversi al feed delle news di BDO. \n" + "Il comando deve essere lanciato sul canale su cui si desidera ricevere le news"
+		const val BDO_NEWS_START_COMMAND_DESCRIPTION = "Questo comando permette di iscriversi al feed delle news di BDO. \n Il comando deve essere lanciato sul canale su cui si desidera ricevere le news"
 
 		const val BDO_NEWS_STOP_COMMAND = "BDONewsStop"
 
-		const val BDO_NEWS_STOP_COMMAND_DESCRIPTION = "Questo comando permette disiscriversi al feed delle news di BDO. \n" + "Il comando può essere lanciato su qualunque canale"
+		const val BDO_NEWS_STOP_COMMAND_DESCRIPTION = "Questo comando permette disiscriversi al feed delle news di BDO. \n Il comando può essere lanciato su qualunque canale"
 
 		const val BDO_PATCH_START_COMMAND = "BDOPatchStart"
 
@@ -63,50 +63,62 @@ class BDOCommand : ListenerAdapter() {
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 
-		if (checkCommand(event, symbolCommand, BDO_BOSS_START_COMMAND)) {
-			if (!checkAdminPermission(event)) {
-				rejectCommand(event)
-			} else {
-				bdoBossInterface.setBDOBossChannel(event.guild.id, event.textChannel.id)
-				sendMessageAddChannel(event, "Invio degli allarmi dei boss di BDO configurato sul canale: ")
+		when{
+			checkCommand(event, symbolCommand, BDO_BOSS_START_COMMAND) -> {
+				if (checkAdminPermission(event)) {
+					bdoBossInterface.setBDOBossChannel(event.guild.id, event.textChannel.id)
+					sendMessageAddChannel(event, "Invio degli allarmi dei boss di BDO configurato sul canale: ")
+				} else {
+					rejectCommand(event)
+				}
 			}
-		} else if (checkCommand(event, symbolCommand, BDO_BOSS_STOP_COMMAND)) {
-			if (!checkAdminPermission(event)) {
-				rejectCommand(event)
-			} else {
-				val removedChannelId = bdoBossInterface.removeBDOBossChannel(event.guild.id)
-				if (removedChannelId != null)
-					sendMessageRemoveChannel(event, "Invio degli allarmi dei boss di BDO rimosso dal canale: ", removedChannelId)
+
+			checkCommand(event, symbolCommand, BDO_BOSS_STOP_COMMAND) ->{
+				if (!checkAdminPermission(event)) {
+					rejectCommand(event)
+				} else {
+					val removedChannelId = bdoBossInterface.removeBDOBossChannel(event.guild.id)
+					if (removedChannelId != null)
+						sendMessageRemoveChannel(event, "Invio degli allarmi dei boss di BDO rimosso dal canale: ", removedChannelId)
+				}
 			}
-		} else if (checkCommand(event, symbolCommand, BDO_NEWS_START_COMMAND)) {
-			if (!checkAdminPermission(event)) {
-				rejectCommand(event)
-			} else {
-				bdoNewsInterface.setBDONewsChannel(event.guild.id, event.textChannel.id)
-				sendMessageAddChannel(event, "Invio delle news di BDO configurato sul canale: ")
+
+			checkCommand(event, symbolCommand, BDO_NEWS_START_COMMAND) -> {
+				if (!checkAdminPermission(event)) {
+					rejectCommand(event)
+				} else {
+					bdoNewsInterface.setBDONewsChannel(event.guild.id, event.textChannel.id)
+					sendMessageAddChannel(event, "Invio delle news di BDO configurato sul canale: ")
+				}
 			}
-		} else if (checkCommand(event, symbolCommand, BDO_NEWS_STOP_COMMAND)) {
-			if (!checkAdminPermission(event)) {
-				rejectCommand(event)
-			} else {
-				val removedChannelId = bdoNewsInterface.removeBDONewsChannel(event.guild.id)
-				if (removedChannelId != null)
-					sendMessageRemoveChannel(event, "Invio delle news di BDO rimosso dal canale: ", removedChannelId)
+
+			checkCommand(event, symbolCommand, BDO_NEWS_STOP_COMMAND) -> {
+				if (!checkAdminPermission(event)) {
+					rejectCommand(event)
+				} else {
+					val removedChannelId = bdoNewsInterface.removeBDONewsChannel(event.guild.id)
+					if (removedChannelId != null)
+						sendMessageRemoveChannel(event, "Invio delle news di BDO rimosso dal canale: ", removedChannelId)
+				}
 			}
-		} else if (checkCommand(event, symbolCommand, BDO_PATCH_START_COMMAND)) {
-			if (!checkAdminPermission(event)) {
-				rejectCommand(event)
-			} else {
-				bdoPatchInterface.setBDOPatchChannel(event.guild.id, event.textChannel.id)
-				sendMessageAddChannel(event, "Invio delle patch di BDO configurato sul canale: ")
+
+			checkCommand(event, symbolCommand, BDO_PATCH_START_COMMAND) -> {
+				if (!checkAdminPermission(event)) {
+					rejectCommand(event)
+				} else {
+					bdoPatchInterface.setBDOPatchChannel(event.guild.id, event.textChannel.id)
+					sendMessageAddChannel(event, "Invio delle patch di BDO configurato sul canale: ")
+				}
 			}
-		} else if (checkCommand(event, symbolCommand, BDO_PATCH_STOP_COMMAND)) {
-			if (!checkAdminPermission(event)) {
-				rejectCommand(event)
-			} else {
-				val removedChannelId = bdoPatchInterface.removeBDOPatchChannel(event.guild.id)
-				if (removedChannelId != null)
-					sendMessageRemoveChannel(event, "Invio delle patch di BDO rimosso dal canale: ", removedChannelId)
+
+			checkCommand(event, symbolCommand, BDO_PATCH_STOP_COMMAND) -> {
+				if (!checkAdminPermission(event)) {
+					rejectCommand(event)
+				} else {
+					val removedChannelId = bdoPatchInterface.removeBDOPatchChannel(event.guild.id)
+					if (removedChannelId != null)
+						sendMessageRemoveChannel(event, "Invio delle patch di BDO rimosso dal canale: ", removedChannelId)
+				}
 			}
 		}
 

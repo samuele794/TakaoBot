@@ -18,7 +18,10 @@ import org.springframework.stereotype.Service
 import java.awt.Color
 import java.util.*
 
-
+/**
+ * Classe per contenere comandi di uso generale e di configurazione del bot
+ * @property serverManagementInterface ServerManagementInterface
+ */
 @Scope(value = "singleton")
 @Service
 class GeneralCommand : ListenerAdapter() {
@@ -34,6 +37,8 @@ class GeneralCommand : ListenerAdapter() {
 
 		const val HELP_COMMAND = "help"
 
+		const val HELP_COMMAND2 = "aiuto"
+
 		const val INFO_COMMAND = "info"
 
 		const val INFO_COMMAND_DESCRIPTION = "Info del bot."
@@ -41,27 +46,28 @@ class GeneralCommand : ListenerAdapter() {
 
 	}
 
-
 	override fun onMessageReceived(event: MessageReceivedEvent?) {
 
 		if (event!!.author.isBot) return
 		if (event.isFromType(ChannelType.PRIVATE)) return
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
-
-		if (checkCommand(event, symbolCommand, CONFIGURATION_COMMAND)) {
-			getConfigurationCommand(event)
-		}
-
-		if (checkCommand(event, symbolCommand, HELP_COMMAND)) {
-			event.author.openPrivateChannel().queue {
-				it.sendMessage(getHelp(event.guild.id)).queue()
+		when {
+			checkCommand(event, symbolCommand, CONFIGURATION_COMMAND) -> {
+				getConfigurationCommand(event)
 			}
-		}
 
-		if (checkCommand(event, symbolCommand, INFO_COMMAND)) {
-			event.author.openPrivateChannel().queue {
-				it.sendMessage(getInfo()).queue()
+			checkCommand(event, symbolCommand, INFO_COMMAND) -> {
+				event.author.openPrivateChannel().queue {
+					it.sendMessage(getInfo()).queue()
+				}
+			}
+
+			checkCommand(event, symbolCommand, HELP_COMMAND) ||
+			checkCommand(event, symbolCommand, HELP_COMMAND2)-> {
+				event.author.openPrivateChannel().queue {
+					it.sendMessage(getHelp(event.guild.id)).queue()
+				}
 			}
 		}
 

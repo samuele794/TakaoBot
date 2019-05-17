@@ -70,5 +70,10 @@ class MusicCommand : ListenerAdapter() {
 			musicManager.clearQueue(event)
 
 		}
+
+		when{
+			checkCommand(event, symbolCommand, "clear") ||
+			checkCommand(event, symbolCommand, "pulisci") -> musicManager.clearQueue(event)
+		}
 	}
 }

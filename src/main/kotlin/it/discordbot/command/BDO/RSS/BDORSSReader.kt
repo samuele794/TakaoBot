@@ -71,9 +71,7 @@ class BDORSSReader : RSSReader {
 	}
 
 	override fun prepareRSStoMessageEmbed(message: RSSMessage): MessageEmbed {
-		val body = Jsoup.parse(message.doc.toString().replace("(?i)<br[^>]*>", "br2n"))
-				.text()
-				.replace("br2n".toRegex(), "\n")
+		val body = Jsoup.parse(message.doc.toString().replace("<br>", "br2n")).text().replace("br2n", "\n")
 		if (!message.doc.select("img").isEmpty()) {
 			//esite 1 immagine
 			val imageUrl = message.doc.select("img")[0].attr("src")

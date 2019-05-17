@@ -24,6 +24,8 @@ class JoinListener : ListenerAdapter() {
 
 	override fun onGuildLeave(event: GuildLeaveEvent?) {
 		serverManagementInterface.deleteServer(event!!.guild.id)
+		TakaoLog.logInfo("REGISTRAZIONE SERVER RIMOSSA \nID = " + event.guild.id + "\nNOME = " + event.guild.name)
+
 	}
 
 	override fun onGuildUpdateName(event: GuildUpdateNameEvent) {

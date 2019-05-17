@@ -1,7 +1,7 @@
 package it.discordbot.test
 
-import it.discordbot.database.interfaces.BDONewsInterface
-import it.discordbot.database.interfaces.ServerManagementInterface
+import it.discordbot.database.filter.BDONewsInterface
+import it.discordbot.database.filter.ServerManagementInterface
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,13 +19,8 @@ class DemoApplicationTests {
 	private lateinit var bdoNewsInterface: BDONewsInterface
 
 	@Test
-	fun testGetSimbol() {
-		assert(managmentServerDiscord.getSimbolCommand("324517087416549377") == "(")
-	}
-
-	@Test
 	fun testBDONews() {
-		bdoNewsInterface.getBDONewsList()
+		bdoNewsInterface.getLastBDONews()
 	}
 
 }

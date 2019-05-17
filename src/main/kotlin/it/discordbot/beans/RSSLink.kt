@@ -7,6 +7,13 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "`RSSLink`")
+/**
+ * Entità che rappresenta la tabella contenitore dei link RSS
+ * @property id Long id riga
+ * @property lastNewsBDO String? link dell'ultima news di BDO
+ * @property lastPatchBDO String? link dell'ultima patch di BDO
+ * @property lastAtmAlert String? link dell'ultima news di ATM
+ */
 class RSSLink {
 	@Id
 	@Column(name = "`id`")
