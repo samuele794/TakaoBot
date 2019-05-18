@@ -4,6 +4,7 @@ import it.discordbot.command.BDO.BDOCommand
 import it.discordbot.command.checkAdminPermission
 import it.discordbot.command.checkCommand
 import it.discordbot.command.rejectCommand
+import it.discordbot.command.tpl.atmAlert.ATMCommand
 import it.discordbot.core.JDAController
 import it.discordbot.database.filter.ServerManagementInterface
 import net.dv8tion.jda.core.EmbedBuilder
@@ -91,6 +92,8 @@ class GeneralCommand : ListenerAdapter() {
 			addField(symbolCommand + BDOCommand.BDO_BOSS_START_COMMAND, BDOCommand.BDO_BOSS_START_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + BDOCommand.BDO_BOSS_STOP_COMMAND, BDOCommand.BDO_BOSS_STOP_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + BDOCommand.BDO_BOSS_TABLE, BDOCommand.BDO_BOSS_TABLE_COMMAND_DESCRIPTION, false)
+			addField(symbolCommand + ATMCommand.ATM_START_COMMAND, ATMCommand.ATM_START_COMMAND_DESCRIPTION, false)
+			addField(symbolCommand + ATMCommand.ATM_STOP_COMMAND, ATMCommand.ATM_STOP_COMMAND_DESCRIPTION, false)
 		}.build()
 	}
 

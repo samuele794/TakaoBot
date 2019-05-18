@@ -102,7 +102,7 @@ class BossUtil {
 				publish(this?.nomeBoss, "5")
 			}
 
-			0 -> getHourBoss(ora + 1, 0, giorno?.bosses).apply {
+			0 -> getHourBoss(ora, 0, giorno?.bosses).apply {
 				publish(this?.nomeBoss, "0")
 			}
 		}

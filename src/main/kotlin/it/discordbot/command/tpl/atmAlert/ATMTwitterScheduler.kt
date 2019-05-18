@@ -39,8 +39,14 @@ class ATMTwitterScheduler {
 	fun initATMTwitterScheduler() {
 		val listener = object : StatusListener {
 			override fun onStatus(status: Status) {
-				if (status.user.id == ATM_TWITTER_ID && status.isRetweet) {
-					TakaoLog.logInfo("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text)
+				TakaoLog.logInfo("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text)
+
+				TakaoLog.logInfo("ATM IN REPLY USER ID = " + status.inReplyToUserId)
+				TakaoLog.logInfo("ATM IN REPLY STATUS ID = " + status.inReplyToStatusId)
+				TakaoLog.logInfo("ATM IN REPLY SCREEN NAME ID = " + status.inReplyToScreenName)
+			if (status.user.id == ATM_TWITTER_ID && !status.isRetweet
+			&&(status.inReplyToUserId == -1L || status.inReplyToUserId == ATM_TWITTER_ID)) {
+					TakaoLog.logInfo("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text + "\n PASSATO PER PROCESSAZIONE")
 					thread(start = true) {
 
 						val tweetID: Long
@@ -110,6 +116,8 @@ class ATMTwitterScheduler {
 				twitterMessage.contains("sciopero", ignoreCase = true) ||
 				twitterMessage.contains("manifestazione", ignoreCase = true) ||
 				twitterMessage.contains("aggiornamento", ignoreCase = true)) {
+			TakaoLog.logInfo("INIZIO PUBBLICAZIONE ATM TWITTER")
+
 			val message = EmbedBuilder().apply {
 				setAuthor("ATM (@atm_informa)", tweetUrl, profileImageUrl)
 				setDescription(twitterMessage)
