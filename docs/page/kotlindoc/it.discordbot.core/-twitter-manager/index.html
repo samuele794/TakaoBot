@@ -1,0 +1,122 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>TwitterManager - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.core</a>&nbsp;/&nbsp;<a href="./index.html">TwitterManager</a><br/>
+<br/>
+<h1>TwitterManager</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Component</span> <span class="keyword">class </span><span class="identifier">TwitterManager</span></code>
+<p>Classe che si occupa di collegarsi ai sistemi di twitter</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">TwitterManager</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Classe che si occupa di collegarsi ai sistemi di twitter</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="twitter-access-token.html">twitterAccessToken</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">twitterAccessToken</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>String AccessToken</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="twitter-access-token-secret.html">twitterAccessTokenSecret</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">twitterAccessTokenSecret</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>String AccessTokenSecret</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="twitter-consumer-key.html">twitterConsumerKey</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">twitterConsumerKey</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>String ConsumerKey</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="twitter-consumer-secret.html">twitterConsumerSecret</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">twitterConsumerSecret</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>String ConsumerSecret</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="twitter-stream.html">twitterStream</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">twitterStream</span><span class="symbol">: </span><span class="identifier">TwitterStream</span></code>
+<p>TwitterStream</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="twitter-stream-factory.html">twitterStreamFactory</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">twitterStreamFactory</span><span class="symbol">: </span><span class="identifier">TwitterStreamFactory</span></code>
+<p>TwitterStreamFactory</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-twitter-stream.html">getTwitterStream</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getTwitterStream</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">TwitterStream</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="init-twitter.html">initTwitter</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">initTwitter</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-twitter-stream-filter.html">setTwitterStreamFilter</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setTwitterStreamFilter</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.core.TwitterManager$setTwitterStreamFilter(twitter4j.FilterQuery)/filterQuery">filterQuery</span><span class="symbol">:</span>&nbsp;<span class="identifier">FilterQuery</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">TwitterManager</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-twitter-stream-listener.html">setTwitterStreamListener</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setTwitterStreamListener</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.core.TwitterManager$setTwitterStreamListener(twitter4j.StatusListener)/listener">listener</span><span class="symbol">:</span>&nbsp;<span class="identifier">StatusListener</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">TwitterManager</span></a></code>
+<p>Metodo per aggiungere un listener di Twitter</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

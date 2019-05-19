@@ -1,101 +1,133 @@
 plugins {
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.31'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.3.31'
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '2.0.1'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+    id 'org.jetbrains.dokka' version '0.9.18'
 }
 
-mainClassName = 'starter.start'
+apply plugin: 'io.spring.dependency-management'
 
-group 'it.github.samuele794.discordbotTakao'
-version '1.2.0'
-def jdaVersion = '3.8.2_459'
-
+group = 'it.discordbot'
+version = '2.0'
+sourceCompatibility = '1.8'
 
 repositories {
-    jcenter()
     mavenCentral()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    jcenter()
 }
 
+jar {
+    enabled = true
+}
+
+springBoot {
+    buildInfo()
+}
+
+bootJar {
+    classifier = 'boot'
+    manifest {
+        attributes 'Start-Class': 'it.discordbot.StartBotKt'
+
+    }
+    launchScript()
+}
+
+/*dokka {
+    outputFormat = 'html-as-java'
+    outputDirectory = "$buildDir/javadoc"
+    jdkVersion = 8
+    includeNonPublic = true
+}*/
+
+task dokkaPureKotlindoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/kotlindoc"
+    jdkVersion = 8
+    includeNonPublic = true
+    noJdkLink = false
+    noStdlibLink = false
+}
+
+task dokkaPureJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+    jdkVersion = 8
+    includeNonPublic = true
+    noJdkLink = false
+    noStdlibLink = false
+}
+
+task dokkaKotlindocAsJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'html-as-java'
+    outputDirectory = "$buildDir/kotlin-as-javadoc"
+    jdkVersion = 8
+    includeNonPublic = true
+    noJdkLink = false
+    noStdlibLink = false
+}
+
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    compile "net.dv8tion:JDA:3.8.2_459"
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //SPRING LIBRARY
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.4.RELEASE'
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
+
+
+    implementation 'net.dv8tion:JDA:3.8.3_463'
+
+    //RSS + HTML PARSER
     // https://mvnrepository.com/artifact/com.rometools/rome
-    compile group: 'com.rometools', name: 'rome', version: '1.12.0'
+    implementation group: 'com.rometools', name: 'rome', version: '1.12.0'
     // jsoup HTML parser library @ https://jsoup.org/
-    compile 'org.jsoup:jsoup:1.11.3'
-    // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    implementation 'org.jsoup:jsoup:1.11.3'
 
-    compile "org.apache.commons:commons-text:1.3"
-    // https://mvnrepository.com/artifact/org.quartz-scheduler/quartz
-    compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.0'
-
-    // https://mvnrepository.com/artifact/org.postgresql/postgresql
-    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
-    // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
-//    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.25.2'
-
-
-    //SISTEMA PER LOG
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
-
-    // https://mvnrepository.com/artifact/com.sedmelluq/lavaplayer-natives
-    compile group: 'com.sedmelluq', name: 'lavaplayer-natives', version: '1.3.12'
-
-
-//    compile 'com.sedmelluq:lavaplayer:1.3.11'    // https://mvnrepository.com/artifact/commons-validator/commons-validator
-    compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
-
-    //JDA 3.8.2
-    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.14.0'
-
-
-    //DIPENDENZE PER MUSICBOT
-    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.7'
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.8'
+    //ESCAPE UTIL
     // https://mvnrepository.com/artifact/commons-io/commons-io
-    compile group: 'commons-io', name: 'commons-io', version: '2.6'
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    implementation "org.apache.commons:commons-text:1.3"
+
+    //POSTGRESQL DRIVER
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
 
     //TwitterAPI
     // https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core
-    compile group: 'org.twitter4j', name: 'twitter4j-core', version: '4.0.7'
+    implementation group: 'org.twitter4j', name: 'twitter4j-core', version: '4.0.7'
     // https://mvnrepository.com/artifact/org.twitter4j/twitter4j-stream
-    compile group: 'org.twitter4j', name: 'twitter4j-stream', version: '4.0.7'
+    implementation group: 'org.twitter4j', name: 'twitter4j-stream', version: '4.0.7'
     // https://mvnrepository.com/artifact/org.twitter4j/twitter4j-async
-    compile group: 'org.twitter4j', name: 'twitter4j-async', version: '4.0.7'
+    implementation group: 'org.twitter4j', name: 'twitter4j-async', version: '4.0.7'
 
-    compile "org.hibernate:hibernate-core:5.4.2.Final"
-
+    //MUSIC PLAYER
+    implementation 'com.sedmelluq:lavaplayer:1.3.17'
 
 }
 
-javadoc {
-    options.showAll()
-    options.setDestinationDirectory()
-    options.encoding('UTF-8')
-    options.setUse(true)
-    options.author(true)
-    options.version(true)
-    options.windowTitle("Documentazione TakaoBot")
-    options.docTitle("Documentazione TakaoBot")
-    exclude("com/sedmelluq/**")
-}
-
-if (JavaVersion.current().isJava8Compatible()) {
-    tasks.withType(Javadoc) {
-        // disable the crazy super-strict doclint tool in Java 8
-        //noinspection SpellCheckingInspection
-        options.addStringOption('Xdoclint:none', '-quiet')
+compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '1.8'
     }
 }
 
+compileTestKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '1.8'
+    }
+}
 
 compileJava.options.encoding = 'UTF-8'

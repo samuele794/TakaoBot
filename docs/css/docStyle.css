@@ -1,0 +1,34 @@
+#parent>#button-left {
+    opacity: 0.3;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    transition: 0.5s;
+}
+
+#parent>#button-right {
+    opacity: 0.3;
+    position: absolute;
+    left: 55px;
+    top: 5px;
+    transition: 0.5s;
+}
+
+.btn{
+    padding: 5px 5px;
+}
+.svg-arrow{
+    margin-top: 10px
+}
+
+iframe{
+    background-color: #ffffff;
+}
+
+#parent>#button-left {
+    opacity: 1;
+}
+
+#parent>#button-right {
+    opacity: 1;
+}

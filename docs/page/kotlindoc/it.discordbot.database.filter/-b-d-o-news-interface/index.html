@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BDONewsInterface - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.database.filter</a>&nbsp;/&nbsp;<a href="./index.html">BDONewsInterface</a><br/>
+<br/>
+<h1>BDONewsInterface</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Component</span> <span class="keyword">class </span><span class="identifier">BDONewsInterface</span></code>
+<p>Classe di interfacciamento al db per le funzioni di BDO News</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">BDONewsInterface</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Classe di interfacciamento al db per le funzioni di BDO News</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="rss-link-repository.html">rssLinkRepository</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">rssLinkRepository</span><span class="symbol">: </span><a href="../../it.discordbot.database.repository/-r-s-s-link-repository/index.html"><span class="identifier">RSSLinkRepository</span></a></code>
+<p>RSSLinkRepository</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="server-discord-repository.html">serverDiscordRepository</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">serverDiscordRepository</span><span class="symbol">: </span><a href="../../it.discordbot.database.repository/-server-discord-repository/index.html"><span class="identifier">ServerDiscordRepository</span></a></code>
+<p>ServerDiscordRepository</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-b-d-o-news-channels.html">getBDONewsChannels</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getBDONewsChannels</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../../it.discordbot.beans/-server-to-channel/index.html"><span class="identifier">ServerToChannel</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-last-b-d-o-news.html">getLastBDONews</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getLastBDONews</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-b-d-o-news-channel.html">removeBDONewsChannel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">removeBDONewsChannel</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.database.filter.BDONewsInterface$removeBDONewsChannel(kotlin.String)/serverID">serverID</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-b-d-o-news.html">setBDONews</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setBDONews</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.database.filter.BDONewsInterface$setBDONews(kotlin.String)/link">link</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-b-d-o-news-channel.html">setBDONewsChannel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setBDONewsChannel</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.database.filter.BDONewsInterface$setBDONewsChannel(kotlin.String, kotlin.String)/serverID">serverID</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="it.discordbot.database.filter.BDONewsInterface$setBDONewsChannel(kotlin.String, kotlin.String)/channelID">channelID</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

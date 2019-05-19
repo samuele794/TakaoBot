@@ -22,6 +22,14 @@
     }
 }
 
+::selection {
+    background: #06c;
+}
+
+::-moz-selection {
+  background: #06c; 
+}
+
 .logoCommand {
     height: 32px;
     margin-left: 10px;

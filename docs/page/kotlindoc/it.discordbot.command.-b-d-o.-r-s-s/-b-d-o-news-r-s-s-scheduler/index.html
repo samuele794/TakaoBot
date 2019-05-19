@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BDONewsRSSScheduler - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.BDO.RSS</a>&nbsp;/&nbsp;<a href="./index.html">BDONewsRSSScheduler</a><br/>
+<br/>
+<h1>BDONewsRSSScheduler</h1>
+<code><span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">BDONewsRSSScheduler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../it.discordbot.command.pattern/-r-s-s-scheduler/index.html"><span class="identifier">RSSScheduler</span></a></code>
+<p>Classe per la schedulaziooe dei messaggi di news di BDO</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">BDONewsRSSScheduler</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Classe per la schedulaziooe dei messaggi di news di BDO</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="bdo-news-interface.html">bdoNewsInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdoNewsInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-b-d-o-news-interface/index.html"><span class="identifier">BDONewsInterface</span></a></code>
+<p>BDONewsInterface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="bdorss-reader.html">bdorssReader</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdorssReader</span><span class="symbol">: </span><a href="../-b-d-o-r-s-s-reader/index.html"><span class="identifier">BDORSSReader</span></a></code>
+<p>BDORSSReader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="procedure-publish.html">procedurePublish</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">procedurePublish</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.BDO.RSS.BDONewsRSSScheduler$procedurePublish(it.discordbot.beans.RSSMessage)/rssMessage">rssMessage</span><span class="symbol">:</span>&nbsp;<a href="../../it.discordbot.beans/-r-s-s-message/index.html"><span class="identifier">RSSMessage</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per la preparazione alla pubblicazione dei messaggi RSS</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="publish-message.html">publishMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">publishMessage</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.BDO.RSS.BDONewsRSSScheduler$publishMessage(net.dv8tion.jda.core.entities.MessageEmbed, java.util.ArrayList((it.discordbot.beans.ServerToChannel)))/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageEmbed</span><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.BDO.RSS.BDONewsRSSScheduler$publishMessage(net.dv8tion.jda.core.entities.MessageEmbed, java.util.ArrayList((it.discordbot.beans.ServerToChannel)))/serversToChannel">serversToChannel</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../../it.discordbot.beans/-server-to-channel/index.html"><span class="identifier">ServerToChannel</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per la pubblicazione dei messaggi</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="task-feed-r-s-s-b-d-o-news.html">taskFeedRSSBDONews</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">taskFeedRSSBDONews</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Task per schedulare il controllo e la pubblicazione di una
+nuova news di BDO.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
