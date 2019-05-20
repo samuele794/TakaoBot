@@ -4,6 +4,7 @@ import it.discordbot.beans.RSSMessage
 import it.discordbot.beans.ServerToChannel
 import it.discordbot.command.pattern.RSSScheduler
 import it.discordbot.core.JDAController
+import it.discordbot.core.TakaoLog
 import it.discordbot.database.filter.BDOPatchInterface
 import net.dv8tion.jda.core.entities.MessageEmbed
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,6 +31,7 @@ class BDOPatchRSSScheduler : RSSScheduler {
 		if (patchBDO != "") {
 			if (bdorssReader.isNew(rssPatchMessage.link, patchBDO)) {
 				procedurePublish(rssPatchMessage)
+				TakaoLog.logInfo("PROCESSAZIONE BDO PATCH LINK= " + rssPatchMessage.link)
 			}
 
 		} else {

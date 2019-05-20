@@ -4,6 +4,7 @@ import it.discordbot.beans.RSSMessage
 import it.discordbot.beans.ServerToChannel
 import it.discordbot.command.pattern.RSSScheduler
 import it.discordbot.core.JDAController
+import it.discordbot.core.TakaoLog
 import it.discordbot.database.filter.BDONewsInterface
 import net.dv8tion.jda.core.entities.MessageEmbed
 import org.springframework.beans.factory.annotation.Autowired
@@ -39,6 +40,7 @@ class BDONewsRSSScheduler : RSSScheduler {
 		if (newsBDO != "") {
 			if (bdorssReader.isNew(rssNewsMessage.link, newsBDO)) {
 				procedurePublish(rssNewsMessage)
+				TakaoLog.logInfo("PROCESSAZIONE BDO NEWS LINK= " + rssNewsMessage.link)
 			}
 		} else {
 			procedurePublish(rssNewsMessage)
