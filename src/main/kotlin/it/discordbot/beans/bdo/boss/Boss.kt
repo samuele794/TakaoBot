@@ -1,4 +1,4 @@
-package it.discordbot.beans.boss
+package it.discordbot.beans.bdo.boss
 
 /**
  * Classe contenitore dei boss in una determinata ora

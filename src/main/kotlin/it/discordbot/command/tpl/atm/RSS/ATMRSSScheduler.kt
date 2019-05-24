@@ -1,4 +1,4 @@
-package it.discordbot.command.tpl.atmAlert
+package it.discordbot.command.tpl.atm.RSS
 
 import it.discordbot.beans.RSSMessage
 import it.discordbot.beans.ServerToChannel

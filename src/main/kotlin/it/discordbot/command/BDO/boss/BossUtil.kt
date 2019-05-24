@@ -1,7 +1,7 @@
 package it.discordbot.command.BDO.boss
 
-import it.discordbot.beans.boss.Boss
-import it.discordbot.beans.boss.Giorno
+import it.discordbot.beans.bdo.boss.Boss
+import it.discordbot.beans.bdo.boss.Giorno
 import it.discordbot.core.JDAController
 import it.discordbot.database.filter.BDOBossInterface
 import net.dv8tion.jda.core.MessageBuilder

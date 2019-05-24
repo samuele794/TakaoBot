@@ -3,7 +3,7 @@ package it.discordbot.database.filter
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import it.discordbot.beans.ServerToChannel
-import it.discordbot.beans.boss.Giorno
+import it.discordbot.beans.bdo.boss.Giorno
 import it.discordbot.database.repository.ServerDiscordRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope

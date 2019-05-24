@@ -56,3 +56,4 @@ hs_err_pid*
 gradle/wrapper/gradle-wrapper.jar
 src/main/resources/application-dev.properties
 src/main/resources/application-prod.properties
+.scannerwork/

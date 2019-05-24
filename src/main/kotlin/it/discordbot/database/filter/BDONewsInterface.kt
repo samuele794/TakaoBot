@@ -42,7 +42,7 @@ class BDONewsInterface {
 
 	fun getLastBDONews(): String {
 
-		val bdoRSSNews = rssLinkRepository.getFirstById().lastNewsBDO
+		val bdoRSSNews = rssLinkRepository.lastBDONewsLink
 
 		if (bdoRSSNews == null) {
 			return ""
@@ -53,9 +53,6 @@ class BDONewsInterface {
 	}
 
 	fun setBDONews(link: String) {
-		rssLinkRepository.getFirstById().apply {
-			lastNewsBDO = link
-			rssLinkRepository.save(this)
-		}
+		rssLinkRepository.lastBDONewsLink = link
 	}
 }

@@ -1,9 +1,11 @@
 package it.discordbot.database.repository
 
-import it.discordbot.beans.RSSLink
-import org.springframework.data.repository.CrudRepository
 
-interface RSSLinkRepository : CrudRepository<RSSLink, Int> {
+interface RSSLinkRepository {
 
-	fun getFirstById(id: Long = 1): RSSLink
+	var lastBDONewsLink: String?
+
+	var lastBDOPatchLink: String?
+
+	var lastATMNewsLink: String?
 }

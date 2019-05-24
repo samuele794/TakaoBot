@@ -1,4 +1,4 @@
-package it.discordbot.command.tpl.atmAlert
+package it.discordbot.command.tpl.atm.RSS
 
 import com.rometools.rome.io.SyndFeedInput
 import com.rometools.rome.io.XmlReader

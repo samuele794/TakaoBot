@@ -102,6 +102,8 @@ dependencies {
     //POSTGRESQL DRIVER
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+    // https://mvnrepository.com/artifact/redis.clients/jedis
+    implementation group: 'redis.clients', name: 'jedis', version: '2.9.0'
 
     //TwitterAPI
     // https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core

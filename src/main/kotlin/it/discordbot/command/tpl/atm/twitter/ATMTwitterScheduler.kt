@@ -1,4 +1,4 @@
-package it.discordbot.command.tpl.atmAlert
+package it.discordbot.command.tpl.atm.twitter
 
 import it.discordbot.core.JDAController
 import it.discordbot.core.TakaoLog

@@ -32,7 +32,7 @@ class BDONewsRSSScheduler : RSSScheduler {
 	 *
 	 * Il controllo è fatto ogni 15 minuti.
 	 */
-	@Scheduled(fixedRate = 900000/*, initialDelay = 900000*/)
+	@Scheduled(fixedRate = 900000, initialDelay = 900000)
 	fun taskFeedRSSBDONews() {
 		val rssNewsMessage = bdorssReader.readRSS("https://community.blackdesertonline.com/index.php?forums/news-announcements.181/index.rss")
 		TakaoLog.logInfo("BDO NEWS LINK= " + rssNewsMessage.link)

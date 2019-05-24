@@ -41,16 +41,11 @@ class ATMInterface {
 	}
 
 	fun setLastATMAlert(url: String) {
-		rssLinkRepository.getFirstById().apply {
-			lastAtmAlert = url
-			rssLinkRepository.save(this)
-		}
+		rssLinkRepository.lastATMNewsLink = url
 	}
 
 	fun getLastATMAlert(): String? {
-		rssLinkRepository.getFirstById().apply {
-			return lastAtmAlert
-		}
+		return rssLinkRepository.lastATMNewsLink
 	}
 
 }
