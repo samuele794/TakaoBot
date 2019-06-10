@@ -88,6 +88,7 @@ dependencies {
 
 
     implementation 'net.dv8tion:JDA:3.8.3_463'
+    implementation 'com.jagrosh:jda-utilities:2.1.5'
 
     //RSS + HTML PARSER
     // https://mvnrepository.com/artifact/com.rometools/rome

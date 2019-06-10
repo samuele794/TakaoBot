@@ -20,4 +20,10 @@ data class ServerToChannel(val serverID: String, val channelID: String) {
 		}
 
 	}
+
+	override fun hashCode(): Int {
+		var result = serverID.hashCode()
+		result = 31 * result + channelID.hashCode()
+		return result
+	}
 }

@@ -124,6 +124,7 @@ class MusicManager {
 
 		val guildMusicManager = getMusicManager(event.guild.id)
 		val guild = event.guild
+		guildMusicManager.commandChannelID = event.textChannel.id
 		if (guild.audioManager.sendingHandler == null) {
 			this.join(event)
 		}
@@ -414,7 +415,7 @@ class MusicManager {
 			}
 
 			override fun noMatches() {
-				channel.sendMessage("Non ho abbastanza forza di vedere dentro a $trackUrl").queue()
+				channel.sendMessage("Non ho abbastanza forza per vedere dentro a $trackUrl").queue()
 			}
 
 			override fun loadFailed(exception: FriendlyException) {
