@@ -2,7 +2,11 @@ package it.discordbot.beans.image
 
 import it.discordbot.command.image.lorempicsum.LoremPicsumRetreiver
 import it.discordbot.command.pattern.StateMachine
+import it.discordbot.core.EmojiContainer.Companion.NO
+import it.discordbot.core.EmojiContainer.Companion.YES
 import it.discordbot.core.JDAController
+import it.discordbot.core.JDAController.Companion.jda
+import net.dv8tion.jda.core.EmbedBuilder
 import net.dv8tion.jda.core.entities.TextChannel
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent
@@ -11,6 +15,8 @@ import net.dv8tion.jda.core.events.message.react.MessageReactionAddEvent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
+import java.awt.Color
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 @Scope("prototype")
@@ -23,19 +29,20 @@ class LoremPicsumStateMachine : StateMachine {
 	lateinit var channel: TextChannel
 	lateinit var authorID: String
 
+	//parametri per immagine
 	private var width: Int = 1920
 	private var height: Int = 1080
 	private var grayScale = false
 	private var blur: Int = 0
 
-	private val YES = "\u2705"
-	private val NO = "\u274C"
-
 	private var messageID: String = ""
 	private var statoMachina = 0
+	private var color = {
+		val random = Random()
+		Color(random.nextInt(255), random.nextInt(255), random.nextInt(255))
+	}.invoke()
 
 	private var tentativi = 0
-
 	private var fase4 = false
 
 	override fun updateStateMessage(event: GuildMessageReceivedEvent): Boolean {
@@ -51,14 +58,9 @@ class LoremPicsumStateMachine : StateMachine {
 	}
 
 	fun startMachina() {
-		channel.sendMessage("Impostazioni Ricerca Lorem Picsum").queue {
-			it.delete().queueAfter(2, TimeUnit.MINUTES)
-		}
 		customDimensionMessageSend()
 		JDAController.eventWaiter.waitForEvent(MessageReactionAddEvent::class.java,
-				// make sure it's by the same user, and in the same channel
 				{ e -> e.member.user.id == authorID && e.textChannel == channel && e.messageId == messageID },
-				// respond, inserting the name they listed into the response
 				{ e ->
 					when {
 						e.reactionEmote.name == YES -> {
@@ -68,12 +70,13 @@ class LoremPicsumStateMachine : StateMachine {
 						}
 						e.reactionEmote.name == NO -> {
 							statoMachina = 2
+							sendMessageConfiguration()
 							grayScaleMessageSend()
 							updateState()
 						}
 					}
 				},
-				30, TimeUnit.SECONDS, {
+				1, TimeUnit.MINUTES, {
 			timeoutMessage()
 		})
 	}
@@ -95,9 +98,10 @@ class LoremPicsumStateMachine : StateMachine {
 								val params: List<String>
 								try {
 									params = e.message.contentRaw.split("x")
-									width = params[0].toInt()
+									width = if (params[0].toInt() <= 5000) params[0].toInt() else throw Exception()
 									height = params[1].toInt()
 									statoMachina = 2
+									sendMessageConfiguration()
 									grayScaleMessageSend()
 								} catch (e: Exception) {
 									channel.sendMessage("Parametri non conformi").queue {
@@ -107,8 +111,7 @@ class LoremPicsumStateMachine : StateMachine {
 								}
 
 							},
-							// if the user takes more than a minute, time out
-							30, TimeUnit.SECONDS, {
+							1, TimeUnit.MINUTES, {
 						timeoutMessage()
 					})
 				} else {
@@ -130,18 +133,19 @@ class LoremPicsumStateMachine : StateMachine {
 								e.reactionEmote.name == YES -> {
 									statoMachina = 3
 									grayScale = true
+									sendMessageConfiguration()
 									blurMessageSend()
 									fase4 = true
 								}
 								e.reactionEmote.name == NO -> {
 									statoMachina = 3
 									grayScale = false
+									sendMessageConfiguration()
 									blurMessageSend()
 									fase4 = true
 								}
 							}
 						},
-						// if the user takes more than a minute, time out
 						1, TimeUnit.MINUTES, {
 					if (!fase4) {
 						timeoutMessage()
@@ -166,8 +170,7 @@ class LoremPicsumStateMachine : StateMachine {
 								}
 							}
 						},
-						// if the user takes more than a minute, time out
-						30, TimeUnit.SECONDS, {
+						1, TimeUnit.MINUTES, {
 					timeoutMessage()
 				})
 			}
@@ -185,6 +188,7 @@ class LoremPicsumStateMachine : StateMachine {
 								try {
 									blur = e.message.contentRaw.toInt()
 									statoMachina = 999
+									sendMessageConfiguration()
 									executeCommand()
 
 								} catch (e: Exception) {
@@ -200,7 +204,7 @@ class LoremPicsumStateMachine : StateMachine {
 								statoMachina = 999
 							}
 						},
-						30, TimeUnit.SECONDS, {
+						1, TimeUnit.MINUTES, {
 					timeoutMessage()
 				})
 			}
@@ -270,5 +274,17 @@ class LoremPicsumStateMachine : StateMachine {
 		statoMachina = 999
 	}
 
-
+	private fun sendMessageConfiguration() {
+		val message = EmbedBuilder().apply {
+			setTitle("Parametri LoremPicsum")
+			setColor(color)
+			setAuthor(jda.getUserById(authorID).name, null, jda.getUserById(authorID).avatarUrl)
+			addField("Dimensioni", width.toString() + "x" + height.toString(), true)
+			addField("Scala di grigi", grayScale.toString(), true)
+			addField("Grado di sfocatura", blur.toString(), true)
+		}.build()
+		channel.sendMessage(message).queue {
+			it.delete().queueAfter(10, TimeUnit.SECONDS)
+		}
+	}
 }
