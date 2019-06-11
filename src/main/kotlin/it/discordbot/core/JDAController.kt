@@ -71,7 +71,7 @@ class JDAController : ExitCodeGenerator {
 		jda = JDABuilder(jdaToken).build().apply {
 			addEventListener(eventWaiter)
 			addEventListener(joinListener)
-//			addEventListener(testCommand)
+			addEventListener(testCommand)
 			addEventListener(generalCommand)
 			addEventListener(bdoCommand)
 			addEventListener(atmCommand)

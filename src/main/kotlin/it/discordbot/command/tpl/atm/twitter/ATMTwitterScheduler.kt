@@ -1,5 +1,8 @@
 package it.discordbot.command.tpl.atm.twitter
 
+import  it.discordbot.core.EmojiContainer.Companion.SEMAFORO
+import it.discordbot.core.EmojiContainer.Companion.TRIANGOLO_ALERT_GIALLO
+import it.discordbot.core.EmojiContainer.Companion.YES
 import it.discordbot.core.JDAController
 import it.discordbot.core.TakaoLog
 import it.discordbot.core.TwitterManager
@@ -44,8 +47,8 @@ class ATMTwitterScheduler {
 				TakaoLog.logInfo("ATM IN REPLY USER ID = " + status.inReplyToUserId)
 				TakaoLog.logInfo("ATM IN REPLY STATUS ID = " + status.inReplyToStatusId)
 				TakaoLog.logInfo("ATM IN REPLY SCREEN NAME ID = " + status.inReplyToScreenName)
-			if (status.user.id == ATM_TWITTER_ID && !status.isRetweet
-			&&(status.inReplyToUserId == -1L || status.inReplyToUserId == ATM_TWITTER_ID)) {
+				if (status.user.id == ATM_TWITTER_ID && !status.isRetweet
+						&& (status.inReplyToUserId == -1L || status.inReplyToUserId == ATM_TWITTER_ID)) {
 					TakaoLog.logInfo("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text + "\n PASSATO PER PROCESSAZIONE")
 					thread(start = true) {
 
@@ -112,7 +115,9 @@ class ATMTwitterScheduler {
 				twitterMessage.contains("#M2") ||
 				twitterMessage.contains("#M3") ||
 				twitterMessage.contains("#M5") ||
-				twitterMessage.contains("\ud83d\udea6") ||
+				twitterMessage.contains(SEMAFORO) ||
+				twitterMessage.contains(TRIANGOLO_ALERT_GIALLO) ||
+				twitterMessage.contains(YES) ||
 				twitterMessage.contains("sciopero", ignoreCase = true) ||
 				twitterMessage.contains("manifestazione", ignoreCase = true) ||
 				twitterMessage.contains("aggiornamento", ignoreCase = true)) {
