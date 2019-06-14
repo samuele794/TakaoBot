@@ -42,6 +42,8 @@ class ATMCommand : ListenerAdapter() {
 
 		const val ATM_METRO_STATUS_COMMAND = "ATMMetroStatus"
 
+		const val ATM_METRO_STATUS2_COMMAND = "ATMStatoMetro"
+
 		const val ATM_METRO_STATUS_COMMAND_DESCRIPTION = "Questo comando permette di ottenere lo stato attuale della metro ATM"
 
 	}
@@ -76,7 +78,8 @@ class ATMCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, ATM_METRO_STATUS_COMMAND) -> {
+			checkCommand(event, symbolCommand, ATM_METRO_STATUS_COMMAND) ||
+					checkCommand(event, symbolCommand, ATM_METRO_STATUS2_COMMAND) -> {
 				atmMetroStatus.getStatoMetro(event)
 			}
 

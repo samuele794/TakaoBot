@@ -8,7 +8,6 @@ import it.discordbot.command.image.ImagesCommand
 import it.discordbot.command.music.MusicCommand
 import it.discordbot.command.tpl.atm.ATMCommand
 import it.discordbot.test.TestCommand
-import it.discordbot.test.TestWaiter
 import net.dv8tion.jda.core.JDA
 import net.dv8tion.jda.core.JDABuilder
 import net.dv8tion.jda.core.Permission
@@ -60,9 +59,6 @@ class JDAController : ExitCodeGenerator {
 	lateinit var joinListener: JoinListener
 
 	@Autowired
-	lateinit var testWaiter: TestWaiter
-
-	@Autowired
 	lateinit var imagesCommand: ImagesCommand
 
 
@@ -76,7 +72,6 @@ class JDAController : ExitCodeGenerator {
 			addEventListener(bdoCommand)
 			addEventListener(atmCommand)
 			addEventListener(musicCommand)
-//			addEventListener(testWaiter)
 			addEventListener(imagesCommand)
 		}
 		TakaoLog.logInfo("BOT AVVIATO")

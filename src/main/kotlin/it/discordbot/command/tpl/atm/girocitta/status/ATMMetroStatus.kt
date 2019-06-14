@@ -70,7 +70,7 @@ class ATMMetroStatus {
 							statoString = "< " + direzione.stato + " >"
 						}
 						"Interrotta" -> {
-							statoString = "[]( " + direzione.stato + " )"
+							statoString = "[_]( " + direzione.stato + " )"
 						}
 					}
 					append(String.format(format, direzione.nomeDirezione, statoString))

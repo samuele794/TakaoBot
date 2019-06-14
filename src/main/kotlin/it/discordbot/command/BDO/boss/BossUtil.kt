@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.TimeUnit
 
 /**
  * Classe per processare i boss e ricavare il boss da notificare
@@ -166,7 +167,9 @@ class BossUtil {
 			for (serverChannel in listServerChannel) {
 				JDAController.jda.getGuildById(serverChannel.serverID)
 						.getTextChannelById(serverChannel.channelID)
-						.sendMessage(message).queue()
+						.sendMessage(message).queue{
+							it.delete().queueAfter(10,TimeUnit.MINUTES)
+						}
 			}
 
 		}

@@ -10,7 +10,7 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 
-group = 'it.discordbot'
+group = 'it.github.samuele794.takaobot'
 version = '2.1.1'
 sourceCompatibility = '1.8'
 
@@ -90,9 +90,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
 //    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.1.5.RELEASE'
-
-
-
 
     implementation 'net.dv8tion:JDA:3.8.3_463'
     implementation 'com.jagrosh:jda-utilities:2.1.5'

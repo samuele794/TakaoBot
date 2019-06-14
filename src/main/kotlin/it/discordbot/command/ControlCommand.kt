@@ -25,7 +25,7 @@ fun checkCommand(@NotNull event: MessageReceivedEvent,
 	return if (!event.isFromType(ChannelType.PRIVATE)) {
 		if (commandEvent == completeCommand ||
 				event.message.isMentioned(event.jda.selfUser) &&
-				event.message.contentRaw.contains(commandName)) {
+				event.message.contentRaw.contains(commandName, true)) {
 			true
 		} else {
 			false

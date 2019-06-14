@@ -94,7 +94,7 @@ class GeneralCommand : ListenerAdapter() {
 			addField(symbolCommand + BDOCommand.BDO_BOSS_TABLE, BDOCommand.BDO_BOSS_TABLE_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + ATMCommand.ATM_START_COMMAND, ATMCommand.ATM_START_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + ATMCommand.ATM_STOP_COMMAND, ATMCommand.ATM_STOP_COMMAND_DESCRIPTION, false)
-			addField(symbolCommand + ATMCommand.ATM_METRO_STATUS_COMMAND, ATMCommand.ATM_METRO_STATUS_COMMAND_DESCRIPTION, false)
+			addField(symbolCommand + ATMCommand.ATM_METRO_STATUS_COMMAND + "   " + symbolCommand + ATMCommand.ATM_METRO_STATUS2_COMMAND, ATMCommand.ATM_METRO_STATUS_COMMAND_DESCRIPTION, false)
 		}.build()
 	}
 
