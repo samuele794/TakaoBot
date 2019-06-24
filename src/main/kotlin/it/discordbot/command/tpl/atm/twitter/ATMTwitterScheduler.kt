@@ -1,5 +1,6 @@
 package it.discordbot.command.tpl.atm.twitter
 
+import it.discordbot.core.EmojiContainer.Companion.CERCHIO_BARRATO
 import  it.discordbot.core.EmojiContainer.Companion.SEMAFORO
 import it.discordbot.core.EmojiContainer.Companion.TRIANGOLO_ALERT_GIALLO
 import it.discordbot.core.EmojiContainer.Companion.YES
@@ -118,9 +119,11 @@ class ATMTwitterScheduler {
 				twitterMessage.contains(SEMAFORO) ||
 				twitterMessage.contains(TRIANGOLO_ALERT_GIALLO) ||
 				twitterMessage.contains(YES) ||
+				twitterMessage.contains(CERCHIO_BARRATO) ||
 				twitterMessage.contains("sciopero", ignoreCase = true) ||
 				twitterMessage.contains("manifestazione", ignoreCase = true) ||
-				twitterMessage.contains("aggiornamento", ignoreCase = true)) {
+				twitterMessage.contains("aggiornamento", ignoreCase = true)||
+				twitterMessage.contains("suicidio", ignoreCase = true)) {
 			TakaoLog.logInfo("INIZIO PUBBLICAZIONE ATM TWITTER")
 
 			val message = EmbedBuilder().apply {
