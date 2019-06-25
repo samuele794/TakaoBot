@@ -110,12 +110,12 @@ class ATMTwitterScheduler {
 
 	private fun publish(tweetID: Long, twitterMessage: String, mediaUrl: String?, profileImageUrl: String) {
 		val tweetUrl = TWITTER_URL + tweetID
-		if (twitterMessage.contains("#tram") ||
-				twitterMessage.contains("#bus") ||
-				twitterMessage.contains("#M1") ||
-				twitterMessage.contains("#M2") ||
-				twitterMessage.contains("#M3") ||
-				twitterMessage.contains("#M5") ||
+		if (twitterMessage.contains("#tram", ignoreCase = true) ||
+				twitterMessage.contains("#bus", ignoreCase = true) ||
+				twitterMessage.contains("#M1", ignoreCase = true) ||
+				twitterMessage.contains("#M2", ignoreCase = true) ||
+				twitterMessage.contains("#M3", ignoreCase = true) ||
+				twitterMessage.contains("#M5", ignoreCase = true) ||
 				twitterMessage.contains(SEMAFORO) ||
 				twitterMessage.contains(TRIANGOLO_ALERT_GIALLO) ||
 				twitterMessage.contains(YES) ||
@@ -123,6 +123,7 @@ class ATMTwitterScheduler {
 				twitterMessage.contains("sciopero", ignoreCase = true) ||
 				twitterMessage.contains("manifestazione", ignoreCase = true) ||
 				twitterMessage.contains("aggiornamento", ignoreCase = true)||
+				twitterMessage.contains("suicidio", ignoreCase = true) ||
 				twitterMessage.contains("suicidio", ignoreCase = true)) {
 			TakaoLog.logInfo("INIZIO PUBBLICAZIONE ATM TWITTER")
 
