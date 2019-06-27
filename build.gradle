@@ -11,7 +11,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'it.github.samuele794.takaobot'
-version = '2.1.1'
+version = '2.0.1'
 sourceCompatibility = '1.8'
 
 repositories {
