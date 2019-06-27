@@ -4,6 +4,11 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.springframework.stereotype.Component
 
+/**
+ * Classe che si occupa di ottenere il link delle immagini dal LoremPicsum
+ * @property urlBase String
+ * @property client OkHttpClient
+ */
 @Component
 class LoremPicsumRetreiver {
 

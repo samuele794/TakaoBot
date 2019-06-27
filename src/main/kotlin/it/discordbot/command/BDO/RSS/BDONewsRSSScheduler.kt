@@ -7,6 +7,7 @@ import it.discordbot.core.JDAController
 import it.discordbot.core.TakaoLog
 import it.discordbot.database.filter.BDONewsInterface
 import net.dv8tion.jda.core.entities.MessageEmbed
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
@@ -19,6 +20,8 @@ import java.util.*
  */
 @Service
 class BDONewsRSSScheduler : RSSScheduler {
+
+	private val logger = LoggerFactory.getLogger(BDONewsRSSScheduler::class.java)
 
 	@Autowired
 	lateinit var bdorssReader: BDORSSReader
@@ -34,8 +37,13 @@ class BDONewsRSSScheduler : RSSScheduler {
 	 */
 	@Scheduled(fixedRate = 900000, initialDelay = 900000)
 	fun taskFeedRSSBDONews() {
-		val rssNewsMessage = bdorssReader.readRSS("https://community.blackdesertonline.com/index.php?forums/news-announcements.181/index.rss")
-		TakaoLog.logInfo("BDO NEWS LINK= " + rssNewsMessage.link)
+		var rssNewsMessage: RSSMessage? = null
+		try {
+			rssNewsMessage = bdorssReader.readRSS("https://community.blackdesertonline.com/index.php?forums/news-announcements.181/index.rss")
+		} catch (ex: Exception) {
+			logger.error("Problemi Lettura FeedRSS News BDO. È Mercoledì?")
+		}
+		TakaoLog.logInfo("BDO NEWS LINK= " + rssNewsMessage!!.link)
 		val newsBDO = bdoNewsInterface.getLastBDONews()
 		if (newsBDO != "") {
 			if (bdorssReader.isNew(rssNewsMessage.link, newsBDO)) {

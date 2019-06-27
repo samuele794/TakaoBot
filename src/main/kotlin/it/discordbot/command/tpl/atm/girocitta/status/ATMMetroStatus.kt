@@ -12,6 +12,11 @@ import org.jsoup.select.Elements
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
+/**
+ * Classe per leggere e interpretare lo stato della metro ATm
+ * @property nomiLineeMetro Array<String> lista della direzioni delle metro ATM
+ * @property okHttpClient OkHttpClient
+ */
 @Scope("singleton")
 @Component
 class ATMMetroStatus {
@@ -30,6 +35,8 @@ class ATMMetroStatus {
 			"SAN DONATO",
 			"BIGNAMI",
 			"SAN SIRO STADIO")
+
+	private val lineeMetro = arrayOf("M1", "M2", "M3", "M4", "M5")
 
 	private val okHttpClient = OkHttpClient()
 
@@ -131,10 +138,11 @@ class ATMMetroStatus {
 		}
 
 		return ArrayList<LineaMetroATM>().apply {
-			add(LineaMetroATM("M1", diM1))
-			add(LineaMetroATM("M2", diM2))
-			add(LineaMetroATM("M3", diM3))
-			add(LineaMetroATM("M5", diM5))
+			add(LineaMetroATM(lineeMetro[0], diM1))
+			add(LineaMetroATM(lineeMetro[1], diM2))
+			add(LineaMetroATM(lineeMetro[2], diM3))
+//			add(LineaMetroATM(lineeMetro[3], diM4))
+			add(LineaMetroATM(lineeMetro[4], diM5))
 		}
 	}
 }

@@ -19,6 +19,22 @@ import java.awt.Color
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+/**
+ * Macchina a stati per gestire la customizzzazione della chiamata a LoremPicsum
+ * @property loremPicsumRetreiver LoremPicsumRetreiver classe con i metodi per LoremPicsum
+ * @property channel TextChannel canale in cui è stato invocato il comando
+ * @property authorID String id Discord dell'autore del lancio del comando
+ * @property width Int base dell'immagine. Default: 1920
+ * @property height Int altezza dell'immagine. Default: 1080
+ * @property grayScale Boolean immagine in scala di grigi
+ * @property blur Int grado di sfocatura dell'immagine, valore che va da 1 a 10. Default: 0 (no blur)
+ * @property messageID String id messaggi del bot, servono per i confronti per gli EventWaiter
+ * @property statoMachina Int fase attuale della procedura
+ * @property color Color colore per MessageEmbed
+ * @property tentativi Int tentativi per risposte non conformi
+ * @property fase4 Boolean controllo se la fase4 è stata completata.
+ * (attualmente questa variabile è per un debito tecnico, a causa che l'EventWaiter della fase4 non viene chiuso correttamente)
+ */
 @Scope("prototype")
 @Component
 class LoremPicsumStateMachine : StateMachine {

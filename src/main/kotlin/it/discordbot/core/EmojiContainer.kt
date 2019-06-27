@@ -1,6 +1,8 @@
 package it.discordbot.core
 
-
+/**
+ * Classe di contenimento delle emoji sia UNICODE sia ID Discord
+ */
 class EmojiContainer {
 	companion object {
 		const val YES = "\u2705"                            //✅

@@ -10,6 +10,12 @@ import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 import java.util.*
 
+/**
+ *
+ * @property imageCommandProxy ImageCommandProxy
+ * @property stateMachines HashMap<String, StateMachine> mappa per contenere le macchine a stati
+ * @property loremPicsumRetreiver LoremPicsumRetreiver
+ */
 @Scope("singleton")
 @Component
 class LoremPicsumCommand {

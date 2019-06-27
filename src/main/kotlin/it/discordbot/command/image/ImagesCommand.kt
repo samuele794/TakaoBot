@@ -11,6 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
 
+/**
+ * Comandi relativi alle immagini
+ * @property serverManagementInterface ServerManagementInterface
+ * @property loremPicsumCommand LoremPicsumCommand
+ */
 @Scope("singleton")
 @Service
 class ImagesCommand : ListenerAdapter() {
