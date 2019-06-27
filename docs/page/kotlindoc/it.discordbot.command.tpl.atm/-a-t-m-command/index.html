@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ATMCommand - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.tpl.atm</a>&nbsp;/&nbsp;<a href="./index.html">ATMCommand</a><br/>
+<br/>
+<h1>ATMCommand</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">ATMCommand</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ListenerAdapter</span></code>
+<p>Per i comandi dell'ATM</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ATMCommand</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Per i comandi dell'ATM</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="atm-interface.html">atmInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">atmInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-a-t-m-interface/index.html"><span class="identifier">ATMInterface</span></a></code>
+<p>ATMInterface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="atm-metro-status.html">atmMetroStatus</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">atmMetroStatus</span><span class="symbol">: </span><a href="../../it.discordbot.command.tpl.atm.girocitta.status/-a-t-m-metro-status/index.html"><span class="identifier">ATMMetroStatus</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="server-management-interface.html">serverManagementInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">serverManagementInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-server-management-interface/index.html"><span class="identifier">ServerManagementInterface</span></a></code>
+<p>ServerManagementInterface</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="on-message-received.html">onMessageReceived</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onMessageReceived</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.tpl.atm.ATMCommand$onMessageReceived(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-a-t-m_-m-e-t-r-o_-s-t-a-t-u-s2_-c-o-m-m-a-n-d.html">ATM_METRO_STATUS2_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_METRO_STATUS2_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-a-t-m_-m-e-t-r-o_-s-t-a-t-u-s_-c-o-m-m-a-n-d.html">ATM_METRO_STATUS_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_METRO_STATUS_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-a-t-m_-m-e-t-r-o_-s-t-a-t-u-s_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">ATM_METRO_STATUS_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_METRO_STATUS_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-a-t-m_-s-t-a-r-t_-c-o-m-m-a-n-d.html">ATM_START_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_START_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-a-t-m_-s-t-a-r-t_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">ATM_START_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_START_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-a-t-m_-s-t-o-p_-c-o-m-m-a-n-d.html">ATM_STOP_COMMAND</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_STOP_COMMAND</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-a-t-m_-s-t-o-p_-c-o-m-m-a-n-d_-d-e-s-c-r-i-p-t-i-o-n.html">ATM_STOP_COMMAND_DESCRIPTION</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_STOP_COMMAND_DESCRIPTION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

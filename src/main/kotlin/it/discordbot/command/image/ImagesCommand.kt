@@ -26,6 +26,17 @@ class ImagesCommand : ListenerAdapter() {
 	@Autowired
 	lateinit var loremPicsumCommand: LoremPicsumCommand
 
+	companion object{
+		const val RANDOM_PICSUM_COMMAND = "randomPicsum"
+
+		const val RANDOM_PICSUM_COMMAND_DESCRIPTION = "Questo comando ti restituisce un immagine casuale da LoremPicsum. \n Il comando può essere lanciato su qualunque canale"
+
+		const val CUSTOM_PICSUM_COMMAND = "customPicsum"
+
+		const val CUSTOM_PICSUM_COMMAND_DESCRIPTION = "Questo comando ti permette di ottenere un immagine da LoremPicsum, in base a dei parametri. \n Il comando può essere lanciato su qualunque canale"
+
+	}
+
 
 	override fun onMessageReceived(event: MessageReceivedEvent?) {
 		if (event!!.author.isBot)
@@ -33,10 +44,10 @@ class ImagesCommand : ListenerAdapter() {
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 		when {
-			checkCommand(event, symbolCommand, "randomPicsum") -> {
+			checkCommand(event, symbolCommand, RANDOM_PICSUM_COMMAND) -> {
 				event.textChannel.sendMessage(loremPicsumCommand.getRandomPicsumImage()).queue()
 			}
-			checkCommand(event, symbolCommand, "customPicsum") -> {
+			checkCommand(event, symbolCommand, CUSTOM_PICSUM_COMMAND) -> {
 				loremPicsumCommand.customPicsum(event)
 			}
 		}

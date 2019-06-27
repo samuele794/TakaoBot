@@ -1,0 +1,240 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>LoremPicsumStateMachine - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.beans.image</a>&nbsp;/&nbsp;<a href="./index.html">LoremPicsumStateMachine</a><br/>
+<br/>
+<h1>LoremPicsumStateMachine</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"prototype"<span class="symbol">)</span> <span class="identifier">@Component</span> <span class="keyword">class </span><span class="identifier">LoremPicsumStateMachine</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../it.discordbot.command.pattern/-state-machine/index.html"><span class="identifier">StateMachine</span></a></code>
+<p>Macchina a stati per gestire la customizzzazione della chiamata a LoremPicsum</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">LoremPicsumStateMachine</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Macchina a stati per gestire la customizzzazione della chiamata a LoremPicsum</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="author-i-d.html">authorID</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">authorID</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>String id Discord dell'autore del lancio del comando</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="blur.html">blur</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">blur</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Int grado di sfocatura dell'immagine, valore che va da 1 a 10. Default: 0 (no blur)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="channel.html">channel</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">channel</span><span class="symbol">: </span><span class="identifier">TextChannel</span></code>
+<p>TextChannel canale in cui è stato invocato il comando</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="color.html">color</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">color</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Color.html"><span class="identifier">Color</span></a></code>
+<p>Color colore per MessageEmbed</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="fase4.html">fase4</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">fase4</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Boolean controllo se la fase4 è stata completata.
+(attualmente questa variabile è per un debito tecnico, a causa che l'EventWaiter della fase4 non viene chiuso correttamente)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="gray-scale.html">grayScale</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">grayScale</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Boolean immagine in scala di grigi</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="height.html">height</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">height</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Int altezza dell'immagine. Default: 1080</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="lorem-picsum-retreiver.html">loremPicsumRetreiver</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">loremPicsumRetreiver</span><span class="symbol">: </span><a href="../../it.discordbot.command.image.lorempicsum/-lorem-picsum-retreiver/index.html"><span class="identifier">LoremPicsumRetreiver</span></a></code>
+<p>LoremPicsumRetreiver classe con i metodi per LoremPicsum</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="message-i-d.html">messageID</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">messageID</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>String id messaggi del bot, servono per i confronti per gli EventWaiter</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="stato-machina.html">statoMachina</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">statoMachina</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Int fase attuale della procedura</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="tentativi.html">tentativi</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">tentativi</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Int tentativi per risposte non conformi</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="width.html">width</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">width</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Int base dell'immagine. Default: 1920</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="blur-form-message-send.html">blurFormMessageSend</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">blurFormMessageSend</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="blur-message-send.html">blurMessageSend</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">blurMessageSend</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="custom-dimension-form-message-send.html">customDimensionFormMessageSend</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">customDimensionFormMessageSend</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="custom-dimension-message-send.html">customDimensionMessageSend</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">customDimensionMessageSend</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="execute-command.html">executeCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">executeCommand</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="gray-scale-message-send.html">grayScaleMessageSend</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">grayScaleMessageSend</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="send-message-configuration.html">sendMessageConfiguration</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sendMessageConfiguration</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="start-machina.html">startMachina</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">startMachina</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="state-machina.html">stateMachina</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">stateMachina</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.beans.image.LoremPicsumStateMachine$stateMachina(net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent)/eventGuiltReaction">eventGuiltReaction</span><span class="symbol">:</span>&nbsp;<span class="identifier">GuildMessageReactionAddEvent</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="timeout-message.html">timeoutMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">timeoutMessage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="update-state.html">updateState</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">updateState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="update-state-message.html">updateStateMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">updateStateMessage</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.beans.image.LoremPicsumStateMachine$updateStateMessage(net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">GuildMessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Updates the state of this finite state machine.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="update-state-reaction.html">updateStateReaction</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">updateStateReaction</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.beans.image.LoremPicsumStateMachine$updateStateReaction(net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">GuildMessageReactionAddEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

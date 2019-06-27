@@ -44,7 +44,7 @@ class ATMCommand : ListenerAdapter() {
 
 		const val ATM_METRO_STATUS2_COMMAND = "ATMStatoMetro"
 
-		const val ATM_METRO_STATUS_COMMAND_DESCRIPTION = "Questo comando permette di ottenere lo stato attuale della metro ATM"
+		const val ATM_METRO_STATUS_COMMAND_DESCRIPTION = "Questo comando permette di ottenere lo stato attuale della rircolazione nella metro ATM"
 
 	}
 

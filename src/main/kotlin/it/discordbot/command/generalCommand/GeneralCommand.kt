@@ -3,6 +3,7 @@ package it.discordbot.command.generalCommand
 import it.discordbot.command.BDO.BDOCommand
 import it.discordbot.command.checkAdminPermission
 import it.discordbot.command.checkCommand
+import it.discordbot.command.image.ImagesCommand
 import it.discordbot.command.rejectCommand
 import it.discordbot.command.tpl.atm.ATMCommand
 import it.discordbot.core.JDAController
@@ -95,6 +96,8 @@ class GeneralCommand : ListenerAdapter() {
 			addField(symbolCommand + ATMCommand.ATM_START_COMMAND, ATMCommand.ATM_START_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + ATMCommand.ATM_STOP_COMMAND, ATMCommand.ATM_STOP_COMMAND_DESCRIPTION, false)
 			addField(symbolCommand + ATMCommand.ATM_METRO_STATUS_COMMAND + "   " + symbolCommand + ATMCommand.ATM_METRO_STATUS2_COMMAND, ATMCommand.ATM_METRO_STATUS_COMMAND_DESCRIPTION, false)
+			addField(symbolCommand + ImagesCommand.RANDOM_PICSUM_COMMAND, ImagesCommand.RANDOM_PICSUM_COMMAND_DESCRIPTION, false)
+			addField(symbolCommand + ImagesCommand.CUSTOM_PICSUM_COMMAND, ImagesCommand.CUSTOM_PICSUM_COMMAND_DESCRIPTION, false)
 		}.build()
 	}
 

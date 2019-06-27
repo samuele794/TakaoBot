@@ -8,7 +8,7 @@
 <a href="../index.html">it.discordbot.core</a>&nbsp;/&nbsp;<a href="./index.html">JDAController</a><br/>
 <br/>
 <h1>JDAController</h1>
-<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Component</span> <span class="keyword">class </span><span class="identifier">JDAController</span></code>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Component</span> <span class="keyword">class </span><span class="identifier">JDAController</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ExitCodeGenerator</span></code>
 <p>Classe principale di avviamento del Bot Discord</p>
 <h3>Constructors</h3>
 <table>
@@ -32,7 +32,7 @@
 <p><a href="atm-command.html">atmCommand</a></p>
 </td>
 <td>
-<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">atmCommand</span><span class="symbol">: </span><a href="../../it.discordbot.command.tpl.atm-alert/-a-t-m-command/index.html"><span class="identifier">ATMCommand</span></a></code>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">atmCommand</span><span class="symbol">: </span><a href="../../it.discordbot.command.tpl.atm/-a-t-m-command/index.html"><span class="identifier">ATMCommand</span></a></code>
 <p>ATMCommand</p>
 </td>
 </tr>
@@ -53,6 +53,13 @@
 <code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">generalCommand</span><span class="symbol">: </span><a href="../../it.discordbot.command.general-command/-general-command/index.html"><span class="identifier">GeneralCommand</span></a></code>
 <p>GeneralCommand</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="images-command.html">imagesCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">imagesCommand</span><span class="symbol">: </span><a href="../../it.discordbot.command.image/-images-command/index.html"><span class="identifier">ImagesCommand</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -86,7 +93,7 @@
 <p><a href="test-command.html">testCommand</a></p>
 </td>
 <td>
-<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">testCommand</span><span class="symbol">: </span><a href="../../it.discordbot/-test-command/index.html"><span class="identifier">TestCommand</span></a></code>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">testCommand</span><span class="symbol">: </span><a href="../../it.discordbot.test/-test-command/index.html"><span class="identifier">TestCommand</span></a></code>
 <p>TestCommand</p>
 </td>
 </tr>
@@ -95,6 +102,13 @@
 <h3>Functions</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="get-exit-code.html">getExitCode</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getExitCode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
 <tr>
 <td>
 <p><a href="init.html">init</a></p>
@@ -107,6 +121,13 @@
 <h3>Companion Object Properties</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="event-waiter.html">eventWaiter</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">eventWaiter</span><span class="symbol">: </span><span class="identifier">EventWaiter</span></code></td>
+</tr>
 <tr>
 <td>
 <p><a href="jda.html">jda</a></p>
