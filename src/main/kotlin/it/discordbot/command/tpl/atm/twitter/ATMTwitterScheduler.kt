@@ -123,7 +123,6 @@ class ATMTwitterScheduler {
 				twitterMessage.contains("sciopero", ignoreCase = true) ||
 				twitterMessage.contains("manifestazione", ignoreCase = true) ||
 				twitterMessage.contains("aggiornamento", ignoreCase = true)||
-				twitterMessage.contains("suicidio", ignoreCase = true) ||
 				twitterMessage.contains("suicidio", ignoreCase = true)) {
 			TakaoLog.logInfo("INIZIO PUBBLICAZIONE ATM TWITTER")
 

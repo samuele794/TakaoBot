@@ -39,6 +39,8 @@
 <!--        <appender-ref ref="Console" />-->
     </root>
 
+    <logger name="net.dv8tion.jda.core.requests.Requester" level="OFF"/>
+
     <!-- LOG "com.baeldung*" at TRACE level -->
     <!--<logger name="com.baeldung" level="trace" additivity="false">
         <appender-ref ref="RollingFile" />
