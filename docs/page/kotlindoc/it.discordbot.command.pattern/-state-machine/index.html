@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>StateMachine - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.pattern</a>&nbsp;/&nbsp;<a href="./index.html">StateMachine</a><br/>
+<br/>
+<h1>StateMachine</h1>
+<code><span class="keyword">interface </span><span class="identifier">StateMachine</span></code>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="update-state-message.html">updateStateMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">updateStateMessage</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.pattern.StateMachine$updateStateMessage(net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">GuildMessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Updates the state of this finite state machine.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="update-state-reaction.html">updateStateReaction</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">updateStateReaction</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.pattern.StateMachine$updateStateReaction(net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">GuildMessageReactionAddEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../it.discordbot.beans.image/-lorem-picsum-state-machine/index.html">LoremPicsumStateMachine</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">LoremPicsumStateMachine</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">StateMachine</span></a></code>
+<p>Macchina a stati per gestire la customizzzazione della chiamata a LoremPicsum</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

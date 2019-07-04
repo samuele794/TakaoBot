@@ -8,6 +8,11 @@ package it.discordbot.beans
  * @constructor
  */
 data class ServerToChannel(val serverID: String, val channelID: String) {
+	/**
+	 * Confronta se sono lo stesso server
+	 * @param other Any? altro ServerToChannel
+	 * @return Boolean
+	 */
 	override fun equals(other: Any?): Boolean {
 		return if (other != null) {
 			if (other is ServerToChannel) {
@@ -19,5 +24,11 @@ data class ServerToChannel(val serverID: String, val channelID: String) {
 			false
 		}
 
+	}
+
+	override fun hashCode(): Int {
+		var result = serverID.hashCode()
+		result = 31 * result + channelID.hashCode()
+		return result
 	}
 }

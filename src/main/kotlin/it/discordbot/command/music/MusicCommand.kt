@@ -52,7 +52,7 @@ class MusicCommand : ListenerAdapter() {
 
 		} else if (checkCommand(event, symbolCommand, "repeat") ||
 				checkCommand(event, symbolCommand, "ripeti")) {
-			musicManager.reset(event)
+			musicManager.repeat(event)
 
 		} else if (checkCommand(event, symbolCommand, "nowplaying") ||
 				checkCommand(event, symbolCommand, "np")) {
@@ -60,7 +60,7 @@ class MusicCommand : ListenerAdapter() {
 
 		} else if (checkCommand(event, symbolCommand, "queue") ||
 				checkCommand(event, symbolCommand, "np")) {
-			musicManager.nowPlay(event)
+			musicManager.getListQueue(event)
 
 		} else if (checkCommand(event, symbolCommand, "shuffle")) {
 			musicManager.shuffleQueue(event)

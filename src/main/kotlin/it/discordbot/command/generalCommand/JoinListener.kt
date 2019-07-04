@@ -36,4 +36,8 @@ class JoinListener : ListenerAdapter() {
 	override fun onGuildUpdateName(event: GuildUpdateNameEvent) {
 		event.newName
 	}
+
+	/*override fun onGuildMemberNickChange(event: GuildMemberNickChangeEvent?) {
+//		bloccare cambio nickname bot
+	}*/
 }

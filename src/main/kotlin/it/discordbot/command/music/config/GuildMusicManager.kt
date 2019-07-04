@@ -3,18 +3,17 @@ package it.discordbot.command.music.config
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager
 
-class GuildMusicManager(val manager: AudioPlayerManager) {
+class GuildMusicManager(manager: AudioPlayerManager) {
 
-	var player: AudioPlayer
+	var player: AudioPlayer = manager.createPlayer()
 
-	var scheduler: TrackScheduler
+	var scheduler: TrackScheduler = TrackScheduler(player)
 
-	var sendHandler: AudioPlayerSendHandler
+	var sendHandler: AudioPlayerSendHandler = AudioPlayerSendHandler(player)
+
+	var commandChannelID: String? = null
 
 	init {
-		player = manager.createPlayer()
-		scheduler = TrackScheduler(player)
-		sendHandler = AudioPlayerSendHandler(player)
 		player.addListener(scheduler)
 	}
 

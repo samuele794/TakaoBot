@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ATMRSSScheduler - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.tpl.atm.RSS</a>&nbsp;/&nbsp;<a href="./index.html">ATMRSSScheduler</a><br/>
+<br/>
+<h1>ATMRSSScheduler</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">ATMRSSScheduler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../it.discordbot.command.pattern/-r-s-s-scheduler/index.html"><span class="identifier">RSSScheduler</span></a></code>
+<p>Classe per la schedulaziooe dei messaggi RSS di ATM</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ATMRSSScheduler</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Classe per la schedulaziooe dei messaggi RSS di ATM</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="atm-interface.html">atmInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">atmInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-a-t-m-interface/index.html"><span class="identifier">ATMInterface</span></a></code>
+<p>ATMInterface</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="atmrss-reader.html">atmrssReader</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">atmrssReader</span><span class="symbol">: </span><a href="../-a-t-m-r-s-s-reader/index.html"><span class="identifier">ATMRSSReader</span></a></code>
+<p>ATMRSSReader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="procedure-publish.html">procedurePublish</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">procedurePublish</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.tpl.atm.RSS.ATMRSSScheduler$procedurePublish(it.discordbot.beans.RSSMessage)/rssMessage">rssMessage</span><span class="symbol">:</span>&nbsp;<a href="../../it.discordbot.beans/-r-s-s-message/index.html"><span class="identifier">RSSMessage</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per la preparazione alla pubblicazione dei messaggi RSS</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="publish-message.html">publishMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">publishMessage</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.tpl.atm.RSS.ATMRSSScheduler$publishMessage(net.dv8tion.jda.core.entities.MessageEmbed, java.util.ArrayList((it.discordbot.beans.ServerToChannel)))/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageEmbed</span><span class="symbol">, </span><span class="identifier" id="it.discordbot.command.tpl.atm.RSS.ATMRSSScheduler$publishMessage(net.dv8tion.jda.core.entities.MessageEmbed, java.util.ArrayList((it.discordbot.beans.ServerToChannel)))/serversToChannel">serversToChannel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../../it.discordbot.beans/-server-to-channel/index.html"><span class="identifier">ServerToChannel</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Metodo per la pubblicazione dei messaggi</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="task-feed-r-s-s-a-t-m.html">taskFeedRSSATM</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">taskFeedRSSATM</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-a-t-m_-r-s-s_-l-i-n-k.html">ATM_RSS_LINK</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">ATM_RSS_LINK</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

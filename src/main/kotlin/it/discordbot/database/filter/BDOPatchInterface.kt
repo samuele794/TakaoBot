@@ -42,7 +42,7 @@ class BDOPatchInterface {
 
 	fun getLastBDOPatch(): String {
 
-		val bdoRSSPatch = rssLinkRepository.getFirstById().lastPatchBDO
+		val bdoRSSPatch = rssLinkRepository.lastBDOPatchLink
 
 		if (bdoRSSPatch == null) {
 			return ""
@@ -52,10 +52,8 @@ class BDOPatchInterface {
 
 	}
 
-	fun setLastPatch(linkPatch: String) {
-		val rssLink = rssLinkRepository.getFirstById()
-		rssLink.lastPatchBDO = linkPatch
-		rssLinkRepository.save(rssLink)
+	fun setLastPatch(link: String) {
+		rssLinkRepository.lastBDOPatchLink = link
 	}
 
 

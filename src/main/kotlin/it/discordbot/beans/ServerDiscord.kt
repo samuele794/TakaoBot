@@ -36,8 +36,8 @@ class ServerDiscord {
 	 * Simbolo di comando
 	 */
 
-	@Column(name = "`SIMBOL_COMMAND`")
-	var simbolCommand: String? = ""
+	@Column(name = "`SIMBOL_COMMAND`", columnDefinition = "varchar default '%'")
+	var simbolCommand: String? = "%"
 		get() = StringEscapeUtils.unescapeJava(field)
 		set(value) {
 			field = StringEscapeUtils.escapeJava(value)

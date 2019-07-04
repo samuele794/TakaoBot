@@ -8,16 +8,42 @@
 <a href="../index.html">it.discordbot.database.repository</a>&nbsp;/&nbsp;<a href="./index.html">RSSLinkRepository</a><br/>
 <br/>
 <h1>RSSLinkRepository</h1>
-<code><span class="keyword">interface </span><span class="identifier">RSSLinkRepository</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CrudRepository</span><span class="symbol">&lt;</span><a href="../../it.discordbot.beans/-r-s-s-link/index.html"><span class="identifier">RSSLink</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span></code>
-<h3>Functions</h3>
+<code><span class="keyword">interface </span><span class="identifier">RSSLinkRepository</span></code>
+<h3>Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="get-first-by-id.html">getFirstById</a></p>
+<p><a href="last-a-t-m-news-link.html">lastATMNewsLink</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getFirstById</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.database.repository.RSSLinkRepository$getFirstById(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a>&nbsp;<span class="symbol">=</span>&nbsp;1<span class="symbol">)</span><span class="symbol">: </span><a href="../../it.discordbot.beans/-r-s-s-link/index.html"><span class="identifier">RSSLink</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">lastATMNewsLink</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="last-b-d-o-news-link.html">lastBDONewsLink</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">lastBDONewsLink</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="last-b-d-o-patch-link.html">lastBDOPatchLink</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">lastBDOPatchLink</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../it.discordbot.database.filter/-r-s-s-link-interface/index.html">RSSLinkInterface</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">RSSLinkInterface</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">RSSLinkRepository</span></a></code></td>
 </tr>
 </tbody>
 </table>

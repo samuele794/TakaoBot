@@ -9,6 +9,7 @@
 <br/>
 <h1>BDOPatchRSSScheduler</h1>
 <code><span class="identifier">@Service</span> <span class="keyword">class </span><span class="identifier">BDOPatchRSSScheduler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../it.discordbot.command.pattern/-r-s-s-scheduler/index.html"><span class="identifier">RSSScheduler</span></a></code>
+<p>Scheduler RSS per le patch di BDO</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,7 +18,9 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">BDOPatchRSSScheduler</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+<code><span class="identifier">BDOPatchRSSScheduler</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Scheduler RSS per le patch di BDO</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -29,14 +32,25 @@
 <p><a href="bdo-patch-interface.html">bdoPatchInterface</a></p>
 </td>
 <td>
-<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdoPatchInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-b-d-o-patch-interface/index.html"><span class="identifier">BDOPatchInterface</span></a></code></td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdoPatchInterface</span><span class="symbol">: </span><a href="../../it.discordbot.database.filter/-b-d-o-patch-interface/index.html"><span class="identifier">BDOPatchInterface</span></a></code>
+<p>BDOPatchInterface</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="bdorss-reader.html">bdorssReader</a></p>
 </td>
 <td>
-<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdorssReader</span><span class="symbol">: </span><a href="../-b-d-o-r-s-s-reader/index.html"><span class="identifier">BDORSSReader</span></a></code></td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">bdorssReader</span><span class="symbol">: </span><a href="../-b-d-o-r-s-s-reader/index.html"><span class="identifier">BDORSSReader</span></a></code>
+<p>BDORSSReader</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="logger.html">logger</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">logger</span><span class="symbol">: </span><span class="identifier">Logger</span><span class="symbol">!</span></code></td>
 </tr>
 </tbody>
 </table>

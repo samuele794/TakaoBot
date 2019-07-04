@@ -1,5 +1,6 @@
 package it.discordbot.command.BDO.RSS
 
+import com.rometools.rome.io.FeedException
 import com.rometools.rome.io.SyndFeedInput
 import com.rometools.rome.io.XmlReader
 import it.discordbot.beans.RSSMessage
@@ -26,6 +27,7 @@ class BDORSSReader : RSSReader {
 	 * @param url Url da cui bisogna leggere il feed
 	 * @return Ultimo feed registrato
 	 */
+	@Throws(FeedException::class)
 	override fun readRSS(url: String): RSSMessage {
 
 		var title: String

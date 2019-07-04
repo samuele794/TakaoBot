@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>LoremPicsumCommand - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">it.discordbot.command.image.lorempicsum</a>&nbsp;/&nbsp;<a href="./index.html">LoremPicsumCommand</a><br/>
+<br/>
+<h1>LoremPicsumCommand</h1>
+<code><span class="identifier">@Scope</span><span class="symbol">(</span>"singleton"<span class="symbol">)</span> <span class="identifier">@Component</span> <span class="keyword">class </span><span class="identifier">LoremPicsumCommand</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">LoremPicsumCommand</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="image-command-proxy.html">imageCommandProxy</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">imageCommandProxy</span><span class="symbol">: </span><a href="../../it.discordbot.beans.image/-image-command-proxy/index.html"><span class="identifier">ImageCommandProxy</span></a></code>
+<p>ImageCommandProxy</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="lorem-picsum-retreiver.html">loremPicsumRetreiver</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">loremPicsumRetreiver</span><span class="symbol">: </span><a href="../-lorem-picsum-retreiver/index.html"><span class="identifier">LoremPicsumRetreiver</span></a></code>
+<p>LoremPicsumRetreiver</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="state-machines.html">stateMachines</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">stateMachines</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../../it.discordbot.command.pattern/-state-machine/index.html"><span class="identifier">StateMachine</span></a><span class="symbol">&gt;</span></code>
+<p>HashMap&lt;String, StateMachine&gt; mappa per contenere le macchine a stati</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="custom-picsum.html">customPicsum</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">customPicsum</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.image.lorempicsum.LoremPicsumCommand$customPicsum(net.dv8tion.jda.core.events.message.MessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="get-random-picsum-image.html">getRandomPicsumImage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getRandomPicsumImage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-guild-message-reaction-add.html">onGuildMessageReactionAdd</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onGuildMessageReactionAdd</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.image.lorempicsum.LoremPicsumCommand$onGuildMessageReactionAdd(net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">GuildMessageReactionAddEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-guild-message-received.html">onGuildMessageReceived</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onGuildMessageReceived</span><span class="symbol">(</span><span class="identifier" id="it.discordbot.command.image.lorempicsum.LoremPicsumCommand$onGuildMessageReceived(net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<span class="identifier">GuildMessageReceivedEvent</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
