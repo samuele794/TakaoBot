@@ -3,9 +3,9 @@ package it.discordbot.command.BDO.boss
 import it.discordbot.beans.bdo.boss.Boss
 import it.discordbot.beans.bdo.boss.Giorno
 import it.discordbot.core.JDAController
-import it.discordbot.core.TakaoLog
 import it.discordbot.database.filter.BDOBossInterface
 import net.dv8tion.jda.api.MessageBuilder
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
@@ -21,6 +21,8 @@ import java.util.concurrent.TimeUnit
 @Scope("singleton")
 @Component
 class BossUtil {
+
+    private val logger = LoggerFactory.getLogger(BossUtil::class.java)
 
     @Autowired
     lateinit var bdoBossInterface: BDOBossInterface
@@ -173,7 +175,7 @@ class BossUtil {
 								it.delete().queueAfter(10, TimeUnit.MINUTES)
 							}
                 }catch (ex:Exception){
-					TakaoLog.logError("${BossUtil::class.simpleName} ATTENZIONE Rilevata Guild non più disponibile, verificare esattezza id ${serverChannel.serverID} $ex")
+                    logger.error("${BossUtil::class.simpleName} ATTENZIONE Rilevata Guild non più disponibile, verificare esattezza id ${serverChannel.serverID} $ex")
 				}
             }
 

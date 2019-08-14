@@ -1,17 +1,12 @@
 package it.discordbot.command.BDO.RSS
 
 import it.discordbot.beans.RSSMessage
-import it.discordbot.beans.ServerToChannel
 import it.discordbot.command.base.RSSScheduler
-import it.discordbot.core.JDAController
-import it.discordbot.core.TakaoLog
 import it.discordbot.database.filter.BDONewsInterface
-import net.dv8tion.jda.api.entities.MessageEmbed
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
-import java.util.*
 
 /**
  * Classe per la schedulaziooe dei messaggi di news di BDO
@@ -43,12 +38,12 @@ class BDONewsRSSScheduler : RSSScheduler {
 		} catch (ex: Exception) {
 			logger.error("Problemi Lettura FeedRSS News BDO. È Mercoledì?")
 		}
-		TakaoLog.logInfo("BDO NEWS LINK= " + rssNewsMessage!!.link)
+		logger.info("BDO NEWS LINK= " + rssNewsMessage!!.link)
 		val newsBDO = bdoNewsInterface.getLastBDONews()
 		if (newsBDO != "") {
 			if (bdorssReader.isNew(rssNewsMessage.link, newsBDO)) {
 				procedurePublish(rssNewsMessage)
-				TakaoLog.logInfo("PROCESSAZIONE BDO NEWS LINK= " + rssNewsMessage.link)
+				logger.info("PROCESSAZIONE BDO NEWS LINK= " + rssNewsMessage.link)
 			}
 		} else {
 			procedurePublish(rssNewsMessage)

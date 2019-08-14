@@ -1,18 +1,18 @@
 package it.discordbot.beans.image
 
-import it.discordbot.command.image.lorempicsum.LoremPicsumRetreiver
 import it.discordbot.command.base.StateMachine
+import it.discordbot.command.image.lorempicsum.LoremPicsumRetreiver
 import it.discordbot.core.EmojiContainer.Companion.NO
 import it.discordbot.core.EmojiContainer.Companion.YES
 import it.discordbot.core.JDAController
 import it.discordbot.core.JDAController.Companion.jda
-import it.discordbot.core.TakaoLog
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.TextChannel
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
@@ -42,6 +42,8 @@ class LoremPicsumStateMachine : StateMachine {
 
 	@Autowired
 	lateinit var loremPicsumRetreiver: LoremPicsumRetreiver
+
+    private val logger = LoggerFactory.getLogger(LoremPicsumStateMachine::class.java)
 
 	lateinit var channel: TextChannel
 	lateinit var authorID: String
@@ -305,7 +307,7 @@ class LoremPicsumStateMachine : StateMachine {
 				it.delete().queueAfter(10, TimeUnit.SECONDS)
 			}
 		}catch (ex:Exception){
-			TakaoLog.logError("${LoremPicsumStateMachine::class.simpleName} errore ottenimento User $ex")
+            logger.error("Errore ottenimento User $ex")
 		}
 	}
 }

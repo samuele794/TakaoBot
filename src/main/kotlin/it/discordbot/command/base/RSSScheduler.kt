@@ -2,16 +2,16 @@ package it.discordbot.command.base
 
 import it.discordbot.beans.RSSMessage
 import it.discordbot.beans.ServerToChannel
-import it.discordbot.command.BDO.RSS.BDONewsRSSScheduler
 import it.discordbot.core.JDAController
-import it.discordbot.core.TakaoLog
 import net.dv8tion.jda.api.entities.MessageEmbed
 
 /**
  * Interfaccia base per i metodi di pubblicazione dei messaggi RSS
  */
+
 interface RSSScheduler {
-	/**
+
+    /**
 	 * Metodo per la preparazione alla pubblicazione dei messaggi RSS
 	 * @param rssMessage RSSMessage messaggio RSS
 	 */
@@ -30,7 +30,7 @@ interface RSSScheduler {
 						?.sendMessage(message)!!
 						.queue()
 			}catch (ex:Exception){
-				TakaoLog.logError("Errore pubblicazione messaggi schedulazione RSS $ex")
+                JDAController.logger.error("Errore pubblicazione messaggi schedulazione RSS $ex")
 			}
 
 		}
