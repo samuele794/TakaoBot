@@ -3,9 +3,9 @@ package it.discordbot.command.tpl.atm.RSS
 import com.rometools.rome.io.SyndFeedInput
 import com.rometools.rome.io.XmlReader
 import it.discordbot.beans.RSSMessage
-import it.discordbot.command.pattern.RSSReader
-import net.dv8tion.jda.core.EmbedBuilder
-import net.dv8tion.jda.core.entities.MessageEmbed
+import it.discordbot.command.base.RSSReader
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.springframework.context.annotation.Scope

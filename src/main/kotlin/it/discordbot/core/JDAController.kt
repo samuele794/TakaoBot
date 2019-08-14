@@ -8,9 +8,9 @@ import it.discordbot.command.image.ImagesCommand
 import it.discordbot.command.music.MusicCommand
 import it.discordbot.command.tpl.atm.ATMCommand
 import it.discordbot.test.TestCommand
-import net.dv8tion.jda.core.JDA
-import net.dv8tion.jda.core.JDABuilder
-import net.dv8tion.jda.core.Permission
+import net.dv8tion.jda.api.JDA
+import net.dv8tion.jda.api.JDABuilder
+import net.dv8tion.jda.api.Permission
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ExitCodeGenerator
@@ -75,7 +75,7 @@ class JDAController : ExitCodeGenerator {
 			addEventListener(imagesCommand)
 		}
 		TakaoLog.logInfo("BOT AVVIATO")
-		TakaoLog.logInfo(jda.asBot().getInviteUrl(Permission.ADMINISTRATOR))
+		TakaoLog.logInfo(jda.getInviteUrl(Permission.ADMINISTRATOR))
 	}
 
 	override fun getExitCode(): Int {

@@ -1,8 +1,7 @@
-package it.discordbot.command.pattern
+package it.discordbot.command.base
 
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent
-import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent
-
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
 interface StateMachine {
 	/**
 	 * Updates the state of this finite state machine.

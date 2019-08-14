@@ -3,8 +3,8 @@ package it.discordbot.command.music
 import it.discordbot.command.checkCommand
 import it.discordbot.command.music.config.MusicManager
 import it.discordbot.database.filter.ServerManagementInterface
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.hooks.ListenerAdapter
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -19,8 +19,8 @@ class MusicCommand : ListenerAdapter() {
 	@Autowired
 	lateinit var musicManager: MusicManager
 
-	override fun onMessageReceived(event: MessageReceivedEvent?) {
-		if (event!!.author.isBot) return
+	override fun onMessageReceived(event: MessageReceivedEvent) {
+		if (event.author.isBot) return
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 

@@ -6,9 +6,9 @@ import it.discordbot.command.rejectCommand
 import it.discordbot.command.tpl.atm.girocitta.status.ATMMetroStatus
 import it.discordbot.database.filter.ATMInterface
 import it.discordbot.database.filter.ServerManagementInterface
-import net.dv8tion.jda.core.MessageBuilder
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.hooks.ListenerAdapter
+import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -48,8 +48,8 @@ class ATMCommand : ListenerAdapter() {
 
 	}
 
-	override fun onMessageReceived(event: MessageReceivedEvent?) {
-		if (event!!.author.isBot) return
+	override fun onMessageReceived(event: MessageReceivedEvent) {
+		if (event.author.isBot) return
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 
@@ -70,10 +70,10 @@ class ATMCommand : ListenerAdapter() {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {
-					val removedChannelID = atmInterface.removeATMAlertChannel(event.guild.id)
+					val removedChannelID = atmInterface.removeATMAlertChannel(event.guild.id)!!
 					MessageBuilder().apply {
 						append("Invio degli avvisi dell'ATM rimosso dal canale: ")
-						appendCodeBlock(event.jda.getTextChannelById(removedChannelID).name, "")
+						appendCodeBlock(event.jda.getTextChannelById(removedChannelID)!!.name, "")
 					}.sendTo(event.channel).queue()
 				}
 			}

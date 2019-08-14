@@ -2,10 +2,10 @@ package it.discordbot.command.tpl.atm.RSS
 
 import it.discordbot.beans.RSSMessage
 import it.discordbot.beans.ServerToChannel
-import it.discordbot.command.pattern.RSSScheduler
+import it.discordbot.command.base.RSSScheduler
 import it.discordbot.core.JDAController
 import it.discordbot.database.filter.ATMInterface
-import net.dv8tion.jda.core.entities.MessageEmbed
+import net.dv8tion.jda.api.entities.MessageEmbed
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.scheduling.annotation.Scheduled
@@ -51,15 +51,6 @@ class ATMRSSScheduler : RSSScheduler {
 		publishMessage(messageEmbed, serverList)
 		atmInterface.setLastATMAlert(rssMessage.link)
 
-	}
-
-	override fun publishMessage(message: MessageEmbed, serversToChannel: ArrayList<ServerToChannel>) {
-		for (obj in serversToChannel) {
-			JDAController.jda.getGuildById(obj.serverID)
-					.getTextChannelById(obj.channelID)
-					.sendMessage(message)
-					.queue()
-		}
 	}
 
 }

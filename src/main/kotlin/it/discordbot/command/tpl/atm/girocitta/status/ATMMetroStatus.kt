@@ -2,9 +2,9 @@ package it.discordbot.command.tpl.atm.girocitta.status
 
 import it.discordbot.beans.atm.LineaMetroATM
 import it.discordbot.beans.atm.MetroDirezioneStatus
-import net.dv8tion.jda.core.MessageBuilder
-import net.dv8tion.jda.core.entities.Message
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.entities.Message
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
@@ -58,7 +58,7 @@ class ATMMetroStatus {
 	}
 
 
-	fun prepareMessage(listaStatusLinee: ArrayList<LineaMetroATM>): Message? {
+	fun prepareMessage(listaStatusLinee: ArrayList<LineaMetroATM>): Message {
 		val format = "%1\$-20s %2\$5s \n"
 
 		val messageString = StringBuilder()

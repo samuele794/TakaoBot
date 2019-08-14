@@ -7,10 +7,10 @@ import it.discordbot.database.filter.BDOBossInterface
 import it.discordbot.database.filter.BDONewsInterface
 import it.discordbot.database.filter.BDOPatchInterface
 import it.discordbot.database.filter.ServerManagementInterface
-import net.dv8tion.jda.core.EmbedBuilder
-import net.dv8tion.jda.core.MessageBuilder
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.hooks.ListenerAdapter
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -72,8 +72,8 @@ class BDOCommand : ListenerAdapter() {
 
 	}
 
-	override fun onMessageReceived(event: MessageReceivedEvent?) {
-		if (event!!.author.isBot) return
+	override fun onMessageReceived(event: MessageReceivedEvent) {
+		if (event.author.isBot) return
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 
@@ -155,7 +155,7 @@ class BDOCommand : ListenerAdapter() {
 	private fun sendMessageRemoveChannel(event: MessageReceivedEvent, message: String, channelID: String) {
 		MessageBuilder().apply {
 			append(message)
-			appendCodeBlock(event.jda.getTextChannelById(channelID).name, "")
+			appendCodeBlock(event.jda.getTextChannelById(channelID)!!.name, "")
 		}.sendTo(event.textChannel).queue()
 	}
 

@@ -1,7 +1,7 @@
-package it.discordbot.command.pattern
+package it.discordbot.command.base
 
 import it.discordbot.beans.RSSMessage
-import net.dv8tion.jda.core.entities.MessageEmbed
+import net.dv8tion.jda.api.entities.MessageEmbed
 
 /**
  * Interfaccia per la lettura e la conversione

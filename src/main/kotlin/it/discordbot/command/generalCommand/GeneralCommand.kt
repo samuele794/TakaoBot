@@ -8,12 +8,12 @@ import it.discordbot.command.rejectCommand
 import it.discordbot.command.tpl.atm.ATMCommand
 import it.discordbot.core.JDAController
 import it.discordbot.database.filter.ServerManagementInterface
-import net.dv8tion.jda.core.EmbedBuilder
-import net.dv8tion.jda.core.MessageBuilder
-import net.dv8tion.jda.core.entities.ChannelType
-import net.dv8tion.jda.core.entities.MessageEmbed
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.hooks.ListenerAdapter
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.entities.ChannelType
+import net.dv8tion.jda.api.entities.MessageEmbed
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -48,9 +48,9 @@ class GeneralCommand : ListenerAdapter() {
 
 	}
 
-	override fun onMessageReceived(event: MessageReceivedEvent?) {
+	override fun onMessageReceived(event: MessageReceivedEvent) {
 
-		if (event!!.author.isBot) return
+		if (event.author.isBot) return
 		if (event.isFromType(ChannelType.PRIVATE)) return
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
@@ -114,7 +114,7 @@ class GeneralCommand : ListenerAdapter() {
 				"Link utili: \n" +
 				"- Sito web: https://samuele794.github.io/TakaoBot/"
 
-		val avatarUrl = JDAController.jda.getUserById("186582756841488385").avatarUrl
+		val avatarUrl = JDAController.jda.getUserById("186582756841488385")!!.avatarUrl
 
 		return EmbedBuilder().apply {
 			setImage("https://samuele794.github.io/TakaoBot/images/Copertina.png")

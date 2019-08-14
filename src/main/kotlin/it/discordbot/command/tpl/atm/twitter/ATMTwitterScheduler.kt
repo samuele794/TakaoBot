@@ -8,7 +8,7 @@ import it.discordbot.core.JDAController
 import it.discordbot.core.TakaoLog
 import it.discordbot.core.TwitterManager
 import it.discordbot.database.filter.ATMInterface
-import net.dv8tion.jda.core.EmbedBuilder
+import net.dv8tion.jda.api.EmbedBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -139,9 +139,10 @@ class ATMTwitterScheduler {
 			val serverList = atmInterface.getATMAlertChannels()
 			for (server in serverList) {
 				JDAController.jda.getGuildById(server.serverID)
-						.getTextChannelById(server.channelID)
-						.sendMessage(message)
-						.queue()
+						?.getTextChannelById(server.channelID)
+						?.sendMessage(message)
+						?.queue()
+				//TODO GENERALIZZARE IL METODO DI PUBBLICAZIONE
 			}
 		}
 	}

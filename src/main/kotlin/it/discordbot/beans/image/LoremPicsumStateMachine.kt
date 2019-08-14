@@ -1,17 +1,18 @@
 package it.discordbot.beans.image
 
 import it.discordbot.command.image.lorempicsum.LoremPicsumRetreiver
-import it.discordbot.command.pattern.StateMachine
+import it.discordbot.command.base.StateMachine
 import it.discordbot.core.EmojiContainer.Companion.NO
 import it.discordbot.core.EmojiContainer.Companion.YES
 import it.discordbot.core.JDAController
 import it.discordbot.core.JDAController.Companion.jda
-import net.dv8tion.jda.core.EmbedBuilder
-import net.dv8tion.jda.core.entities.TextChannel
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent
-import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent
-import net.dv8tion.jda.core.events.message.react.MessageReactionAddEvent
+import it.discordbot.core.TakaoLog
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.TextChannel
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
+import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
@@ -76,7 +77,7 @@ class LoremPicsumStateMachine : StateMachine {
 	fun startMachina() {
 		customDimensionMessageSend()
 		JDAController.eventWaiter.waitForEvent(MessageReactionAddEvent::class.java,
-				{ e -> e.member.user.id == authorID && e.textChannel == channel && e.messageId == messageID },
+				{ e -> e.member!!.user.id == authorID && e.textChannel == channel && e.messageId == messageID },
 				{ e ->
 					when {
 						e.reactionEmote.name == YES -> {
@@ -142,7 +143,7 @@ class LoremPicsumStateMachine : StateMachine {
 			2 -> {
 				//attesa risposta scala grigi
 				JDAController.eventWaiter.waitForEvent(MessageReactionAddEvent::class.java,
-						{ e -> e.member.user == eventGuiltReaction?.user && e.textChannel == eventGuiltReaction?.channel && e.messageId == messageID },
+						{ e -> e.member!!.user == eventGuiltReaction?.user && e.textChannel == eventGuiltReaction.channel && e.messageId == messageID },
 
 						{ e ->
 							when {
@@ -173,7 +174,7 @@ class LoremPicsumStateMachine : StateMachine {
 			3 -> {
 				//attesa risposta sfocatura
 				JDAController.eventWaiter.waitForEvent(MessageReactionAddEvent::class.java,
-						{ e -> e.member.user == eventGuiltReaction?.user && e.textChannel == eventGuiltReaction?.channel && e.messageId == messageID },
+						{ e -> e.member!!.user == eventGuiltReaction?.user && e.textChannel == eventGuiltReaction.channel && e.messageId == messageID },
 						{ e ->
 							when {
 								e.reactionEmote.name == YES -> {
@@ -291,16 +292,20 @@ class LoremPicsumStateMachine : StateMachine {
 	}
 
 	private fun sendMessageConfiguration() {
-		val message = EmbedBuilder().apply {
-			setTitle("Parametri LoremPicsum")
-			setColor(color)
-			setAuthor(jda.getUserById(authorID).name, null, jda.getUserById(authorID).avatarUrl)
-			addField("Dimensioni", width.toString() + "x" + height.toString(), true)
-			addField("Scala di grigi", grayScale.toString(), true)
-			addField("Grado di sfocatura", blur.toString(), true)
-		}.build()
-		channel.sendMessage(message).queue {
-			it.delete().queueAfter(10, TimeUnit.SECONDS)
+		try {
+			val message = EmbedBuilder().apply {
+				setTitle("Parametri LoremPicsum")
+				setColor(color)
+				setAuthor(jda.getUserById(authorID)!!.name, null, jda.getUserById(authorID)!!.avatarUrl)
+				addField("Dimensioni", width.toString() + "x" + height.toString(), true)
+				addField("Scala di grigi", grayScale.toString(), true)
+				addField("Grado di sfocatura", blur.toString(), true)
+			}.build()
+			channel.sendMessage(message).queue {
+				it.delete().queueAfter(10, TimeUnit.SECONDS)
+			}
+		}catch (ex:Exception){
+			TakaoLog.logError("${LoremPicsumStateMachine::class.simpleName} errore ottenimento User $ex")
 		}
 	}
 }

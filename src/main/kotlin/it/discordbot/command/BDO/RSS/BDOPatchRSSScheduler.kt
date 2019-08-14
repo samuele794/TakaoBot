@@ -2,11 +2,11 @@ package it.discordbot.command.BDO.RSS
 
 import it.discordbot.beans.RSSMessage
 import it.discordbot.beans.ServerToChannel
-import it.discordbot.command.pattern.RSSScheduler
+import it.discordbot.command.base.RSSScheduler
 import it.discordbot.core.JDAController
 import it.discordbot.core.TakaoLog
 import it.discordbot.database.filter.BDOPatchInterface
-import net.dv8tion.jda.core.entities.MessageEmbed
+import net.dv8tion.jda.api.entities.MessageEmbed
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.scheduling.annotation.Scheduled
@@ -59,14 +59,6 @@ class BDOPatchRSSScheduler : RSSScheduler {
 		val listNewsChannel = bdoPatchInterface.getBDOPatchChannels()
 		publishMessage(patchMessage, listNewsChannel)
 		bdoPatchInterface.setLastPatch(rssMessage.link) //salvataggio su db
-	}
-
-	override fun publishMessage(message: MessageEmbed, serversToChannel: ArrayList<ServerToChannel>) {
-		for (obj in serversToChannel) {
-			JDAController.jda.getGuildById(obj.serverID)
-					.getTextChannelById(obj.channelID)
-					.sendMessage(message).queue()
-		}
 	}
 
 }

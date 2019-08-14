@@ -1,8 +1,8 @@
 package it.discordbot.command
 
-import net.dv8tion.jda.core.Permission
-import net.dv8tion.jda.core.entities.ChannelType
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.ChannelType
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import org.jetbrains.annotations.NotNull
 
 /**
@@ -41,7 +41,7 @@ fun checkCommand(@NotNull event: MessageReceivedEvent,
  * @return Boolean True, l'utente ha permessi amministrativi
  */
 fun checkAdminPermission(event: MessageReceivedEvent): Boolean {
-	return event.guild.getMember(event.author).hasPermission(Permission.ADMINISTRATOR)
+	return event.guild.getMember(event.author)!!.hasPermission(Permission.ADMINISTRATOR)
 }
 
 /**

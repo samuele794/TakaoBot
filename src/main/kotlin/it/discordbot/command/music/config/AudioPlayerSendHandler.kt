@@ -2,7 +2,8 @@ package it.discordbot.command.music.config
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer
 import com.sedmelluq.discord.lavaplayer.track.playback.AudioFrame
-import net.dv8tion.jda.core.audio.AudioSendHandler
+import net.dv8tion.jda.api.audio.AudioSendHandler
+import java.nio.ByteBuffer
 
 
 class AudioPlayerSendHandler(val audioPlayer: AudioPlayer) : AudioSendHandler {
@@ -16,15 +17,8 @@ class AudioPlayerSendHandler(val audioPlayer: AudioPlayer) : AudioSendHandler {
 		return lastFrame != null
 	}
 
-	override fun provide20MsAudio(): ByteArray? {
-		if (lastFrame == null) {
-			lastFrame = audioPlayer.provide()
-		}
-
-		val data = if (lastFrame != null) lastFrame!!.data else null
-		lastFrame = null
-
-		return data
+	override fun provide20MsAudio(): ByteBuffer{
+		return ByteBuffer.wrap(lastFrame!!.data)
 	}
 
 	override fun isOpus(): Boolean {

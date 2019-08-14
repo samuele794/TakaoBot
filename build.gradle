@@ -5,6 +5,7 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '4.0.4'
+    id 'com.sedmelluq.jdaction' version '1.0.2'
     id 'org.jetbrains.dokka' version '0.9.18'
 }
 
@@ -91,8 +92,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
 //    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.1.5.RELEASE'
 
-    implementation 'net.dv8tion:JDA:3.8.3_463'
-    implementation 'com.jagrosh:jda-utilities:2.1.5'
+    implementation 'net.dv8tion:JDA:4.0.0_39'
+    implementation 'com.jagrosh:jda-utilities:3.0.1'
 
     //RSS + HTML PARSER
     // https://mvnrepository.com/artifact/com.rometools/rome
