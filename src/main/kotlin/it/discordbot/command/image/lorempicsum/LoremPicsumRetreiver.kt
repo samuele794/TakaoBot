@@ -1,15 +1,14 @@
 package it.discordbot.command.image.lorempicsum
 
 import it.discordbot.command.image.lorempicsum.connection.LoremPicsumService
-import okhttp3.OkHttpClient
 import org.springframework.stereotype.Component
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 /**
  * Classe che si occupa di ottenere il link delle immagini dal LoremPicsum
  * @property URL_BASE String
- * @property client OkHttpClient
  */
 @Component
 class LoremPicsumRetreiver {
@@ -27,29 +26,30 @@ class LoremPicsumRetreiver {
 			.build()
 			.create(LoremPicsumService::class.java)
 
-
-	private val client = OkHttpClient()
-
 	fun getImagePicsum(width: Int = baseWidth, height: Int = baseHeight, grayScale: Boolean = false, blur: Int = 0): String {
 		var urlImage = ""
 		when {
 			!grayScale && blur == 0 -> {
-				urlImage = retrofitClient.getImageRandom(width, height).execute().raw().request().url().toString()
+				urlImage = retrofitClient.getImageRandom(width, height).execute().getRequestUrl()
 			}
 
 			grayScale && blur == 0 -> {
-				urlImage = retrofitClient.getImageRandomGrayScale(width, height).execute().raw().request().url().toString()
+				urlImage = retrofitClient.getImageRandomGrayScale(width, height).execute().getRequestUrl()
 			}
 
 			grayScale && blur != 0 -> {
-				urlImage = retrofitClient.getImageRandomGrayScaleBlur(width, height, blur).execute().raw().request().url().toString()
-			}
+				urlImage = retrofitClient.getImageRandomGrayScaleBlur(width, height, blur).execute().getRequestUrl()
 
+			}
 		}
 
 		return urlImage
 
 	}
 
+	private fun <T> Response<T>.getRequestUrl(): String {
+		return this.raw().request().url().toString()
+	}
 
 }
+
