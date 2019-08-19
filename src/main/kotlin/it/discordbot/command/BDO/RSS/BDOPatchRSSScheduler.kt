@@ -1,17 +1,12 @@
 package it.discordbot.command.BDO.RSS
 
 import it.discordbot.beans.RSSMessage
-import it.discordbot.beans.ServerToChannel
 import it.discordbot.command.base.RSSScheduler
-import it.discordbot.core.JDAController
-import it.discordbot.core.TakaoLog
 import it.discordbot.database.filter.BDOPatchInterface
-import net.dv8tion.jda.api.entities.MessageEmbed
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
-import java.util.*
 
 /**
  * Scheduler RSS per le patch di BDO
@@ -45,7 +40,7 @@ class BDOPatchRSSScheduler : RSSScheduler {
 		if (patchBDO != "") {
 			if (bdorssReader.isNew(rssPatchMessage!!.link, patchBDO)) {
 				procedurePublish(rssPatchMessage)
-				TakaoLog.logInfo("PROCESSAZIONE BDO PATCH LINK= " + rssPatchMessage.link)
+                logger.info("PROCESSAZIONE BDO PATCH LINK= " + rssPatchMessage.link)
 			}
 
 		} else {
