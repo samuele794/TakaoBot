@@ -2,7 +2,9 @@ package it.discordbot.command.BDO.RSS
 
 import it.discordbot.beans.RSSMessage
 import it.discordbot.command.base.RSSScheduler
+import it.discordbot.core.JDAController
 import it.discordbot.database.filter.BDOPatchInterface
+import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.scheduling.annotation.Scheduled
@@ -52,7 +54,14 @@ class BDOPatchRSSScheduler : RSSScheduler {
 	override fun procedurePublish(rssMessage: RSSMessage) {
 		val patchMessage = bdorssReader.prepareRSStoMessageEmbed(rssMessage)   //ottieni il messaggio embedded
 		val listNewsChannel = bdoPatchInterface.getBDOPatchChannels()
-		publishMessage(patchMessage, listNewsChannel)
+		try {
+			publishMessage(patchMessage, listNewsChannel)
+		} catch (ex: InsufficientPermissionException) {
+			JDAController.logger.debug("""
+				Cancellazione canale BDOPatch
+				serverId = ${ex.guildId}""".trimIndent())
+			bdoPatchInterface.removeBDOPatchChannel(ex.guildId.toString())
+		}
 		bdoPatchInterface.setLastPatch(rssMessage.link) //salvataggio su db
 	}
 
