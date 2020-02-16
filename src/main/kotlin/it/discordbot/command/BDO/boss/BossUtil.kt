@@ -5,6 +5,7 @@ import it.discordbot.beans.bdo.boss.Giorno
 import it.discordbot.core.JDAController
 import it.discordbot.database.filter.BDOBossInterface
 import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.entities.Message
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
@@ -169,11 +170,11 @@ class BossUtil {
 
             for (serverChannel in listServerChannel) {
                 try {
-					JDAController.jda.getGuildById(serverChannel.serverID)!!.getTextChannelById(serverChannel.channelID)
-							?.sendMessage(message)
-							?.queue {
-								it.delete().queueAfter(10, TimeUnit.MINUTES)
-							}
+                    JDAController.jda.getGuildById(serverChannel.serverID)!!
+                            .getTextChannelById(serverChannel.channelID)
+                            ?.sendMessage(message)
+                            ?.delay(10, TimeUnit.MINUTES)
+                            ?.flatMap { message.delete() }
                 }catch (ex:Exception){
                     logger.error("${BossUtil::class.simpleName} ATTENZIONE Rilevata Guild non più disponibile, verificare esattezza id ${serverChannel.serverID} $ex")
 				}
