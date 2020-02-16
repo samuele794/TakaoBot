@@ -23,13 +23,9 @@ fun checkCommand(@NotNull event: MessageReceivedEvent,
 	val commandEvent = event.message.contentRaw.split(" ")[0].toLowerCase()
 
 	return if (!event.isFromType(ChannelType.PRIVATE)) {
-		if (commandEvent == completeCommand ||
+		commandEvent == completeCommand ||
 				event.message.isMentioned(event.jda.selfUser) &&
-				event.message.contentRaw.contains(commandName, true)) {
-			true
-		} else {
-			false
-		}
+				event.message.contentRaw.contains(commandName, true)
 	} else {
 		false
 	}
