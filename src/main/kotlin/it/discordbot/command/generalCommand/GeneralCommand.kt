@@ -81,7 +81,7 @@ class GeneralCommand : ListenerAdapter() {
 
 		return EmbedBuilder().apply {
 			setTitle("Lista Comandi")
-			setColor(Color(132, 197, 251))
+			setColor(Color(130, 195, 250))
 			setDescription("Questi comandi possono essere usati menzionando il bot e scrivendo il comando senza simbolo,"
 					+ "oppure usando i comandi direttamente come segue:")
 			addField(symbolCommand + INFO_COMMAND, INFO_COMMAND_DESCRIPTION, false)

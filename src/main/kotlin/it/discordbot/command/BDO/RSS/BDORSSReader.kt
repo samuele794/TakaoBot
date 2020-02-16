@@ -91,14 +91,14 @@ class BDORSSReader : RSSReader {
 			return EmbedBuilder().apply {
 				setTitle(message.title, message.link)
 				setDescription(body)
-				setColor(Color(131, 196, 250))
+				setColor(Color(130, 195, 250))
 				setImage(imageUrl)
 			}.build()
 		} else {
 			return EmbedBuilder().apply {
 				setTitle(message.title, message.link)
 				setDescription(body)
-				setColor(Color(131, 196, 250))
+				setColor(Color(130, 195, 250))
 			}.build()
 		}
 	}
