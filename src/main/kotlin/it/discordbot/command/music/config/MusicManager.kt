@@ -32,7 +32,7 @@ class MusicManager {
 	init {
 		playerManager = DefaultAudioPlayerManager()
 		playerManager.registerSourceManager(YoutubeAudioSourceManager())
-		playerManager.registerSourceManager(SoundCloudAudioSourceManager())
+		playerManager.registerSourceManager(SoundCloudAudioSourceManager.createDefault())
 //		playerManager.registerSourceManager(new BandcampAudioSourceManager());
 //		playerManager.registerSourceManager(new VimeoAudioSourceManager());
 		playerManager.registerSourceManager(TwitchStreamAudioSourceManager())
