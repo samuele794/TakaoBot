@@ -108,7 +108,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.4.RELEASE'
 
-    implementation 'net.dv8tion:JDA:4.1.1_108'
+    implementation 'net.dv8tion:JDA:4.1.1_110'
     implementation 'com.jagrosh:jda-utilities:3.0.2'
 
     //RSS + HTML PARSER
