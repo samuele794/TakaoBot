@@ -1,7 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '2.2.4.RELEASE'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.61'
-    id 'org.jetbrains.kotlin.plugin.spring' version '1.3.61'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.70'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.3.70'
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
@@ -10,6 +10,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
 
 group = 'it.github.samuele794.takaobot'
 version = '2.0.1'
@@ -137,8 +138,21 @@ dependencies {
     implementation 'com.sedmelluq:lavaplayer:1.3.34'
 
     //connection
-    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.6.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.7.2'
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-jackson
+    compile group: 'com.squareup.retrofit2', name: 'converter-jackson', version: '2.7.2'
+
+    // https://mvnrepository.com/artifact/org.eclipse.mylyn.github/org.eclipse.egit.github.core
+    compile group: 'org.eclipse.mylyn.github', name: 'org.eclipse.egit.github.core', version: '2.1.5'
+
+    // https://mvnrepository.com/artifact/org.jfree/jfreechart
+    compile group: 'org.jfree', name: 'jfreechart', version: '1.5.0'
+
+
+
+
 }
 
 compileKotlin {
