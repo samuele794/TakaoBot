@@ -2,6 +2,7 @@ package it.discordbot.core
 
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter
 import it.discordbot.command.BDO.BDOCommand
+import it.discordbot.command.covid.CovidCommand
 import it.discordbot.command.generalCommand.GeneralCommand
 import it.discordbot.command.generalCommand.JoinListener
 import it.discordbot.command.image.ImagesCommand
@@ -63,6 +64,9 @@ class JDAController : ExitCodeGenerator {
 	@Autowired
 	lateinit var imagesCommand: ImagesCommand
 
+	@Autowired
+	lateinit var covidCommand: CovidCommand
+
 
 	@PostConstruct
 	fun init() {
@@ -75,6 +79,7 @@ class JDAController : ExitCodeGenerator {
 			addEventListener(atmCommand)
 			addEventListener(musicCommand)
 			addEventListener(imagesCommand)
+			addEventListener(covidCommand)
 		}
 		logger.info("BOT AVVIATO")
 		logger.info(jda.getInviteUrl(Permission.ADMINISTRATOR))

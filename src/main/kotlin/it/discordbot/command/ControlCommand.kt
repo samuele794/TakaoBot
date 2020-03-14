@@ -20,12 +20,16 @@ fun checkCommand(@NotNull event: MessageReceivedEvent,
 				 @NotNull commandName: String): Boolean {
 
 	val completeCommand = simbolCommand + commandName.toLowerCase()
-	val commandEvent = event.message.contentRaw.split(" ")[0].toLowerCase()
+
 
 	return if (!event.isFromType(ChannelType.PRIVATE)) {
+		val commandEvent = if (event.message.isMentioned(event.jda.selfUser)) {
+			event.message.contentRaw.split(" ")[1].toLowerCase()
+		} else {
+			event.message.contentRaw.split(" ")[0].toLowerCase()
+		}
 		commandEvent == completeCommand ||
-				event.message.isMentioned(event.jda.selfUser) &&
-				event.message.contentRaw.contains(commandName, true)
+				commandEvent.startsWith(commandName, true)
 	} else {
 		false
 	}
