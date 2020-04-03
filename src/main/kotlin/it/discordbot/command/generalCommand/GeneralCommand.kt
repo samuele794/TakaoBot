@@ -55,18 +55,18 @@ class GeneralCommand : ListenerAdapter() {
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 		when {
-			checkCommand(event, symbolCommand, CONFIGURATION_COMMAND) -> {
+			event.checkCommand(symbolCommand, CONFIGURATION_COMMAND) -> {
 				getConfigurationCommand(event)
 			}
 
-			checkCommand(event, symbolCommand, INFO_COMMAND) -> {
+			event.checkCommand(symbolCommand, INFO_COMMAND) -> {
 				event.author.openPrivateChannel().queue {
 					it.sendMessage(getInfo()).queue()
 				}
 			}
 
-			checkCommand(event, symbolCommand, HELP_COMMAND) ||
-					checkCommand(event, symbolCommand, HELP_COMMAND2) -> {
+			event.checkCommand(symbolCommand, HELP_COMMAND) ||
+					event.checkCommand(symbolCommand, HELP_COMMAND2) -> {
 				event.author.openPrivateChannel().queue {
 					it.sendMessage(getHelp(event.guild.id)).queue()
 				}

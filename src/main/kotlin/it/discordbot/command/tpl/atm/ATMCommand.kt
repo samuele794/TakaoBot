@@ -54,7 +54,7 @@ class ATMCommand : ListenerAdapter() {
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 
 		when {
-			checkCommand(event, symbolCommand, ATM_START_COMMAND) -> {
+			event.checkCommand(symbolCommand, ATM_START_COMMAND) -> {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {
@@ -66,7 +66,7 @@ class ATMCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, ATM_STOP_COMMAND) -> {
+			event.checkCommand(symbolCommand, ATM_STOP_COMMAND) -> {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {
@@ -78,8 +78,8 @@ class ATMCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, ATM_METRO_STATUS_COMMAND) ||
-					checkCommand(event, symbolCommand, ATM_METRO_STATUS2_COMMAND) -> {
+			event.checkCommand(symbolCommand, ATM_METRO_STATUS_COMMAND) ||
+					event.checkCommand(symbolCommand, ATM_METRO_STATUS2_COMMAND) -> {
 				atmMetroStatus.getStatoMetro(event)
 			}
 

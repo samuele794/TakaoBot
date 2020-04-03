@@ -44,10 +44,10 @@ class ImagesCommand : ListenerAdapter() {
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 		when {
-			checkCommand(event, symbolCommand, RANDOM_PICSUM_COMMAND) -> {
+			event.checkCommand(symbolCommand, RANDOM_PICSUM_COMMAND) -> {
 				event.textChannel.sendMessage(loremPicsumCommand.getRandomPicsumImage()).queue()
 			}
-			checkCommand(event, symbolCommand, CUSTOM_PICSUM_COMMAND) -> {
+			event.checkCommand(symbolCommand, CUSTOM_PICSUM_COMMAND) -> {
 				loremPicsumCommand.customPicsum(event)
 			}
 		}

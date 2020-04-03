@@ -78,7 +78,7 @@ class BDOCommand : ListenerAdapter() {
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 
 		when {
-			checkCommand(event, symbolCommand, BDO_BOSS_START_COMMAND) -> {
+			event.checkCommand(symbolCommand, BDO_BOSS_START_COMMAND) -> {
 				if (checkAdminPermission(event)) {
 					bdoBossInterface.setBDOBossChannel(event.guild.id, event.textChannel.id)
 					sendMessageAddChannel(event, "Invio degli allarmi dei boss di BDO configurato sul canale: ")
@@ -87,7 +87,7 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_BOSS_STOP_COMMAND) -> {
+			event.checkCommand(symbolCommand, BDO_BOSS_STOP_COMMAND) -> {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {
@@ -97,14 +97,14 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_BOSS_TABLE) -> {
+			event.checkCommand(symbolCommand, BDO_BOSS_TABLE) -> {
 				event.textChannel.sendMessage(EmbedBuilder().apply {
 					setImage("https://i.imgur.com/0JdziL3.png")
-					setColor(Color(40,40,40))
+					setColor(Color(40, 40, 40))
 				}.build()).queue()
 			}
 
-			checkCommand(event, symbolCommand, BDO_NEWS_START_COMMAND) -> {
+			event.checkCommand(symbolCommand, BDO_NEWS_START_COMMAND) -> {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {
@@ -113,7 +113,7 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_NEWS_STOP_COMMAND) -> {
+			event.checkCommand(symbolCommand, BDO_NEWS_STOP_COMMAND) -> {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {
@@ -123,7 +123,7 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_PATCH_START_COMMAND) -> {
+			event.checkCommand(symbolCommand, BDO_PATCH_START_COMMAND) -> {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {
@@ -132,7 +132,7 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_PATCH_STOP_COMMAND) -> {
+			event.checkCommand(symbolCommand, BDO_PATCH_STOP_COMMAND) -> {
 				if (!checkAdminPermission(event)) {
 					rejectCommand(event)
 				} else {

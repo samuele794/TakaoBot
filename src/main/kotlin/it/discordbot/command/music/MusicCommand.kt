@@ -24,56 +24,56 @@ class MusicCommand : ListenerAdapter() {
 
 		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
 
-		if (checkCommand(event, symbolCommand, "leave")) {
+		if (event.checkCommand(symbolCommand, "leave")) {
 			musicManager.leave(event)
 
-		} else if (checkCommand(event, symbolCommand, "play")) {
+		} else if (event.checkCommand(symbolCommand, "play")) {
 			musicManager.play(event)
 
-		} else if (checkCommand(event, symbolCommand, "playPlaylist")
-				|| checkCommand(event, symbolCommand, "pp")) {
+		} else if (event.checkCommand(symbolCommand, "playPlaylist")
+				|| event.checkCommand(symbolCommand, "pp")) {
 			musicManager.playPlaylist(event)
 
-		} else if (checkCommand(event, symbolCommand, "skip") ||
-				checkCommand(event, symbolCommand, "salta")) {
+		} else if (event.checkCommand(symbolCommand, "skip") ||
+				event.checkCommand(symbolCommand, "salta")) {
 			musicManager.skip(event)
 
-		} else if (checkCommand(event, symbolCommand, "pausa") ||
-				checkCommand(event, symbolCommand, "pause") ||
-				checkCommand(event, symbolCommand, "resume") ||
-				checkCommand(event, symbolCommand, "riprendi")) {
+		} else if (event.checkCommand(symbolCommand, "pausa") ||
+				event.checkCommand(symbolCommand, "pause") ||
+				event.checkCommand(symbolCommand, "resume") ||
+				event.checkCommand(symbolCommand, "riprendi")) {
 			musicManager.pauseResume(event)
 
-		} else if (checkCommand(event, symbolCommand, "stop")) {
+		} else if (event.checkCommand(symbolCommand, "stop")) {
 			musicManager.stop(event)
 
-		} else if (checkCommand(event, symbolCommand, "restart")) {
+		} else if (event.checkCommand(symbolCommand, "restart")) {
 			musicManager.restart(event)
 
-		} else if (checkCommand(event, symbolCommand, "repeat") ||
-				checkCommand(event, symbolCommand, "ripeti")) {
+		} else if (event.checkCommand(symbolCommand, "repeat") ||
+				event.checkCommand(symbolCommand, "ripeti")) {
 			musicManager.repeat(event)
 
-		} else if (checkCommand(event, symbolCommand, "nowplaying") ||
-				checkCommand(event, symbolCommand, "np")) {
+		} else if (event.checkCommand(symbolCommand, "nowplaying") ||
+				event.checkCommand(symbolCommand, "np")) {
 			musicManager.nowPlay(event)
 
-		} else if (checkCommand(event, symbolCommand, "queue") ||
-				checkCommand(event, symbolCommand, "np")) {
+		} else if (event.checkCommand(symbolCommand, "queue") ||
+				event.checkCommand(symbolCommand, "np")) {
 			musicManager.getListQueue(event)
 
-		} else if (checkCommand(event, symbolCommand, "shuffle")) {
+		} else if (event.checkCommand(symbolCommand, "shuffle")) {
 			musicManager.shuffleQueue(event)
 
-		} else if (checkCommand(event, symbolCommand, "clear") ||
-				checkCommand(event, symbolCommand, "pulisci")) {
+		} else if (event.checkCommand(symbolCommand, "clear") ||
+				event.checkCommand(symbolCommand, "pulisci")) {
 			musicManager.clearQueue(event)
 
 		}
 
-		when{
-			checkCommand(event, symbolCommand, "clear") ||
-			checkCommand(event, symbolCommand, "pulisci") -> musicManager.clearQueue(event)
+		when {
+			event.checkCommand(symbolCommand, "clear") ||
+					event.checkCommand(symbolCommand, "pulisci") -> musicManager.clearQueue(event)
 		}
 	}
 }
