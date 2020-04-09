@@ -53,7 +53,7 @@ class GeneralCommand : ListenerAdapter() {
 		if (event.author.isBot) return
 		if (event.isFromType(ChannelType.PRIVATE)) return
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(event.guild.id)
 		when {
 			event.checkCommand(symbolCommand, CONFIGURATION_COMMAND) -> {
 				getConfigurationCommand(event)
@@ -77,7 +77,7 @@ class GeneralCommand : ListenerAdapter() {
 
 	private fun getHelp(serverID: String): MessageEmbed {
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(serverID)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(serverID)
 
 		return EmbedBuilder().apply {
 			setTitle("Lista Comandi")
@@ -152,10 +152,10 @@ class GeneralCommand : ListenerAdapter() {
 
 			val listMessage = event.message.contentRaw.split(" ")
 			val newCommand = listMessage[listMessage.size - 1]
-			serverManagementInterface.setSimbolCommand(event.guild.id, newCommand)
+			serverManagementInterface.setSymbolCommand(event.guild.id, newCommand)
 
 			MessageBuilder().append("Simbolo di comando configurato. Nuovo simbolo di comando: ")
-					.appendCodeBlock(serverManagementInterface.getSimbolCommand(event.guild.id), "").sendTo(event.textChannel).queue()
+					.appendCodeBlock(serverManagementInterface.getSymbolCommand(event.guild.id), "").sendTo(event.textChannel).queue()
 		} else {
 			MessageBuilder().append("Simbolo di comando non conforme").sendTo(event.textChannel).queue()
 		}

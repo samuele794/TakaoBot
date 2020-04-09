@@ -42,7 +42,7 @@ class ImagesCommand : ListenerAdapter() {
 		if (event.author.isBot)
 			return
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(event.guild.id)
 		when {
 			event.checkCommand(symbolCommand, RANDOM_PICSUM_COMMAND) -> {
 				event.textChannel.sendMessage(loremPicsumCommand.getRandomPicsumImage()).queue()

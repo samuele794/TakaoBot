@@ -22,7 +22,7 @@ class MusicCommand : ListenerAdapter() {
 	override fun onMessageReceived(event: MessageReceivedEvent) {
 		if (event.author.isBot) return
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(event.guild.id)
 
 		if (event.checkCommand(symbolCommand, "leave")) {
 			musicManager.leave(event)

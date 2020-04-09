@@ -75,7 +75,7 @@ class BDOCommand : ListenerAdapter() {
 	override fun onMessageReceived(event: MessageReceivedEvent) {
 		if (event.author.isBot) return
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(event.guild.id)
 
 		when {
 			event.checkCommand(symbolCommand, BDO_BOSS_START_COMMAND) -> {
