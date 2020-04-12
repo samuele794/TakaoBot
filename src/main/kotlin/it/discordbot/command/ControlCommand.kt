@@ -18,12 +18,11 @@ fun MessageReceivedEvent.checkCommand(symbolCommand: String, commandName: String
 
 	val completeCommand = symbolCommand + commandName.toLowerCase()
 
-
-	return if (!this.isFromType(ChannelType.PRIVATE)) {
-		val commandEvent = if (this.message.isMentioned(this.jda.selfUser)) {
-			this.message.contentRaw.split(" ")[1].toLowerCase()
+	return if (!isFromType(ChannelType.PRIVATE)) {
+		val commandEvent = if (message.isMentioned(this.jda.selfUser)) {
+			message.contentRaw.split(" ")[1].toLowerCase()
 		} else {
-			this.message.contentRaw.split(" ")[0].toLowerCase()
+			message.contentRaw.split(" ")[0].toLowerCase()
 		}
 		commandEvent == completeCommand ||
 				commandEvent.startsWith(commandName, true)
@@ -34,11 +33,11 @@ fun MessageReceivedEvent.checkCommand(symbolCommand: String, commandName: String
 
 /**
  * Metodo che controlla se l'utente ha i permessi di amministrare il server
- * @param event MessageReceivedEvent evento del messaggio ricevuto
+ * @param this@checkAdminPermission MessageReceivedEvent evento del messaggio ricevuto
  * @return Boolean True, l'utente ha permessi amministrativi
  */
-fun checkAdminPermission(event: MessageReceivedEvent): Boolean {
-	return event.guild.getMember(event.author)!!.hasPermission(Permission.ADMINISTRATOR)
+fun MessageReceivedEvent.checkAdminPermission(): Boolean {
+	return guild.getMember(author)!!.hasPermission(Permission.ADMINISTRATOR)
 }
 
 /**

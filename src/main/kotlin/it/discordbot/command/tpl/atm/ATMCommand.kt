@@ -55,7 +55,7 @@ class ATMCommand : ListenerAdapter() {
 
 		when {
 			event.checkCommand(symbolCommand, ATM_START_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					atmInterface.setATMAlertChannel(event.guild.id, event.textChannel.id)
@@ -67,7 +67,7 @@ class ATMCommand : ListenerAdapter() {
 			}
 
 			event.checkCommand(symbolCommand, ATM_STOP_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					val removedChannelID = atmInterface.removeATMAlertChannel(event.guild.id)!!

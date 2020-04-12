@@ -79,7 +79,7 @@ class BDOCommand : ListenerAdapter() {
 
 		when {
 			event.checkCommand(symbolCommand, BDO_BOSS_START_COMMAND) -> {
-				if (checkAdminPermission(event)) {
+				if (event.checkAdminPermission()) {
 					bdoBossInterface.setBDOBossChannel(event.guild.id, event.textChannel.id)
 					sendMessageAddChannel(event, "Invio degli allarmi dei boss di BDO configurato sul canale: ")
 				} else {
@@ -88,7 +88,7 @@ class BDOCommand : ListenerAdapter() {
 			}
 
 			event.checkCommand(symbolCommand, BDO_BOSS_STOP_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					val removedChannelId = bdoBossInterface.removeBDOBossChannel(event.guild.id)
@@ -105,7 +105,7 @@ class BDOCommand : ListenerAdapter() {
 			}
 
 			event.checkCommand(symbolCommand, BDO_NEWS_START_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					bdoNewsInterface.setBDONewsChannel(event.guild.id, event.textChannel.id)
@@ -114,7 +114,7 @@ class BDOCommand : ListenerAdapter() {
 			}
 
 			event.checkCommand(symbolCommand, BDO_NEWS_STOP_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					val removedChannelId = bdoNewsInterface.removeBDONewsChannel(event.guild.id)
@@ -124,7 +124,7 @@ class BDOCommand : ListenerAdapter() {
 			}
 
 			event.checkCommand(symbolCommand, BDO_PATCH_START_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					bdoPatchInterface.setBDOPatchChannel(event.guild.id, event.textChannel.id)
@@ -133,7 +133,7 @@ class BDOCommand : ListenerAdapter() {
 			}
 
 			event.checkCommand(symbolCommand, BDO_PATCH_STOP_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					val removedChannelId = bdoPatchInterface.removeBDOPatchChannel(event.guild.id)

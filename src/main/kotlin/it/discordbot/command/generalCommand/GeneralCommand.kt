@@ -126,7 +126,7 @@ class GeneralCommand : ListenerAdapter() {
 
 	//configurationCommand
 	private fun getConfigurationCommand(event: MessageReceivedEvent) {
-		if (!checkAdminPermission(event)) {
+		if (!event.checkAdminPermission()) {
 			rejectCommand(event)
 		} else {
 			val tokenizer = StringTokenizer(event.message.contentRaw)
