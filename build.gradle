@@ -1,17 +1,19 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.4.RELEASE'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.31'
-    id 'org.jetbrains.kotlin.plugin.spring' version '1.3.31'
+    id 'org.springframework.boot' version '2.2.4.RELEASE'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.70'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.3.70'
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '4.0.4'
-    id 'org.jetbrains.dokka' version '0.9.18'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+//    id 'com.sedmelluq.jdaction' version '1.0.2'
+    id 'org.jetbrains.dokka' version '0.10.1'
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
 
 group = 'it.github.samuele794.takaobot'
-version = '2.0.1'
+version = '2.1.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -28,7 +30,6 @@ springBoot {
 }
 
 bootJar {
-    classifier = 'boot'
     manifest {
         attributes 'Start-Class': 'it.discordbot.StartBotKt'
 
@@ -44,31 +45,47 @@ bootJar {
 }*/
 
 task dokkaPureKotlindoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    configuration {
+        jdkVersion = 8
+        includeNonPublic = true
+        noJdkLink = false
+        noStdlibLink = false
+    }
     outputFormat = 'html'
     outputDirectory = "$buildDir/kotlindoc"
-    jdkVersion = 8
-    includeNonPublic = true
-    noJdkLink = false
-    noStdlibLink = false
+
+
 }
 
 task dokkaPureJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+
+    configuration {
+        jdkVersion = 8
+        includeNonPublic = true
+        noJdkLink = false
+        noStdlibLink = false
+    }
     outputFormat = 'javadoc'
     outputDirectory = "$buildDir/javadoc"
-    jdkVersion = 8
-    includeNonPublic = true
-    noJdkLink = false
-    noStdlibLink = false
+
+
 }
 
 task dokkaKotlindocAsJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    configuration {
+        jdkVersion = 8
+        includeNonPublic = true
+        noJdkLink = false
+        noStdlibLink = false
+    }
     outputFormat = 'html-as-java'
     outputDirectory = "$buildDir/kotlin-as-javadoc"
-    jdkVersion = 8
-    includeNonPublic = true
-    noJdkLink = false
-    noStdlibLink = false
+
 }
+
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '6.1'
+//}
 
 
 dependencies {
@@ -83,16 +100,18 @@ dependencies {
     //SPRING LIBRARY
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.4.RELEASE'
-    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.4.RELEASE'
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2"
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.1.5.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.2.4.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
-//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.1.5.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.4.RELEASE'
 
-    implementation 'net.dv8tion:JDA:3.8.3_463'
-    implementation 'com.jagrosh:jda-utilities:2.1.5'
+    implementation 'org.springframework.boot:spring-boot-starter-cache:2.2.4.RELEASE'
+
+    implementation 'net.dv8tion:JDA:4.1.1_110'
+    implementation 'com.jagrosh:jda-utilities:3.0.2'
 
     //RSS + HTML PARSER
     // https://mvnrepository.com/artifact/com.rometools/rome
@@ -106,9 +125,7 @@ dependencies {
 
     //POSTGRESQL DRIVER
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
-    // https://mvnrepository.com/artifact/redis.clients/jedis
-    implementation group: 'redis.clients', name: 'jedis', version: '2.9.0'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.10'
 
     //TwitterAPI
     // https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core
@@ -119,7 +136,17 @@ dependencies {
     implementation group: 'org.twitter4j', name: 'twitter4j-async', version: '4.0.7'
 
     //MUSIC PLAYER
-    implementation 'com.sedmelluq:lavaplayer:1.3.17'
+    implementation 'com.sedmelluq:lavaplayer:1.3.34'
+
+    //connection
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.7.2'
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-jackson
+    implementation group: 'com.squareup.retrofit2', name: 'converter-jackson', version: '2.7.2'
+
+    // https://mvnrepository.com/artifact/org.eclipse.mylyn.github/org.eclipse.egit.github.core
+    implementation group: 'org.eclipse.mylyn.github', name: 'org.eclipse.egit.github.core', version: '2.1.5'
 
 }
 

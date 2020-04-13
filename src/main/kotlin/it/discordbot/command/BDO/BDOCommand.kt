@@ -7,10 +7,10 @@ import it.discordbot.database.filter.BDOBossInterface
 import it.discordbot.database.filter.BDONewsInterface
 import it.discordbot.database.filter.BDOPatchInterface
 import it.discordbot.database.filter.ServerManagementInterface
-import net.dv8tion.jda.core.EmbedBuilder
-import net.dv8tion.jda.core.MessageBuilder
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.hooks.ListenerAdapter
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -72,14 +72,14 @@ class BDOCommand : ListenerAdapter() {
 
 	}
 
-	override fun onMessageReceived(event: MessageReceivedEvent?) {
-		if (event!!.author.isBot) return
+	override fun onMessageReceived(event: MessageReceivedEvent) {
+		if (event.author.isBot) return
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(event.guild.id)
 
 		when {
-			checkCommand(event, symbolCommand, BDO_BOSS_START_COMMAND) -> {
-				if (checkAdminPermission(event)) {
+			event.checkCommand(symbolCommand, BDO_BOSS_START_COMMAND) -> {
+				if (event.checkAdminPermission()) {
 					bdoBossInterface.setBDOBossChannel(event.guild.id, event.textChannel.id)
 					sendMessageAddChannel(event, "Invio degli allarmi dei boss di BDO configurato sul canale: ")
 				} else {
@@ -87,8 +87,8 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_BOSS_STOP_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+			event.checkCommand(symbolCommand, BDO_BOSS_STOP_COMMAND) -> {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					val removedChannelId = bdoBossInterface.removeBDOBossChannel(event.guild.id)
@@ -97,15 +97,15 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_BOSS_TABLE) -> {
+			event.checkCommand(symbolCommand, BDO_BOSS_TABLE) -> {
 				event.textChannel.sendMessage(EmbedBuilder().apply {
 					setImage("https://i.imgur.com/0JdziL3.png")
-					setColor(Color(40,40,40))
+					setColor(Color(40, 40, 40))
 				}.build()).queue()
 			}
 
-			checkCommand(event, symbolCommand, BDO_NEWS_START_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+			event.checkCommand(symbolCommand, BDO_NEWS_START_COMMAND) -> {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					bdoNewsInterface.setBDONewsChannel(event.guild.id, event.textChannel.id)
@@ -113,8 +113,8 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_NEWS_STOP_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+			event.checkCommand(symbolCommand, BDO_NEWS_STOP_COMMAND) -> {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					val removedChannelId = bdoNewsInterface.removeBDONewsChannel(event.guild.id)
@@ -123,8 +123,8 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_PATCH_START_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+			event.checkCommand(symbolCommand, BDO_PATCH_START_COMMAND) -> {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					bdoPatchInterface.setBDOPatchChannel(event.guild.id, event.textChannel.id)
@@ -132,8 +132,8 @@ class BDOCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, BDO_PATCH_STOP_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+			event.checkCommand(symbolCommand, BDO_PATCH_STOP_COMMAND) -> {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					val removedChannelId = bdoPatchInterface.removeBDOPatchChannel(event.guild.id)
@@ -155,7 +155,7 @@ class BDOCommand : ListenerAdapter() {
 	private fun sendMessageRemoveChannel(event: MessageReceivedEvent, message: String, channelID: String) {
 		MessageBuilder().apply {
 			append(message)
-			appendCodeBlock(event.jda.getTextChannelById(channelID).name, "")
+			appendCodeBlock(event.jda.getTextChannelById(channelID)!!.name, "")
 		}.sendTo(event.textChannel).queue()
 	}
 

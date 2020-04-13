@@ -8,9 +8,10 @@ import it.discordbot.command.image.ImagesCommand
 import it.discordbot.command.music.MusicCommand
 import it.discordbot.command.tpl.atm.ATMCommand
 import it.discordbot.test.TestCommand
-import net.dv8tion.jda.core.JDA
-import net.dv8tion.jda.core.JDABuilder
-import net.dv8tion.jda.core.Permission
+import net.dv8tion.jda.api.JDA
+import net.dv8tion.jda.api.JDABuilder
+import net.dv8tion.jda.api.Permission
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ExitCodeGenerator
@@ -38,6 +39,7 @@ class JDAController : ExitCodeGenerator {
 	companion object {
 		lateinit var jda: JDA
 		val eventWaiter = EventWaiter()
+		val logger = LoggerFactory.getLogger(JDAController::class.java)
 	}
 
 	@Autowired
@@ -74,12 +76,12 @@ class JDAController : ExitCodeGenerator {
 			addEventListener(musicCommand)
 			addEventListener(imagesCommand)
 		}
-		TakaoLog.logInfo("BOT AVVIATO")
-		TakaoLog.logInfo(jda.asBot().getInviteUrl(Permission.ADMINISTRATOR))
+		logger.info("BOT AVVIATO")
+		logger.info(jda.getInviteUrl(Permission.ADMINISTRATOR))
 	}
 
 	override fun getExitCode(): Int {
-		TakaoLog.logInfo("SPEGNIMENTO BOT")
+		logger.info("SPEGNIMENTO BOT")
 		jda.shutdown()
 		return -1
 	}

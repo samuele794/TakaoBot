@@ -5,10 +5,10 @@ import  it.discordbot.core.EmojiContainer.Companion.SEMAFORO
 import it.discordbot.core.EmojiContainer.Companion.TRIANGOLO_ALERT_GIALLO
 import it.discordbot.core.EmojiContainer.Companion.YES
 import it.discordbot.core.JDAController
-import it.discordbot.core.TakaoLog
 import it.discordbot.core.TwitterManager
 import it.discordbot.database.filter.ATMInterface
-import net.dv8tion.jda.core.EmbedBuilder
+import net.dv8tion.jda.api.EmbedBuilder
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -32,6 +32,8 @@ class ATMTwitterScheduler {
 	@Autowired
 	lateinit var atmInterface: ATMInterface
 
+	private val logger = LoggerFactory.getLogger(ATMTwitterScheduler::class.java)
+
 	companion object {
 		private const val QUERY_PARAM = "exclude:retweets exclude:replies"
 		private const val TWITTER_URL = "https://twitter.com/atm_informa/status/"
@@ -43,14 +45,14 @@ class ATMTwitterScheduler {
 	fun initATMTwitterScheduler() {
 		val listener = object : StatusListener {
 			override fun onStatus(status: Status) {
-				TakaoLog.logInfo("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text)
+				logger.info("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text)
 
-				TakaoLog.logInfo("ATM IN REPLY USER ID = " + status.inReplyToUserId)
-				TakaoLog.logInfo("ATM IN REPLY STATUS ID = " + status.inReplyToStatusId)
-				TakaoLog.logInfo("ATM IN REPLY SCREEN NAME ID = " + status.inReplyToScreenName)
+				logger.info("ATM IN REPLY USER ID = " + status.inReplyToUserId)
+				logger.info("ATM IN REPLY STATUS ID = " + status.inReplyToStatusId)
+				logger.info("ATM IN REPLY SCREEN NAME ID = " + status.inReplyToScreenName)
 				if (status.user.id == ATM_TWITTER_ID && !status.isRetweet
 						&& (status.inReplyToUserId == -1L || status.inReplyToUserId == ATM_TWITTER_ID)) {
-					TakaoLog.logInfo("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text + "\n PASSATO PER PROCESSAZIONE")
+					logger.info("ATMUSERID = " + status.user.screenName + " " + status.user.id + "\nMESSAGE = " + status.text + "\n PASSATO PER PROCESSAZIONE")
 					thread(start = true) {
 
 						val tweetID: Long
@@ -124,7 +126,7 @@ class ATMTwitterScheduler {
 				twitterMessage.contains("manifestazione", ignoreCase = true) ||
 				twitterMessage.contains("aggiornamento", ignoreCase = true)||
 				twitterMessage.contains("suicidio", ignoreCase = true)) {
-			TakaoLog.logInfo("INIZIO PUBBLICAZIONE ATM TWITTER")
+			logger.info("INIZIO PUBBLICAZIONE ATM TWITTER")
 
 			val message = EmbedBuilder().apply {
 				setAuthor("ATM (@atm_informa)", tweetUrl, profileImageUrl)
@@ -139,9 +141,10 @@ class ATMTwitterScheduler {
 			val serverList = atmInterface.getATMAlertChannels()
 			for (server in serverList) {
 				JDAController.jda.getGuildById(server.serverID)
-						.getTextChannelById(server.channelID)
-						.sendMessage(message)
-						.queue()
+						?.getTextChannelById(server.channelID)
+						?.sendMessage(message)
+						?.queue()
+				//TODO GENERALIZZARE IL METODO DI PUBBLICAZIONE
 			}
 		}
 	}

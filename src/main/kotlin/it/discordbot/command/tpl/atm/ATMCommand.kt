@@ -6,9 +6,9 @@ import it.discordbot.command.rejectCommand
 import it.discordbot.command.tpl.atm.girocitta.status.ATMMetroStatus
 import it.discordbot.database.filter.ATMInterface
 import it.discordbot.database.filter.ServerManagementInterface
-import net.dv8tion.jda.core.MessageBuilder
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.hooks.ListenerAdapter
+import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -48,14 +48,14 @@ class ATMCommand : ListenerAdapter() {
 
 	}
 
-	override fun onMessageReceived(event: MessageReceivedEvent?) {
-		if (event!!.author.isBot) return
+	override fun onMessageReceived(event: MessageReceivedEvent) {
+		if (event.author.isBot) return
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(event.guild.id)
 
 		when {
-			checkCommand(event, symbolCommand, ATM_START_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+			event.checkCommand(symbolCommand, ATM_START_COMMAND) -> {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
 					atmInterface.setATMAlertChannel(event.guild.id, event.textChannel.id)
@@ -66,20 +66,20 @@ class ATMCommand : ListenerAdapter() {
 				}
 			}
 
-			checkCommand(event, symbolCommand, ATM_STOP_COMMAND) -> {
-				if (!checkAdminPermission(event)) {
+			event.checkCommand(symbolCommand, ATM_STOP_COMMAND) -> {
+				if (!event.checkAdminPermission()) {
 					rejectCommand(event)
 				} else {
-					val removedChannelID = atmInterface.removeATMAlertChannel(event.guild.id)
+					val removedChannelID = atmInterface.removeATMAlertChannel(event.guild.id)!!
 					MessageBuilder().apply {
 						append("Invio degli avvisi dell'ATM rimosso dal canale: ")
-						appendCodeBlock(event.jda.getTextChannelById(removedChannelID).name, "")
+						appendCodeBlock(event.jda.getTextChannelById(removedChannelID)!!.name, "")
 					}.sendTo(event.channel).queue()
 				}
 			}
 
-			checkCommand(event, symbolCommand, ATM_METRO_STATUS_COMMAND) ||
-					checkCommand(event, symbolCommand, ATM_METRO_STATUS2_COMMAND) -> {
+			event.checkCommand(symbolCommand, ATM_METRO_STATUS_COMMAND) ||
+					event.checkCommand(symbolCommand, ATM_METRO_STATUS2_COMMAND) -> {
 				atmMetroStatus.getStatoMetro(event)
 			}
 

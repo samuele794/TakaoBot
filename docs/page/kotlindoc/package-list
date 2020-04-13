@@ -18,7 +18,7 @@ it.discordbot.command.image
 it.discordbot.command.image.lorempicsum
 it.discordbot.command.music
 it.discordbot.command.music.config
-it.discordbot.command.pattern
+it.discordbot.command.base
 it.discordbot.command.tpl.atm
 it.discordbot.command.tpl.atm.RSS
 it.discordbot.command.tpl.atm.girocitta.status

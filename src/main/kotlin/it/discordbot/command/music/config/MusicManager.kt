@@ -11,11 +11,11 @@ import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioSourceManager
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
-import net.dv8tion.jda.core.Permission
-import net.dv8tion.jda.core.entities.MessageChannel
-import net.dv8tion.jda.core.entities.VoiceChannel
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.exceptions.PermissionException
+import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.MessageChannel
+import net.dv8tion.jda.api.entities.VoiceChannel
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.exceptions.PermissionException
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 import java.util.*
@@ -32,7 +32,7 @@ class MusicManager {
 	init {
 		playerManager = DefaultAudioPlayerManager()
 		playerManager.registerSourceManager(YoutubeAudioSourceManager())
-		playerManager.registerSourceManager(SoundCloudAudioSourceManager())
+		playerManager.registerSourceManager(SoundCloudAudioSourceManager.createDefault())
 //		playerManager.registerSourceManager(new BandcampAudioSourceManager());
 //		playerManager.registerSourceManager(new VimeoAudioSourceManager());
 		playerManager.registerSourceManager(TwitchStreamAudioSourceManager())
@@ -49,7 +49,7 @@ class MusicManager {
 	 * @return String url della canzone
 	 */
 	private fun getUrl(event: MessageReceivedEvent): String {
-		val listMessage = Arrays.asList(*event.message.contentRaw.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
+		val listMessage = listOf(*event.message.contentRaw.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
 		return listMessage[listMessage.size - 1]
 	}
 
@@ -75,8 +75,8 @@ class MusicManager {
 		val guildMusicManager = getMusicManager(guild.id)
 
 		val voiceChannel: VoiceChannel
-		if (event.member.voiceState.inVoiceChannel()) {
-			voiceChannel = event.member.voiceState.channel
+		if (event.member!!.voiceState!!.inVoiceChannel()) {
+			voiceChannel = event.member!!.voiceState!!.channel!!
 			guild.audioManager.sendingHandler = guildMusicManager.sendHandler
 
 			try {

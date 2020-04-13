@@ -1,10 +1,10 @@
 package it.discordbot.command.image.lorempicsum
 
 import it.discordbot.beans.image.ImageCommandProxy
-import it.discordbot.command.pattern.StateMachine
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent
-import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent
+import it.discordbot.command.base.StateMachine
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component

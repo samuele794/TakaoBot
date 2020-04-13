@@ -3,6 +3,8 @@ package it.discordbot.database.filter
 import it.discordbot.beans.ServerDiscord
 import it.discordbot.database.repository.ServerDiscordRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.CachePut
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 
@@ -17,16 +19,18 @@ class ServerManagementInterface {
 	@Autowired
 	private lateinit var serverDiscordRepository: ServerDiscordRepository
 
-
-	fun getSimbolCommand(serverID: String): String {
+	@Cacheable("SymbolCommandCache", key = "#serverID")
+	fun getSymbolCommand(serverID: String): String {
 		val serverDiscord = serverDiscordRepository.findServerDiscordByServerId(serverID)
 		return serverDiscord.simbolCommand!!
 	}
 
-	fun setSimbolCommand(serverID: String, simbolCommand: String) {
+	@CachePut("SymbolCommandCache", key = "#serverID")
+	fun setSymbolCommand(serverID: String, simbolCommand: String): String {
 		val serverDiscord = serverDiscordRepository.findServerDiscordByServerId(serverID)
 		serverDiscord.simbolCommand = simbolCommand
 		serverDiscordRepository.save(serverDiscord)
+		return simbolCommand
 	}
 
 	fun newServer(serverID: String, serverName: String) {

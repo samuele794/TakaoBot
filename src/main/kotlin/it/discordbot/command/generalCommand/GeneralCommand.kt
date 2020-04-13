@@ -8,12 +8,12 @@ import it.discordbot.command.rejectCommand
 import it.discordbot.command.tpl.atm.ATMCommand
 import it.discordbot.core.JDAController
 import it.discordbot.database.filter.ServerManagementInterface
-import net.dv8tion.jda.core.EmbedBuilder
-import net.dv8tion.jda.core.MessageBuilder
-import net.dv8tion.jda.core.entities.ChannelType
-import net.dv8tion.jda.core.entities.MessageEmbed
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.hooks.ListenerAdapter
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.entities.ChannelType
+import net.dv8tion.jda.api.entities.MessageEmbed
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -48,25 +48,25 @@ class GeneralCommand : ListenerAdapter() {
 
 	}
 
-	override fun onMessageReceived(event: MessageReceivedEvent?) {
+	override fun onMessageReceived(event: MessageReceivedEvent) {
 
-		if (event!!.author.isBot) return
+		if (event.author.isBot) return
 		if (event.isFromType(ChannelType.PRIVATE)) return
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(event.guild.id)
 		when {
-			checkCommand(event, symbolCommand, CONFIGURATION_COMMAND) -> {
+			event.checkCommand(symbolCommand, CONFIGURATION_COMMAND) -> {
 				getConfigurationCommand(event)
 			}
 
-			checkCommand(event, symbolCommand, INFO_COMMAND) -> {
+			event.checkCommand(symbolCommand, INFO_COMMAND) -> {
 				event.author.openPrivateChannel().queue {
 					it.sendMessage(getInfo()).queue()
 				}
 			}
 
-			checkCommand(event, symbolCommand, HELP_COMMAND) ||
-					checkCommand(event, symbolCommand, HELP_COMMAND2) -> {
+			event.checkCommand(symbolCommand, HELP_COMMAND) ||
+					event.checkCommand(symbolCommand, HELP_COMMAND2) -> {
 				event.author.openPrivateChannel().queue {
 					it.sendMessage(getHelp(event.guild.id)).queue()
 				}
@@ -77,11 +77,11 @@ class GeneralCommand : ListenerAdapter() {
 
 	private fun getHelp(serverID: String): MessageEmbed {
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(serverID)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(serverID)
 
 		return EmbedBuilder().apply {
 			setTitle("Lista Comandi")
-			setColor(Color(132, 197, 251))
+			setColor(Color(130, 195, 250))
 			setDescription("Questi comandi possono essere usati menzionando il bot e scrivendo il comando senza simbolo,"
 					+ "oppure usando i comandi direttamente come segue:")
 			addField(symbolCommand + INFO_COMMAND, INFO_COMMAND_DESCRIPTION, false)
@@ -114,7 +114,7 @@ class GeneralCommand : ListenerAdapter() {
 				"Link utili: \n" +
 				"- Sito web: https://samuele794.github.io/TakaoBot/"
 
-		val avatarUrl = JDAController.jda.getUserById("186582756841488385").avatarUrl
+		val avatarUrl = JDAController.jda.getUserById("186582756841488385")!!.avatarUrl
 
 		return EmbedBuilder().apply {
 			setImage("https://samuele794.github.io/TakaoBot/images/Copertina.png")
@@ -126,7 +126,7 @@ class GeneralCommand : ListenerAdapter() {
 
 	//configurationCommand
 	private fun getConfigurationCommand(event: MessageReceivedEvent) {
-		if (!checkAdminPermission(event)) {
+		if (!event.checkAdminPermission()) {
 			rejectCommand(event)
 		} else {
 			val tokenizer = StringTokenizer(event.message.contentRaw)
@@ -152,10 +152,10 @@ class GeneralCommand : ListenerAdapter() {
 
 			val listMessage = event.message.contentRaw.split(" ")
 			val newCommand = listMessage[listMessage.size - 1]
-			serverManagementInterface.setSimbolCommand(event.guild.id, newCommand)
+			serverManagementInterface.setSymbolCommand(event.guild.id, newCommand)
 
 			MessageBuilder().append("Simbolo di comando configurato. Nuovo simbolo di comando: ")
-					.appendCodeBlock(serverManagementInterface.getSimbolCommand(event.guild.id), "").sendTo(event.textChannel).queue()
+					.appendCodeBlock(serverManagementInterface.getSymbolCommand(event.guild.id), "").sendTo(event.textChannel).queue()
 		} else {
 			MessageBuilder().append("Simbolo di comando non conforme").sendTo(event.textChannel).queue()
 		}

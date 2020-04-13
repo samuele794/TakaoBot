@@ -1,17 +1,14 @@
 package it.discordbot.command.BDO.RSS
 
 import it.discordbot.beans.RSSMessage
-import it.discordbot.beans.ServerToChannel
-import it.discordbot.command.pattern.RSSScheduler
+import it.discordbot.command.base.RSSScheduler
 import it.discordbot.core.JDAController
-import it.discordbot.core.TakaoLog
 import it.discordbot.database.filter.BDOPatchInterface
-import net.dv8tion.jda.core.entities.MessageEmbed
+import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
-import java.util.*
 
 /**
  * Scheduler RSS per le patch di BDO
@@ -45,7 +42,7 @@ class BDOPatchRSSScheduler : RSSScheduler {
 		if (patchBDO != "") {
 			if (bdorssReader.isNew(rssPatchMessage!!.link, patchBDO)) {
 				procedurePublish(rssPatchMessage)
-				TakaoLog.logInfo("PROCESSAZIONE BDO PATCH LINK= " + rssPatchMessage.link)
+                logger.info("PROCESSAZIONE BDO PATCH LINK= " + rssPatchMessage.link)
 			}
 
 		} else {
@@ -57,16 +54,15 @@ class BDOPatchRSSScheduler : RSSScheduler {
 	override fun procedurePublish(rssMessage: RSSMessage) {
 		val patchMessage = bdorssReader.prepareRSStoMessageEmbed(rssMessage)   //ottieni il messaggio embedded
 		val listNewsChannel = bdoPatchInterface.getBDOPatchChannels()
-		publishMessage(patchMessage, listNewsChannel)
-		bdoPatchInterface.setLastPatch(rssMessage.link) //salvataggio su db
-	}
-
-	override fun publishMessage(message: MessageEmbed, serversToChannel: ArrayList<ServerToChannel>) {
-		for (obj in serversToChannel) {
-			JDAController.jda.getGuildById(obj.serverID)
-					.getTextChannelById(obj.channelID)
-					.sendMessage(message).queue()
+		try {
+			publishMessage(patchMessage, listNewsChannel)
+		} catch (ex: InsufficientPermissionException) {
+			JDAController.logger.debug("""
+				Cancellazione canale BDOPatch
+				serverId = ${ex.guildId}""".trimIndent())
+			bdoPatchInterface.removeBDOPatchChannel(ex.guildId.toString())
 		}
+		bdoPatchInterface.setLastPatch(rssMessage.link) //salvataggio su db
 	}
 
 }

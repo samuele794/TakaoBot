@@ -3,10 +3,10 @@ package it.discordbot.command.image
 import it.discordbot.command.checkCommand
 import it.discordbot.command.image.lorempicsum.LoremPicsumCommand
 import it.discordbot.database.filter.ServerManagementInterface
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent
-import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent
-import net.dv8tion.jda.core.hooks.ListenerAdapter
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
@@ -38,31 +38,31 @@ class ImagesCommand : ListenerAdapter() {
 	}
 
 
-	override fun onMessageReceived(event: MessageReceivedEvent?) {
-		if (event!!.author.isBot)
+	override fun onMessageReceived(event: MessageReceivedEvent) {
+		if (event.author.isBot)
 			return
 
-		val symbolCommand = serverManagementInterface.getSimbolCommand(event.guild.id)
+		val symbolCommand = serverManagementInterface.getSymbolCommand(event.guild.id)
 		when {
-			checkCommand(event, symbolCommand, RANDOM_PICSUM_COMMAND) -> {
+			event.checkCommand(symbolCommand, RANDOM_PICSUM_COMMAND) -> {
 				event.textChannel.sendMessage(loremPicsumCommand.getRandomPicsumImage()).queue()
 			}
-			checkCommand(event, symbolCommand, CUSTOM_PICSUM_COMMAND) -> {
+			event.checkCommand(symbolCommand, CUSTOM_PICSUM_COMMAND) -> {
 				loremPicsumCommand.customPicsum(event)
 			}
 		}
 
 	}
 
-	override fun onGuildMessageReceived(event: GuildMessageReceivedEvent?) {
-		if (event!!.author.isBot)
+	override fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
+		if (event.author.isBot)
 			return
 
 		loremPicsumCommand.onGuildMessageReceived(event)
 	}
 
-	override fun onGuildMessageReactionAdd(event: GuildMessageReactionAddEvent?) {
-		val author = event!!.member.user
+	override fun onGuildMessageReactionAdd(event: GuildMessageReactionAddEvent) {
+		val author = event.member.user
 		if (author.isBot)
 			return
 
