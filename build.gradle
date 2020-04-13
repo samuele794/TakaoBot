@@ -13,7 +13,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'idea'
 
 group = 'it.github.samuele794.takaobot'
-version = '2.0.1'
+version = '2.1.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -30,7 +30,6 @@ springBoot {
 }
 
 bootJar {
-    classifier = 'boot'
     manifest {
         attributes 'Start-Class': 'it.discordbot.StartBotKt'
 
